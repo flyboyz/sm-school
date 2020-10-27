@@ -10,8 +10,8 @@ function add_theme_scripts()
 {
     $templateUri = get_template_directory_uri();
 
-    wp_enqueue_style('theme-style', "$templateUri/assets/css/app.min.css", array(), null);
-    wp_enqueue_script('theme-script', "$templateUri/assets/js/app.min.js", array('jquery'), null, true);
+    wp_enqueue_style('theme-style', "$templateUri/style.css", array(), null);
+    wp_enqueue_script('theme-script', "$templateUri/js/app.min.js", array(), null, true);
 }
 
 add_action('wp_enqueue_scripts', 'add_theme_scripts');

@@ -1,0 +1,70 @@
+.header {
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .35);
+
+  &__container {
+    display: flex;
+    height: 130px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+  }
+
+  &__logo {
+    margin-right: 20px;
+    height: 80px;
+  }
+
+  &__site-name {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 0 40px;
+    }
+
+    a {
+      font-size: 24px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #7c7c7c;
+    }
+  }
+
+  .hamburger-menu {
+    cursor: pointer;
+    position: relative;
+    height: 2px;
+    width: 30px;
+    background-color: black;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 30px;
+      background-color: inherit;
+    }
+
+    &:before {
+      top: -10px;
+    }
+
+    &:after {
+      top: 10px;
+    }
+  }
+}
