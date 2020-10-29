@@ -19,7 +19,11 @@
             'theme_location' => 'header_menu',
             'container' => '',
         ]); ?>
-        <div class="hamburger-menu"></div>
+        <div class="hamburger">
+            <div class="bar bar_1"></div>
+            <div class="bar bar_2"></div>
+            <div class="bar bar_3"></div>
+        </div>
     </div>
 </header>
 <main>

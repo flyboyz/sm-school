@@ -1,9 +1,9 @@
 const path = require('path');
 
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -51,11 +51,7 @@ module.exports = {
     optimization: {
         minimizer: [
             // enable the js minification plugin
-            new UglifyJSPlugin({
-                include: /\.min\.js$/,
-                cache: true,
-                parallel: true
-            }),
+            new MinifyPlugin(),
             // enable the css minification plugin
             // new OptimizeCSSAssetsPlugin({
             //     assetNameRegExp: /\.css$/,

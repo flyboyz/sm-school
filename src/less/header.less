@@ -1,6 +1,12 @@
 .header {
+  position: fixed;
+  width: 100%;
   background-color: white;
   box-shadow: 0 0 8px rgba(0, 0, 0, .35);
+
+  body.admin-bar & {
+    top: 32px;
+  }
 
   &__container {
     display: flex;
@@ -44,27 +50,28 @@
     }
   }
 
-  .hamburger-menu {
+  .hamburger {
     cursor: pointer;
     position: relative;
-    height: 2px;
+    height: 24px;
     width: 30px;
-    background-color: black;
 
-    &:before, &:after {
-      content: '';
-      position: absolute;
+    .bar {
+      position: relative;
       height: 2px;
-      width: 30px;
-      background-color: inherit;
-    }
+      background-color: black;
 
-    &:before {
-      top: -10px;
-    }
+      &_1 {
+        top: 0;
+      }
 
-    &:after {
-      top: 10px;
+      &_2 {
+        top: 9px;
+      }
+
+      &_3 {
+        top: 18px;
+      }
     }
   }
 }
