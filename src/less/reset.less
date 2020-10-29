@@ -6,8 +6,40 @@
 
 body {
   font-family: 'Qanelas';
+
+  &.home {
+    display: flex;
+    height: calc(100vh - 32px);
+    flex-direction: column;
+  }
 }
 
 main {
   margin-top: 130px;
+
+  body.home & {
+    height: 100%;
+  }
+}
+
+.front-page-label {
+  display: inline-grid;
+  padding: 0 52px;
+  margin: 5%;
+  width: auto;
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: calc(100% + 60px);
+    height: calc(100% + 60px);
+    left: -30px;
+    top: -30px;
+    background: url('/wp-content/themes/sm-school/images/frame.svg') center/contain no-repeat;
+  }
+
+  p {
+    margin: 20px 0;
+  }
 }
