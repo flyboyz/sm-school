@@ -6,15 +6,17 @@
             <div class="d-flex">
                 <img src="<?= get_template_directory_uri() ?>/images/logo.png" class="footer__logo" alt="logo">
                 <p>SM School
-                    <br>Все права защищены © 2019
+                    <br>Все права защищены © <?= date('Y') ?>
                 </p>
             </div>
         </div>
         <div class="footer-col">
             <p>ИНН: 616305900458
-                <br>ОГРНИП: 319619600023612</p>
+                <br>ОГРНИП: 319619600023612
+                <a href="/policy/" class="m-less_show">Политика конфиденциальности</a>
+            </p>
         </div>
-        <div class="footer-col">
+        <div class="footer-col m-less_hide">
             <a href="/policy/">Политика конфиденциальности</a>
         </div>
     </div>

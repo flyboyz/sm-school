@@ -1,8 +1,9 @@
 .sidebar {
   position: fixed;
-  padding: 100px 70px;
+  padding: 70px;
   height: 100%;
-  width: 300px;
+  width: 470px;
+  max-width: 100%;
   top: 0;
   right: 0;
   background-color: rgba(253, 189, 65, .88);
@@ -10,6 +11,11 @@
   transition: 0.5s;
   overflow-x: hidden;
   z-index: 1;
+
+  @media @s--less {
+    padding: 70px 20px;
+  }
+
 
   &:before, &:after {
     content: '';
@@ -34,6 +40,10 @@
 
   body.admin-bar & {
     top: 32px;
+
+    @media (max-width: 782px) {
+      top: 46px;
+    }
   }
 
   &_opened {
@@ -45,7 +55,7 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    top: 65px;
+    top: 60px;
     right: 50px;
     transform: rotate(45deg);
 
@@ -78,6 +88,26 @@
     &:hover::before,
     &:hover::after {
       background-color: white;
+    }
+  }
+
+  .menu {
+    list-style: none;
+
+    li {
+      margin: 45px 0;
+
+      &.current-menu-item a {
+        color: black;
+      }
+
+      a {
+        font-size: 32px;
+        font-weight: bold;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+      }
     }
   }
 }

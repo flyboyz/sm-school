@@ -1,4 +1,13 @@
 .container {
   margin: 0 auto;
   width: 1200px;
+  max-width: calc(100% - 80px);
+
+  @media @s--less {
+    max-width: calc(100% - 60px);
+  }
+
+  @media @xs--less {
+    max-width: calc(100% - 40px);
+  }
 }

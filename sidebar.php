@@ -1,7 +1,9 @@
 <div class="sidebar">
-    <div class="sidebar__close-btn">&times;</div>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+    <div class="sidebar__close-btn"></div>
+    <?php
+    wp_nav_menu([
+        'theme_location' => 'header_menu',
+        'container' => '',
+    ]);
+    ?>
 </div>

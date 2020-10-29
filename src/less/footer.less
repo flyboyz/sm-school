@@ -1,12 +1,18 @@
 .footer {
   padding: 30px 0;
+  line-height: 1.4;
   color: white;
   background-color: #1d1d1d;
+
+  @media @s--less {
+    padding: 10px 0;
+  }
 
   &__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
   }
 
   &__logo {

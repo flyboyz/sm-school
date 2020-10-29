@@ -1,3 +1,36 @@
 .d-flex {
   display: flex;
+  align-items: center;
+}
+
+.m-less {
+  &_hide {
+    @media @m--less {
+      display: none;
+    }
+  }
+
+  &_show {
+    display: none;
+
+    @media @m--less {
+      display: block;
+    }
+  }
+}
+
+.s-less {
+  &_hide {
+    @media @s--less {
+      display: none;
+    }
+  }
+
+  &_show {
+    display: none;
+
+    @media @s--less {
+      display: block;
+    }
+  }
 }

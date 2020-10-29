@@ -37,8 +37,8 @@ function change_login_logo()
             padding: 20px 0;
             width: 320px;
             background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgb(66, 66, 66) 100%),
-            url('<?= get_template_directory_uri() ?>/assets/images/logo.svg') no-repeat center;
-            background-size: 220px;
+            url('<?= get_template_directory_uri() ?>/images/logo.png') no-repeat center;
+            background-size: contain;
             background-blend-mode: screen;
             border-radius: 7px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, .35);

@@ -13,12 +13,15 @@
     <div class="container header__container">
         <a href="/" class="header__logo-link">
             <img src="<?= get_template_directory_uri() ?>/images/logo.png" class="header__logo" alt="logo">
-            <span class="header__site-name">SM School</span>
+            <span class="header__site-name m-less_hide">SM School</span>
         </a>
-        <?php wp_nav_menu([
+        <span class="header__site-name m-less_show">SM School</span>
+        <?php
+        wp_nav_menu([
             'theme_location' => 'header_menu',
             'container' => '',
-        ]); ?>
+        ]);
+        ?>
         <div class="hamburger">
             <div class="bar bar_1"></div>
             <div class="bar bar_2"></div>
