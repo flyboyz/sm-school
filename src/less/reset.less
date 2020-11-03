@@ -15,18 +15,25 @@ body {
 }
 
 main {
-  margin-top: 130px;
+  body & {
+    min-height: calc(100vh - 130px);
+  }
 
-  body.home & {
-    height: 100%;
+  body.admin-bar & {
+    min-height: calc(100vh - 162px);
   }
 }
 
 .front-page-label {
+  position: absolute;
   display: inline-grid;
   padding: 0 52px;
-  margin: 5%;
-  width: auto;
+  left: calc(50% - 550px);
+  top: 100px;
+
+  @media @l--less {
+    left: 80px;
+  }
 
   &:after {
     content: '';
@@ -41,5 +48,10 @@ main {
 
   p {
     margin: 20px 0;
+    font-size: 40px;
+
+    &:first-child {
+      font-size: 60px;
+    }
   }
 }

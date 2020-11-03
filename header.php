@@ -10,7 +10,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <header class="header">
-    <div class="container header__container">
+    <div class="container container_fixed header__container">
         <a href="/" class="header__logo-link">
             <img src="<?= get_template_directory_uri() ?>/images/logo.png" class="header__logo" alt="logo">
             <span class="header__site-name m-less_hide">SM School</span>
@@ -18,7 +18,7 @@
         <span class="header__site-name m-less_show">SM School</span>
         <?php
         wp_nav_menu([
-            'theme_location' => 'header_menu',
+            'theme_location' => 'header',
             'container' => '',
         ]);
         ?>

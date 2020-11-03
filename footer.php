@@ -1,7 +1,7 @@
 </main>
 <?php get_sidebar(); ?>
 <footer class="footer">
-    <div class="container footer__container">
+    <div class="container container_fixed footer__container">
         <div class="footer-col">
             <div class="d-flex">
                 <img src="<?= get_template_directory_uri() ?>/images/logo.png" class="footer__logo" alt="logo">

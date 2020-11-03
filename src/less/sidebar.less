@@ -1,6 +1,6 @@
 .sidebar {
   position: fixed;
-  padding: 70px;
+  padding: 70px 40px 70px 70px;
   height: 100%;
   width: 470px;
   max-width: 100%;
@@ -15,7 +15,6 @@
   @media @s--less {
     padding: 70px 20px;
   }
-
 
   &:before, &:after {
     content: '';
@@ -87,26 +86,75 @@
 
     &:hover::before,
     &:hover::after {
-      background-color: white;
+      background-color: black;
     }
   }
 
   .menu {
+    padding: 0;
     list-style: none;
 
-    li {
+    .menu-item {
       margin: 45px 0;
+
+      &_icon {
+        a:before {
+          content: '';
+          display: inline-block;
+          width: 55px;
+          height: 50px;
+        }
+
+        &-school a:before {
+          background: url('/wp-content/themes/sm-school/images/icons/school.svg') center/contain no-repeat;
+        }
+
+        &-courses a:before {
+          background: url('/wp-content/themes/sm-school/images/icons/online-learning.svg') center/contain no-repeat;
+        }
+
+        &-webinars a:before {
+          background: url('/wp-content/themes/sm-school/images/icons/video.svg') center/contain no-repeat;
+        }
+
+        &-teachers a:before {
+          background: url('/wp-content/themes/sm-school/images/icons/teacher.svg') center/contain no-repeat;
+        }
+
+        &-publications a:before {
+          background: url('/wp-content/themes/sm-school/images/icons/online-education.svg') center/contain no-repeat;
+        }
+
+        &-projects a:before {
+          background: url('/wp-content/themes/sm-school/images/icons/microscope.svg') center/contain no-repeat;
+        }
+
+        &-vacancies a:before {
+          background: url('/wp-content/themes/sm-school/images/icons/question.svg') center/contain no-repeat;
+        }
+
+        &-contacts a:before {
+          background: url('/wp-content/themes/sm-school/images/icons/communicate.svg') center/contain no-repeat;
+        }
+      }
 
       &.current-menu-item a {
         color: black;
       }
 
       a {
+        display: flex;
+        align-items: center;
+        gap: 32px;
         font-size: 32px;
         font-weight: bold;
         text-decoration: none;
         text-transform: uppercase;
         color: white;
+
+        &:hover {
+          color: black;
+        }
       }
     }
   }

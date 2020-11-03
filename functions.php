@@ -34,7 +34,8 @@ add_action('after_setup_theme', function () {
 function register_menus()
 {
     register_nav_menus([
-        'header_menu' => 'Top header Menu',
+        'header' => 'Header Menu',
+        'sidebar' => 'Sidebar Menu',
     ]);
 }
 
