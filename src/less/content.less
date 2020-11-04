@@ -1,0 +1,132 @@
+main {
+  body & {
+    min-height: calc(100vh - 130px);
+  }
+
+  body.admin-bar & {
+    min-height: calc(100vh - 162px);
+  }
+
+  body.home & {
+    padding: 0;
+  }
+}
+
+main {
+  position: relative;
+  padding: 40px 0;
+  background: url('/wp-content/themes/sm-school/images/background.png');
+
+  h1 {
+    position: relative;
+    padding: 1.5rem 0;
+    margin: 20px 0;
+    width: 100%;
+    font-size: 80px;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: @orange;
+    background-color: white;
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 90px;
+      height: 70px;
+      background: url('/wp-content/themes/sm-school/images/icons/dot.png');
+
+      @media @m--less {
+        content: none;
+      }
+    }
+
+    &:before {
+      left: 30px;
+      bottom: 2px;
+    }
+
+    &:after {
+      right: 30px;
+      top: 2px;
+    }
+  }
+}
+
+.front-page-label {
+  position: absolute;
+  display: inline-grid;
+  padding: 0 52px;
+  left: calc(50% - 550px);
+  top: 100px;
+
+  @media @l--less {
+    left: 80px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: calc(100% + 60px);
+    height: calc(100% + 60px);
+    left: -30px;
+    top: -30px;
+    background: url('/wp-content/themes/sm-school/images/frame.svg') center/contain no-repeat;
+  }
+
+  p {
+    margin: 20px 0;
+    font-size: 40px;
+
+    &:first-child {
+      font-size: 60px;
+    }
+  }
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .feature-image {
+    position: absolute;
+  }
+}
+
+.content {
+  position: relative;
+  width: 100%;
+
+  &_have-feature-image {
+    margin-top: 51vh;
+  }
+
+  &_background_white {
+    background-color: white;
+  }
+}
+
+.wp-block-quote {
+  position: relative;
+  padding: 70px 55px 20px;
+  margin: 0 0 40px;
+  font-size: 18px;
+  background-color: fade(white, 90%);
+
+  &:before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    font-size: 95px;
+    font-style: italic;
+    line-height: 1;
+    color: @orange;
+  }
+
+  &:after {
+    content: '';
+  }
+}

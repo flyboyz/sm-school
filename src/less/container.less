@@ -1,15 +1,22 @@
 .container {
   &_fixed {
     margin: 0 auto;
-    width: calc(100% - 80px);
+    width: 100%;
+    padding: 0 40px;
     max-width: 1200px;
 
     @media @s--less {
-      width: calc(100% - 60px);
+      padding: 0 30px;
     }
 
     @media @xs--less {
-      width: calc(100% - 40px);
+      padding: 0 20px;
+    }
+  }
+
+  &_full-width_m-less {
+    @media @m--less {
+      padding: 0;
     }
   }
 }
