@@ -14,7 +14,7 @@ main {
 
 main {
   position: relative;
-  padding: 40px 0;
+  padding: 30px 0;
   background: url('/wp-content/themes/sm-school/images/background.png');
 
   h1 {
@@ -28,6 +28,15 @@ main {
     text-transform: uppercase;
     color: @orange;
     background-color: white;
+    z-index: 1;
+
+    @media @m--less {
+      font-size: 68px;
+    }
+
+    @media @s--less {
+      font-size: 60px;
+    }
 
     &:before, &:after {
       content: '';
@@ -92,7 +101,12 @@ main {
   align-items: center;
 
   .feature-image {
-    position: absolute;
+    margin-top: -180px;
+
+    @media @m--less {
+      margin-top: 30px;
+      max-width: 100%;
+    }
   }
 }
 
@@ -101,17 +115,43 @@ main {
   width: 100%;
 
   &_have-feature-image {
-    margin-top: 51vh;
+    margin-top: -30vh;
+
+    @media @m--less {
+      margin: 0;
+    }
   }
 
   &_background_white {
     background-color: white;
   }
+
+  p {
+    line-height: 1.25;
+  }
+}
+
+.columns-70 {
+  flex-wrap: wrap;
+
+  .wp-block-column {
+    &:not(:first-child) {
+      margin-left: 70px;
+
+      @media @m--less {
+        margin: 0;
+      }
+    }
+
+    @media @m--less {
+      flex-basis: 100% !important;
+    }
+  }
 }
 
 .wp-block-quote {
   position: relative;
-  padding: 70px 55px 20px;
+  padding: 80px 55px 30px;
   margin: 0 0 40px;
   font-size: 18px;
   background-color: fade(white, 90%);
@@ -120,13 +160,19 @@ main {
     content: '"';
     position: absolute;
     top: 20px;
+    left: 45px;
     font-size: 95px;
     font-style: italic;
-    line-height: 1;
     color: @orange;
   }
 
   &:after {
     content: '';
+    position: absolute;
+    width: calc(100% - 150px);
+    height: 1px;
+    top: 50px;
+    right: 55px;
+    background-color: @orange;
   }
 }
