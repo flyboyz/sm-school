@@ -55,3 +55,9 @@ require get_parent_theme_file_path('/inc/system-bans.php');
  * Implement AJAX load functionality
  */
 require get_parent_theme_file_path('/inc/load-more.php');
+
+
+/**
+ * Implement AJAX load functionality
+ */
+require get_parent_theme_file_path('/inc/type-course.php');
