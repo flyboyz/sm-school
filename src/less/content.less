@@ -17,8 +17,37 @@ main {
   padding: 30px 0;
   background: url('/wp-content/themes/sm-school/images/background.png');
 
-  h1 {
+  &:before, &:after {
+    content: '';
+    display: block;
+    position: fixed;
+    background: url(/wp-content/themes/sm-school/images/icons/dot.png);
+
+    @media @m--less {
+      content: none;
+    }
+  }
+
+  & > * {
     position: relative;
+    z-index: 1;
+  }
+
+  &:before {
+    width: 215px;
+    height: 140px;
+    top: 70%;
+    left: 50px;
+  }
+
+  &:after {
+    width: 140px;
+    height: 215px;
+    top: 30%;
+    right: 50px;
+  }
+
+  h1 {
     padding: 1.5rem 0;
     margin: 20px 0;
     width: 100%;
@@ -29,7 +58,6 @@ main {
     text-transform: uppercase;
     color: @orange;
     background-color: white;
-    z-index: 1;
 
     @media @m--less {
       font-size: 68px;
@@ -98,8 +126,17 @@ main {
 
 .content-columns {
   display: grid;
-  gap: 40px;
+  margin-top: 50px;
+  gap: 18px;
   grid-template-columns: repeat(3, 1fr);
+
+  @media @m--less {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media @s--less {
+    grid-template-columns: 1fr;
+  }
 }
 
 .content-box {
