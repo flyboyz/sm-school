@@ -1,21 +1,10 @@
 main {
-  body & {
-    min-height: calc(100vh - 130px);
-  }
-
-  body.admin-bar & {
-    min-height: calc(100vh - 162px);
-  }
-
-  body.home & {
-    padding: 0;
-  }
-}
-
-main {
-  position: relative;
   padding: 30px 0;
   background: url('/wp-content/themes/sm-school/images/background.png');
+
+  & > * {
+    z-index: 1;
+  }
 
   &:before, &:after {
     content: '';
@@ -26,11 +15,6 @@ main {
     @media @m--less {
       content: none;
     }
-  }
-
-  & > * {
-    position: relative;
-    z-index: 1;
   }
 
   &:before {
@@ -47,7 +31,20 @@ main {
     right: 50px;
   }
 
+  body & {
+    min-height: calc(100vh - 130px);
+  }
+
+  body.admin-bar & {
+    min-height: calc(100vh - 162px);
+  }
+
+  body.home & {
+    padding: 0;
+  }
+
   h1 {
+    position: relative;
     padding: 1.5rem 0;
     margin: 20px 0;
     width: 100%;
@@ -58,6 +55,7 @@ main {
     text-transform: uppercase;
     color: @orange;
     background-color: white;
+    z-index: 2 !important;
 
     @media @m--less {
       font-size: 68px;
@@ -88,6 +86,16 @@ main {
     &:after {
       right: 30px;
       top: 2px;
+    }
+  }
+
+  #load-more {
+    opacity: 0;
+    width: 100%;
+    text-align: center;
+
+    &.loading {
+      opacity: 1;
     }
   }
 }
@@ -126,7 +134,7 @@ main {
 
 .content-columns {
   display: grid;
-  margin-top: 50px;
+  margin: 50px 0 30px;
   gap: 18px;
   grid-template-columns: repeat(3, 1fr);
 

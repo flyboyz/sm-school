@@ -1,16 +1,16 @@
 .container {
   &_fixed {
     margin: 0 auto;
-    width: 100%;
     padding: 0 40px;
-    max-width: 1280px;
+    width: 1280px;
+    max-width: calc(100% - 80px);
 
     @media @s--less {
-      padding: 0 30px;
+      max-width: calc(100% - 60px);
     }
 
     @media @xs--less {
-      padding: 0 20px;
+      max-width: calc(100% - 40px);
     }
   }
 
@@ -18,5 +18,9 @@
     @media @m--less {
       padding: 0;
     }
+  }
+
+  & > * {
+    z-index: 1;
   }
 }
