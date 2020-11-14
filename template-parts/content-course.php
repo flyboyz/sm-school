@@ -5,7 +5,7 @@ $link = get_field('other_fields')['link'];
 $cost = number_format(get_field('other_fields')['cost'] ?? 0, 0, ',', ' ') . ' &#8381;';
 ?>
 <div class="card">
-    <div class="card__panel">
+    <div class="card__panel card__panel_course">
         <div class="card__category"><?= $category[0]->cat_name ?? 'Без категории' ?></div>
         <div class="card__title"><?= the_title() ?></div>
         <div class="card__author">

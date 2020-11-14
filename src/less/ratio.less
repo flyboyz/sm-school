@@ -1,0 +1,54 @@
+.ratio {
+  position: relative;
+  display: block;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    display: block;
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    img, * {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &_4x3 {
+    &:before {
+      padding-top: 75%;
+    }
+  }
+
+  &_16x9 {
+    &:before {
+      padding-top: 56.25%;
+    }
+  }
+
+  &_2x1 {
+    &:before {
+      padding-top: 50%;
+    }
+  }
+
+  &_1x2 {
+    &:before {
+      padding-top: 200%;
+    }
+  }
+
+  &_1x1 {
+    &:before {
+      padding-top: 100%;
+    }
+  }
+}

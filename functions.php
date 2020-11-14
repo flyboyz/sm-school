@@ -82,7 +82,5 @@ require get_parent_theme_file_path('/inc/system-bans.php');
 //require_once get_parent_theme_file_path('/inc/MSGame.php');
 
 
-/**
- * Implement AJAX load functionality
- */
 require get_parent_theme_file_path('/inc/type-course.php');
+require get_parent_theme_file_path('/inc/type-webinar.php');
