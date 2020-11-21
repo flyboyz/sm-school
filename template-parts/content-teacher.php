@@ -1,20 +1,12 @@
-<?php
-
-$link = get_field('other_fields')['link'];
-$cost = number_format(get_field('other_fields')['cost'] ?? 0, 0, ',', ' ') . ' &#8381;';
-
-$categories = get_field('teacher_fields')['categories'];
-$category = !empty($categories) ? $categories[0]->name : '';
-?>
-<a href="<?= $link ?>" class="card" target="_blank">
-    <div class="card__panel ratio ratio_16x9">
+<a href="<?= get_post_permalink() ?>" class="card card_no-padding" target="_blank">
+    <div class="card__panel card__panel_teacher ratio ratio_1x1">
         <div class="ratio__content">
             <?php
             the_post_thumbnail('large') ?>
-            <div class="card__category"><?= $category ?></div>
-            <img src="/wp-content/themes/sm-school/images/icons/play.png" class="video-btn" alt="play">
+            <div class="card__category"><?= get_the_first_teacher_category() ?></div>
         </div>
     </div>
-    <div class="card__link"><?= the_title() ?></div>
-    <span><?= get_field('teacher_fields')['position'] ?></span>
+    <div class="card__title"><?= the_title() ?><img src="<?= get_template_directory_uri() ?>/images/icons/arrow.png"
+                                                    alt="arrow"></div>
+    <div class="card__subtitle"><?= get_field('teacher_fields')['position'] ?></div>
 </a>

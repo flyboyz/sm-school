@@ -73,6 +73,12 @@ add_action('wp_ajax_loadmore', 'true_load_posts');
 add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
 
 
+function get_the_first_category($emptyLabel = '')
+{
+    return !empty(get_the_category()) ? get_the_category()[0]->cat_name : $emptyLabel;
+}
+
+
 /**
  * System reconfiguration
  */

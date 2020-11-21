@@ -36,3 +36,11 @@ function register_teacher_post_type()
 }
 
 add_action('init', 'register_teacher_post_type');
+
+
+function get_the_first_teacher_category($nonLabel = '')
+{
+    $categories = get_field('teacher_fields')['categories'];
+
+    return !empty($categories) ? $categories[0]->name : $nonLabel;
+}

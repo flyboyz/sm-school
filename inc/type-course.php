@@ -36,3 +36,9 @@ function register_course_post_type()
 }
 
 add_action('init', 'register_course_post_type');
+
+
+function get_course_cost()
+{
+    return number_format(get_field('other_fields')['cost'] ?? 0, 0, ',', ' ') . ' &#8381;';
+}
