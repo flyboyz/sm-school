@@ -9,9 +9,11 @@ get_header(); ?>
     <div class="content-columns">
 <?php
 if (have_posts()):
+    $i = 0;
     while (have_posts()) {
+        $i++;
         the_post();
-        get_template_part('template-parts/content', 'post');
+        get_template_part('template-parts/content', 'post', ['post_num' => $i]);
     }
     ?>
     </div>

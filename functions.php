@@ -53,17 +53,21 @@ add_action('init', 'register_menus');
 
 function true_load_posts()
 {
+    $post_type = $_POST['post_type'];
+
     $args = json_decode(stripslashes($_POST['query']), true);
     $args['paged'] = $_POST['page'] + 1;
-    $args['post_type'] = $_POST['post_type'];
+    $args['post_type'] = $post_type;
     $args['post_status'] = 'publish';
 
     $posts = new WP_Query($args);
     $GLOBALS['wp_query'] = $posts;
 
+    $i = 0;
     while ($posts->have_posts()) {
+        $i++;
         $posts->the_post();
-        get_template_part('template-parts/content', $_POST['post_type']);
+        get_template_part('template-parts/content', $post_type, ['page' => $_POST['page'], 'post_num' => $i]);
     }
 
     die();
