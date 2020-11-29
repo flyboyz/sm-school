@@ -11,10 +11,13 @@ if (have_posts()):
     <div class="container">
         <div class="content-columns">
             <?php
-            while (have_posts()):
+            while (have_posts()) {
                 the_post();
                 get_template_part('template-parts/content', $post_type);
-            endwhile; ?>
+            }
+
+            get_template_part('template-parts/content', "$post_type-promo")
+            ?>
         </div>
         <div id="load-more" data-type="<?= $post_type ?>">
             <img src="/wp-content/themes/sm-school/images/icons/loader.svg" alt="loading">

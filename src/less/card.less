@@ -12,6 +12,10 @@
     padding: 0;
   }
 
+  &_center {
+    justify-content: center;
+  }
+
   a& {
     text-decoration: none;
     color: black;
@@ -52,13 +56,31 @@
         content: '';
         position: absolute;
         display: block;
-        width: 50px;
-        height: 100%;
-        top: 0;
-        right: 0;
-        background-color: @orange;
-        transform: translateX(100%);
-        z-index: 1;
+        width: 215px;
+        height: 140px;
+        bottom: -10%;
+        right: -8%;
+        background: url(/wp-content/themes/sm-school/images/icons/dot.png);
+      }
+
+      img {
+        width: 90%;
+      }
+
+      &-promo {
+        padding: 0;
+        align-items: center;
+        text-align: center;
+        background-color: transparent;
+
+        .title {
+          font-size: 30px;
+          font-weight: bold;
+        }
+
+        .button {
+          margin-top: 30px;
+        }
       }
     }
   }
@@ -113,7 +135,7 @@
   }
 
   &__subtitle {
-    margin-top: 6px;
+    margin-top: 8px;
   }
 
   .video-btn {

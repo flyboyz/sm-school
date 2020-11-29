@@ -1,6 +1,6 @@
 .sidebar {
   position: fixed;
-  padding: 70px 40px 70px 70px;
+  padding: 70px 40px 30px 70px;
   height: 100%;
   width: 470px;
   max-width: 100%;
@@ -95,14 +95,16 @@
     list-style: none;
 
     .menu-item {
-      margin: 45px 0;
+      &:not(:last-child) {
+        margin-bottom: 36px;
+      }
 
       &_icon {
         a:before {
           content: '';
           display: inline-block;
-          width: 55px;
-          height: 50px;
+          width: 42px;
+          height: 42px;
         }
 
         &-school a:before {
@@ -146,7 +148,7 @@
         display: flex;
         align-items: center;
         gap: 32px;
-        font-size: 32px;
+        font-size: 26px;
         font-weight: bold;
         text-decoration: none;
         text-transform: uppercase;

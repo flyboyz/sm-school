@@ -9,7 +9,8 @@ if (have_posts()):
         <?php
         the_title('<h1>', '</h1>');
         if ($thumbnail_id): ?>
-            <img src="<?php the_post_thumbnail_url('large'); ?>" alt="thumbnail" class="feature-image">
+            <img src="<?php
+            the_post_thumbnail_url('full'); ?>" alt="thumbnail" class="feature-image">
         <?php endif; ?>
         <div class="content <?= $thumbnail_id ? 'content_have-feature-image' : '' ?>">
             <?php the_content(); ?>
