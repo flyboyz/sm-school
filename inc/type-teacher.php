@@ -17,7 +17,8 @@ function register_teacher_post_type()
             'not_found_in_trash' => 'Не найдено в корзине',
             'parent_item_colon' => '',
             'menu_name' => 'Преподаватели',
-            'archives' => 'Преподаватели'
+            'archives' => 'Преподаватели',
+            'name_admin_bar' => 'Преподавателя',
         ],
         'description' => '',
         'public' => true,
