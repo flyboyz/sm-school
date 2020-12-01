@@ -142,6 +142,23 @@
     margin-top: 8px;
   }
 
+  &__actions {
+    margin: 30px 0 20px;
+    text-transform: uppercase;
+
+    & > *:not(:first-child) {
+      margin-left: 70px;
+    }
+  }
+
+  &__link {
+    color: @gray;
+
+    &:hover {
+      color: black;
+    }
+  }
+
   .video-btn {
     position: absolute;
     width: 100px;
@@ -155,5 +172,48 @@
     .video-btn {
       transform: scale(1.1);
     }
+  }
+}
+
+.details-card {
+  display: flex;
+  padding: 0 20px;
+  width: 100%;
+  background-color: white;
+
+  .card {
+    img {
+      width: 460px;
+      height: 380px;
+      object-fit: cover;
+      border-left: orange solid 40px;
+    }
+  }
+}
+
+.details-content {
+  position: relative;
+  padding: 54px 26px 26px;
+  width: 100%;
+  font-size: 18px;
+
+  &:before {
+    content: '"';
+    position: absolute;
+    top: 4px;
+    left: 17px;
+    font-size: 95px;
+    font-style: italic;
+    color: @orange;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: calc(100% - 90px);
+    height: 1px;
+    top: 34px;
+    right: 26px;
+    background-color: @orange;
   }
 }
