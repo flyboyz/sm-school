@@ -1,5 +1,7 @@
 'use strict'
 
+import '@fancyapps/fancybox'
+
 import sidebar from './sidebar'
 import loadMore from './load-more'
 

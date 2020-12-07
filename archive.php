@@ -3,6 +3,7 @@ $post_type = get_post_type();
 get_header();
 if (have_posts()):
     $title = get_post_type_labels(get_post_type_object($post_type))->archives;
+//    echo do_shortcode('[searchandfilter post_types="' . $post_type . '" fields="teacher,category"]');
     ?>
     <div class="container container_fixed container_full-width_m-less">
         <h1><?= $title ?></h1>

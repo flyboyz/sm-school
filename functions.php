@@ -12,7 +12,7 @@ function add_theme_scripts()
     $templateUri = get_template_directory_uri();
 
     wp_enqueue_style('main', "$templateUri/style.css", array(), null);
-    wp_enqueue_script('main', "$templateUri/js/app.min.js", array(), null, true);
+    wp_enqueue_script('main', "$templateUri/js/app.min.js", array('jquery'), null, true);
 
     wp_localize_script('main', 'backend_data', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
@@ -95,3 +95,4 @@ require get_parent_theme_file_path('/inc/system-bans.php');
 require get_parent_theme_file_path('/inc/type-course.php');
 require get_parent_theme_file_path('/inc/type-webinar.php');
 require get_parent_theme_file_path('/inc/type-teacher.php');
+require get_parent_theme_file_path('/inc/type-product.php');

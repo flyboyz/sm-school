@@ -7,6 +7,7 @@
     "watch": "webpack -w -d"
   },
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {

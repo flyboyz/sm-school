@@ -1,19 +1,19 @@
 <?php
 
-$post_type = get_post_type();
+$post_type = 'teacher';
+$teachers = get_terms($post_type);
+
 get_header();
 if (have_posts()):
-    $title = get_post_type_labels(get_post_type_object($post_type))->archives;
     ?>
     <div class="container container_fixed container_full-width_m-less">
-        <h1><?= $title ?></h1>
+        <h1><?= the_title() ?></h1>
     </div>
     <div class="container">
-        <div class="content-columns">
+        <div class="content-columns content-columns__wide">
             <?php
-            while (have_posts()) {
-                the_post();
-                get_template_part('template-parts/content', $post_type);
+            foreach ($teachers as $teacher) {
+                get_template_part('template-parts/content', $post_type, ['teacher' => $teacher]);
             }
 
             get_template_part('template-parts/content', "$post_type-promo")

@@ -147,7 +147,7 @@ main {
     grid-template-columns: 1fr;
   }
 
-  body.post-type-archive-teacher & {
+  &__wide {
     padding: 50px 70px;
     gap: 10vw;
     background-color: white;
@@ -165,7 +165,7 @@ main {
 
   .feature-image {
     margin-top: -95px;
-    max-width: 1456px;
+    max-width: 1200px;
     max-height: 105vh;
 
     @media @m--less {
@@ -180,7 +180,7 @@ main {
   width: 100%;
 
   &_have-feature-image {
-    margin-top: -30vh;
+    margin-top: -20vh;
 
     @media @m--less {
       margin: 0;
@@ -201,7 +201,7 @@ main {
 
   .wp-block-column {
     &:not(:first-child) {
-      margin-left: 70px;
+      margin-left: 60px;
 
       @media @m--less {
         margin: 0;
@@ -216,25 +216,26 @@ main {
 
 .wp-block-quote {
   position: relative;
-  padding: 80px 55px 30px;
-  margin: 0 0 40px;
+  padding: 70px 42px 20px;
+  margin: 0 0 20px;
   font-size: 18px;
   background-color: fade(white, 90%);
 
   &:before {
-    content: '"';
+    content: '';
     position: absolute;
-    top: 20px;
-    left: 45px;
-    font-size: 95px;
-    font-style: italic;
+    width: 26px;
+    height: 22px;
+    top: 40px;
+    left: 42px;
+    background: url(/wp-content/themes/sm-school/images/icons/quote.png);
     color: @orange;
   }
 
   &:after {
     content: '';
     position: absolute;
-    width: calc(100% - 150px);
+    width: calc(100% - 145px);
     height: 1px;
     top: 50px;
     right: 55px;
