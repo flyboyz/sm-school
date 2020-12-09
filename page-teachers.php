@@ -7,7 +7,7 @@ get_header();
 if (have_posts()):
     ?>
     <div class="container container_fixed container_full-width_m-less">
-        <h1><?= the_title() ?></h1>
+        <h1 class="page-title"><?= the_title() ?></h1>
     </div>
     <div class="container">
         <div class="content-columns content-columns__wide">

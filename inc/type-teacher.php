@@ -2,7 +2,7 @@
 
 function register_teacher_taxonomy()
 {
-    register_taxonomy('teacher', ['course', 'webinar', 'product'], [
+    register_taxonomy('teacher', ['post', 'course', 'webinar', 'product'], [
         'label' => null,
         'labels' => [
             'name' => 'Преподаватель',
@@ -26,25 +26,17 @@ function register_teacher_taxonomy()
         'rewrite' => true,
         'meta_box_cb' => null,
         'show_admin_column' => true,
-        'show_in_rest' => null,
+        'show_in_rest' => true,
         'rest_base' => null,
-
-        'show_in_menu' => true,
-        'menu_position' => 4,
-//        'menu_icon' => 'dashicons-businessman',
-//        'supports' => ['title', 'thumbnail', 'editor'],
-//        'taxonomies' => ['category'],
-//        'has_archive' => 'teachers',
-//        'query_var' => true,
     ]);
 }
 
 add_action('init', 'register_teacher_taxonomy');
 
 
-function get_the_first_teacher_category($nonLabel = '')
+function get_the_teacher($ID = null)
 {
-    $categories = get_field('fields', '')['categories'];
+    $teachers = get_the_terms($ID ?? get_the_ID(), 'teacher');
 
-    return !empty($categories) ? $categories[0]->name : $nonLabel;
+    return $teachers && !is_wp_error($teachers) ? $teachers[0] : false;
 }

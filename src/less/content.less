@@ -1,5 +1,5 @@
 main {
-  padding: 20px 0;
+  padding: 20px 0 40px;
   background: url('/wp-content/themes/sm-school/images/background.png');
 
   & > * {
@@ -43,7 +43,7 @@ main {
     padding: 0;
   }
 
-  h1 {
+  .page-title {
     position: relative;
     padding: 1rem 0 .8rem;
     margin: 10px 0;
@@ -177,7 +177,16 @@ main {
 
 .content {
   position: relative;
+  padding: 26px;
   width: 100%;
+
+  &_no-padding {
+    padding: 0;
+  }
+
+  &_border-bottom {
+    border-bottom: @orange solid 5px;
+  }
 
   &_have-feature-image {
     margin-top: -20vh;
@@ -193,6 +202,10 @@ main {
 
   p {
     line-height: 1.25;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 

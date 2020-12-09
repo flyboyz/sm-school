@@ -6,7 +6,7 @@ if (have_posts()):
 //    echo do_shortcode('[searchandfilter post_types="' . $post_type . '" fields="teacher,category"]');
     ?>
     <div class="container container_fixed container_full-width_m-less">
-        <h1><?= $title ?></h1>
+        <h1 class="page-title"><?= $title ?></h1>
     </div>
     <div class="container container_fixed">
         <div class="content-columns">

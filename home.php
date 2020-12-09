@@ -2,7 +2,7 @@
 
 get_header(); ?>
     <div class="container container_fixed container_full-width_m-less">
-        <h1><?php
+        <h1 class="page-title"><?php
             single_post_title(); ?></h1>
     </div>
     <div class="container container_fixed">
