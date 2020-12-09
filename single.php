@@ -28,8 +28,7 @@ if (have_posts()):
                 <?php
                 if ($teacher): ?>
                     <img class="author-line__avatar"
-                         src="<?= get_field('fields',
-                             'teacher_' . $teacher->term_id)['avatar']['sizes']['thumbnail'] ?>"
+                         src="<?= $teacher->avatar['thumbnail'] ?>"
                          alt="photo">
                     <span><?= $teacher->name ?></span>
                 <?php

@@ -78,6 +78,7 @@ function cp_change_post_object()
     $labels->all_items = 'Все публикации';
     $labels->menu_name = 'Публикации';
     $labels->name_admin_bar = 'Публикацию';
+    $labels->archives = 'Публикации';
 }
 
 add_action('init', 'cp_change_post_object');

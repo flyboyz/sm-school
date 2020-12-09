@@ -1,10 +1,14 @@
+<?php
+
+$teacher = get_the_teacher();
+?>
 <div class="card">
     <div class="card__panel card__panel_course">
         <div class="card__category"><?= get_the_first_category('Без категории') ?></div>
         <div class="card__inner-title"><?= the_title() ?></div>
         <div class="card__author">
-            <?= get_avatar(get_the_author_meta('ID'), 80) ?>
-            <span><?= get_the_author(); ?></span>
+            <img class="card__author-avatar" src="<?= $teacher->avatar['thumbnail'] ?>" alt="">
+            <span><?= $teacher->name ?></span>
         </div>
     </div>
     <span class="card__cost"><?= get_course_cost() ?></span>

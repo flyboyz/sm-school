@@ -28,6 +28,7 @@ function register_teacher_taxonomy()
         'show_admin_column' => true,
         'show_in_rest' => true,
         'rest_base' => null,
+        'has_archive' => 'teachers',
     ]);
 }
 
@@ -38,5 +39,14 @@ function get_the_teacher($ID = null)
 {
     $teachers = get_the_terms($ID ?? get_the_ID(), 'teacher');
 
-    return $teachers && !is_wp_error($teachers) ? $teachers[0] : false;
+    if (!$teachers || is_wp_error($teachers)) {
+        return false;
+    }
+
+    $teacher = $teachers[0];
+
+    $teacher->avatar = get_field('fields',
+        'teacher_' . $teacher->term_id)['avatar']['sizes'];
+
+    return $teacher;
 }
