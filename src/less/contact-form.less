@@ -1,0 +1,34 @@
+.contact-form.wpforms-container-full {
+  .wpforms-form {
+    .wpforms-field {
+      padding: 0;
+
+      input {
+        max-width: 100%;
+      }
+
+      &.wpforms-field-name,
+      &.wpforms-field-email {
+        flex: .5 1 150px;
+      }
+
+      &.wpforms-field-textarea {
+        flex: 1 0 250px;
+      }
+    }
+
+    .wpforms-submit-container {
+      padding-top: 20px;
+
+      button[type=submit] {
+        .button;
+      }
+    }
+  }
+
+  .wpforms-field-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
