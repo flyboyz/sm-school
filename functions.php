@@ -45,6 +45,8 @@ function register_menus()
     register_nav_menus([
         'header' => 'Header Menu',
         'sidebar' => 'Sidebar Menu',
+        'footer_second' => 'Second footer Menu',
+        'footer_third' => 'Third footer Menu',
     ]);
 }
 

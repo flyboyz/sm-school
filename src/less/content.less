@@ -177,6 +177,7 @@ main {
 
 .content {
   position: relative;
+  margin-top: 20px;
   padding: 26px;
   width: 100%;
 
@@ -206,6 +207,14 @@ main {
     &:last-child {
       margin-bottom: 0;
     }
+  }
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  a {
+    color: darken(@orange, 20%);
   }
 }
 

@@ -3,7 +3,7 @@
 
 $post_type = 'product';
 
-$teacher = get_the_teacher(get_field('teacher_id'));
+$teacher = get_field('teacher');
 $products = get_field('products');
 
 get_header();
@@ -14,7 +14,7 @@ if (have_posts()):
             <img src="<?= get_template_directory_uri() ?>/images/icons/quote.png" alt="quote">
             <div class="line"></div>
             <img class="author-line__avatar"
-                 src="<?= $teacher->avatar['thumbnail'] ?>"
+                 src="<?= get_field('fields', 'teacher_' . $teacher->term_id)['avatar']['sizes']['thumbnail'] ?>"
                  alt="photo">
             <span><?= $teacher->name ?></span>
         </div>
