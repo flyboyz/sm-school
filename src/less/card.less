@@ -191,6 +191,16 @@
       transform: scale(1.1);
     }
   }
+
+  &__image {
+    width: 460px;
+    height: 380px;
+    object-fit: cover;
+
+    &_bordered {
+      border-left: orange solid 40px;
+    }
+  }
 }
 
 .details-card {
@@ -205,13 +215,6 @@
 
   .card {
     flex: 1 0;
-
-    img {
-      width: 460px;
-      height: 380px;
-      object-fit: cover;
-      border-left: orange solid 40px;
-    }
   }
 }
 
@@ -241,5 +244,9 @@
     top: 34px;
     right: 40px;
     background-color: @orange;
+  }
+
+  & > *:first-child {
+    margin-top: 0;
   }
 }

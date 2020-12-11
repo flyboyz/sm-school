@@ -1,4 +1,5 @@
 <?php
+
 $post_type = get_post_type();
 get_header();
 if (have_posts()):
@@ -21,5 +22,7 @@ if (have_posts()):
         </div>
     </div>
 <?php
+else:
+    echo 'Пока здесь ничего нет';
 endif;
 get_footer();

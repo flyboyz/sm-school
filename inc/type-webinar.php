@@ -27,7 +27,7 @@ function register_webinar_post_type()
         'menu_position' => 4,
         'menu_icon' => 'dashicons-media-video',
         'hierarchical' => false,
-        'supports' => ['title', 'author', 'thumbnail'],
+        'supports' => ['title', 'thumbnail'],
         'taxonomies' => ['category'],
         'has_archive' => 'webinars',
         'rewrite' => true,

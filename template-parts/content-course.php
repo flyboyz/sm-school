@@ -12,6 +12,6 @@ $teacher = get_the_teacher();
         </div>
     </div>
     <span class="card__cost"><?= get_course_cost() ?></span>
-    <a href="<?= get_field('other_fields')['link'] ?>" class="card__title" target="_blank">Смотреть курс <img
-                src="<?= get_template_directory_uri() ?>/images/icons/arrow.png" alt="arrow"></a>
+    <a href="<?= get_field('fields')['link'] ?>" class="card__title icon icon-arrow" target="_blank">Смотреть
+        курс</a>
 </div>

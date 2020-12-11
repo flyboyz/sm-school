@@ -2,7 +2,7 @@
 
 function register_teacher_taxonomy()
 {
-    register_taxonomy('teacher', ['post', 'course', 'webinar', 'product'], [
+    register_taxonomy('teacher', ['post', 'course', 'webinar', 'product', 'project'], [
         'label' => null,
         'labels' => [
             'name' => 'Преподаватель',

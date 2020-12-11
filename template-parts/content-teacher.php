@@ -12,16 +12,14 @@ $category = !empty($fields['categories']) ? $fields['categories'][0]->name : '';
             <div class="card__category"><?= $category ?></div>
         </div>
     </div>
-    <div class="card__title"><?= $teacher->name ?>
-        <img src="<?= get_template_directory_uri() ?>/images/icons/arrow.png" alt="arrow">
-    </div>
+    <div class="card__title icon icon-arrow"><?= $teacher->name ?></div>
     <div class="card__subtitle"><?= $fields['position'] ?></div>
 </a>
 
 <div class="container container_fixed container_no-paddnig content-box" id="hidden-content" style="display: none;">
     <div class="details-card">
         <div class="card">
-            <img src="<?= $fields['avatar']['sizes']['large'] ?>" alt="photo">
+            <img class="card__image card__image_bordered" src="<?= $fields['avatar']['sizes']['large'] ?>" alt="photo">
             <div class="card__title"><?= $teacher->name ?></div>
             <div class="card__subtitle"><?= $fields['position'] ?></div>
             <div class="card__actions">
