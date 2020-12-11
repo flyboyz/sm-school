@@ -203,14 +203,16 @@ main {
 
   p {
     line-height: 1.25;
+  }
+
+  & > * {
+    &:first-child {
+      margin-top: 0;
+    }
 
     &:last-child {
       margin-bottom: 0;
     }
-  }
-
-  & > *:first-child {
-    margin-top: 0;
   }
 
   a {
