@@ -23,7 +23,12 @@ if (have_posts()):
                     endif;
                     if ('vacancy' === $post_type):
                         ?>
-                        <button class="button">Отправить резюме</button>
+                        <a data-fancybox data-src="#VacancyModal" href="javascript:;" class="button">Отправить
+                            резюме</a>
+                        <div id="VacancyModal" class="modal modal_black" style="display: none;">
+                            <div class="modal__title">Заполните форму чтобы отправить резюме</div>
+                            <?= do_shortcode('[wpforms id="291"]') ?>
+                        </div>
                     <?php
                     endif;
                     ?>
