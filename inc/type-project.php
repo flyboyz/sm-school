@@ -17,7 +17,8 @@ function register_project_post_type()
             'not_found_in_trash' => 'Не найдено в корзине',
             'parent_item_colon' => '',
             'menu_name' => 'Разработки',
-            'archives' => 'Разработки'
+            'archives' => 'Разработки',
+            'back_link' => 'разрботок',
         ],
         'description' => '',
         'public' => true,
@@ -25,7 +26,7 @@ function register_project_post_type()
         'show_in_rest' => null,
         'rest_base' => null,
         'menu_position' => 4,
-        'menu_icon' => 'dashicons-media-video',
+        'menu_icon' => 'dashicons-welcome-learn-more',
         'hierarchical' => false,
         'supports' => ['title', 'thumbnail', 'editor'],
         'taxonomies' => ['category'],
