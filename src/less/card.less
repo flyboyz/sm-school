@@ -8,6 +8,11 @@
   background-color: white;
   z-index: 1;
 
+  @media @s--less {
+    padding: 20px 20px 22px;
+    font-size: 16px;
+  }
+
   &_no-padding {
     padding: 0;
   }
@@ -72,6 +77,7 @@
       }
 
       &-promo {
+        min-height: 350px;
         padding: 0;
         align-items: center;
         text-align: center;
@@ -114,6 +120,10 @@
     display: flex;
     align-items: center;
 
+    @media @s--less {
+      font-size: 14px;
+    }
+
     &-avatar {
       width: 80px;
       height: 80px;
@@ -150,6 +160,11 @@
 
     & > *:not(:first-child) {
       margin-left: 70px;
+
+      @media @m--less {
+        display: block;
+        margin: 10px 0 0;
+      }
     }
   }
 
@@ -209,6 +224,10 @@
   width: 100%;
   background-color: white;
 
+  @media @m--less {
+    padding: 0;
+  }
+
   &_short {
     max-width: 920px;
   }
@@ -224,6 +243,10 @@
   flex: 1 0;
   font-size: 18px;
   line-height: 1.2;
+
+  @media @m--less {
+    padding-left: 10px;
+  }
 
   &:before {
     content: '';

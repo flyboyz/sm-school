@@ -2,6 +2,10 @@ main {
   padding: 20px 0 40px;
   background: url('/wp-content/themes/sm-school/images/background.png');
 
+  @media @s--less {
+    padding: 10px 0;
+  }
+
   & > * {
     z-index: 1;
   }
@@ -33,10 +37,36 @@ main {
 
   body & {
     min-height: calc(100vh - 100px);
+
+    @media @s--less {
+      min-height: calc(100vh - 65px);
+    }
   }
 
   body.admin-bar & {
     min-height: calc(100vh - 100px - 32px);
+
+    @media @s--less {
+      min-height: calc(100vh - 65px - 32px);
+    }
+  }
+
+  .full-height {
+    body & {
+      min-height: calc(100vh - 100px);
+
+      @media @s--less {
+        min-height: calc(100vh - 65px);
+      }
+    }
+
+    body.admin-bar & {
+      min-height: calc(100vh - 100px - 32px);
+
+      @media @s--less {
+        min-height: calc(100vh - 65px - 32px);
+      }
+    }
   }
 
   body.home & {
@@ -62,7 +92,12 @@ main {
     }
 
     @media @s--less {
-      font-size: 60px;
+      margin: 5px 0;
+      font-size: 38px;
+    }
+
+    @media @xxs {
+      font-size: 30px;
     }
 
     &:before, &:after {
@@ -111,6 +146,12 @@ main {
     left: 80px;
   }
 
+  @media @s--less {
+    padding: 0 36px;
+    left: 45px;
+    top: 50px;
+  }
+
   &:after {
     content: '';
     position: absolute;
@@ -126,8 +167,24 @@ main {
     margin: 20px 0;
     font-size: 32px;
 
+    @media @m--less {
+      font-size: 24px;
+    }
+
+    @media @s--less {
+      font-size: 16px;
+    }
+
     &:first-child {
       font-size: 48px;
+
+      @media @m--less {
+        font-size: 36px;
+      }
+
+      @media @s--less {
+        font-size: 20px;
+      }
     }
   }
 }
@@ -139,29 +196,48 @@ main {
   gap: 18px;
   grid-template-columns: repeat(3, 1fr);
 
-  @media @m--less {
+  @media @l--less {
     grid-template-columns: repeat(2, 1fr);
   }
 
   @media @s--less {
+    margin: 15px 0 0;
     grid-template-columns: 1fr;
   }
 
   &__wide {
     padding: 50px 70px;
-    gap: 10vw;
+    gap: 8vw;
     background-color: white;
 
     @media @l--less {
-      gap: 7vw;
+      gap: 6vw;
+    }
+
+    @media @m--less {
+      padding: 40px;
+    }
+
+
+    @media @s--less {
+      padding: 18px 15px;
+      gap: 15px;
+      overflow: hidden;
     }
   }
 }
 
 .content-box {
   display: flex;
+  max-width: 100%;
   flex-direction: column;
   align-items: center;
+
+  body.single & {
+    @media @m--less {
+      background-color: white;
+    }
+  }
 
   .feature-image {
     margin-top: -95px;
@@ -171,6 +247,10 @@ main {
     @media @m--less {
       margin-top: 30px;
       max-width: 100%;
+    }
+
+    @media @s--less {
+      margin-top: 10px;
     }
   }
 }
@@ -223,7 +303,7 @@ main {
 .columns-70 {
   flex-wrap: wrap;
 
-  .wp-block-column {
+  & > .wp-block-column {
     &:not(:first-child) {
       margin-left: 60px;
 
@@ -245,6 +325,11 @@ main {
   font-size: 18px;
   background-color: fade(white, 90%);
 
+  @media @s--less {
+    padding: 50px 24px 10px;
+    font-size: 16px;
+  }
+
   &:before {
     content: '';
     position: absolute;
@@ -254,6 +339,11 @@ main {
     left: 42px;
     background: url(/wp-content/themes/sm-school/images/icons/quote.png);
     color: @orange;
+
+    @media @s--less {
+      top: 25px;
+      left: 24px;
+    }
   }
 
   &:after {
@@ -264,5 +354,11 @@ main {
     top: 50px;
     right: 55px;
     background-color: @orange;
+
+    @media @s--less {
+      width: calc(100% - 95px);
+      top: 35px;
+      right: 30px;
+    }
   }
 }

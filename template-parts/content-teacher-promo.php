@@ -1,4 +1,4 @@
-<div class="card card_no-padding card_center">
+<div class="card card_no-padding card_center m-less_hide">
     <div class="card__panel card__panel_teacher-promo">
         <p class="title">ПРОЯВИТЕ СЕБЯ</p>
         <p>Мы помогаем успешным людям

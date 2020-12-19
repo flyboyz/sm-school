@@ -7,7 +7,7 @@ get_sidebar(); ?>
             <div class="d-flex align-items-center">
                 <img src="<?= get_template_directory_uri() ?>/images/logo.png" class="footer__logo" alt="logo">
                 <p><?= get_bloginfo('name') ?>
-                    <br>Все права защищены © <?= date('Y') ?>
+                    <br>Все права защищены ©&nbsp;<?= date('Y') ?>
                 </p>
             </div>
         </div>
@@ -15,13 +15,26 @@ get_sidebar(); ?>
         wp_nav_menu([
             'theme_location' => 'footer_second',
             'container' => '',
-            'menu_class' => 'footer-col',
+            'menu_class' => 'footer-col s-less_hide',
         ]);
         wp_nav_menu([
             'theme_location' => 'footer_third',
             'container' => '',
-            'menu_class' => 'footer-col',
+            'menu_class' => 'footer-col s-less_hide',
         ]); ?>
+        <div class="s-less_show">
+            <?php
+            wp_nav_menu([
+                'theme_location' => 'footer_second',
+                'container' => '',
+                'menu_class' => 'footer-col',
+            ]);
+            wp_nav_menu([
+                'theme_location' => 'footer_third',
+                'container' => '',
+                'menu_class' => 'footer-col',
+            ]); ?>
+        </div>
     </div>
 </footer>
 <?php

@@ -15,6 +15,10 @@
     height: 100px;
     align-items: center;
     justify-content: space-between;
+
+    @media @s--less {
+      height: 65px;
+    }
   }
 
   &__logo-link {
@@ -31,6 +35,10 @@
     @media @m--less {
       margin: 0;
     }
+
+    @media @s--less {
+      height: 42px;
+    }
   }
 
   &__site-name {
@@ -41,6 +49,11 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+
+      @media @s--less {
+        left: 84px;
+        transform: none;
+      }
     }
   }
 

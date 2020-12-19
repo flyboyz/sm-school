@@ -14,11 +14,15 @@
 
       &.wpforms-field-name,
       &.wpforms-field-email {
-        flex: .5 1 150px;
+        flex: 1 1 200px;
       }
 
       &.wpforms-field-textarea {
-        flex: 1 0 250px;
+        flex: 1 0 100%;
+
+        @media @s--less {
+          flex-basis: 250px;
+        }
       }
     }
 

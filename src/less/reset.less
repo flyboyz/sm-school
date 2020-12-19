@@ -9,8 +9,11 @@ body {
 
   &.home {
     display: flex;
-    height: calc(100vh - 32px);
     flex-direction: column;
+  }
+
+  &.overflow {
+    overflow: hidden;
   }
 }
 
@@ -24,8 +27,7 @@ img, frame {
 
 .shm_container {
   border: none !important;
-}
-
-.form-file-button {
-
+  @media @s--less {
+    max-height: 240px;
+  }
 }
