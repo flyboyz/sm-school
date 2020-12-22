@@ -212,6 +212,12 @@
     height: 330px;
     object-fit: cover;
 
+    @media @m--less {
+      height: auto;
+      margin: 0 -26px;
+      max-width: calc(100% + 52px);
+    }
+
     &_bordered {
       border-left: orange solid 40px;
     }
@@ -225,6 +231,10 @@
   background-color: white;
 
   @media @m--less {
+    flex-direction: column;
+  }
+
+  @media @s--less {
     padding: 0;
   }
 

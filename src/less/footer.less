@@ -34,7 +34,10 @@
   a {
     text-decoration: none;
     color: white;
-    white-space: nowrap;
+
+    @media @s--less {
+      white-space: nowrap;
+    }
 
     &[href]:hover {
       text-decoration: underline;
