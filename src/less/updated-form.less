@@ -7,6 +7,10 @@
 
   .wpforms-form {
     .wpforms-field {
+      @media @s--less {
+        padding: 5px 0;
+      }
+
       input {
         max-width: 100%;
         border-radius: 0;
@@ -29,6 +33,11 @@
     .wpforms-submit-container {
       button[type=submit] {
         .button;
+
+        @media @s--less {
+          padding: 12px 22px;
+          font-size: 14px;
+        }
       }
     }
   }
@@ -45,6 +54,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+
+    @media @s--less {
+      gap: 10px;
+    }
 
     .wpforms-field {
       padding: 0;
@@ -70,6 +83,12 @@
         color: black;
         border-radius: 3px;
 
+        @media @s--less {
+          padding: 10px 14px 10px 6px;
+          height: auto;
+          font-size: 14px;
+        }
+
         &:before {
           content: '';
           display: inline-block;
@@ -77,6 +96,12 @@
           width: 26px;
           height: 26px;
           background: url("/wp-content/themes/sm-school/images/icons/clip.svg") center/contain no-repeat;
+
+          @media @s--less {
+            margin-right: 6px;
+            width: 18px;
+            height: 20px;
+          }
         }
 
         span {

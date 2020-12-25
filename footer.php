@@ -1,6 +1,24 @@
 </main>
 <?php
-get_sidebar(); ?>
+get_sidebar();
+
+if (is_single() && get_post_type() === 'post'):
+    ?>
+    <div class="share-box">
+        <span>Поделись</span>
+        <a href="<?= get_social_link('vk') ?>" target="_blank">
+            <?= file_get_contents(get_template_directory() . '/images/icons/vk.svg') ?></a>
+        <a href="<?= get_social_link('facebook') ?>" target="_blank">
+            <?= file_get_contents(get_template_directory() . '/images/icons/facebook.svg') ?></a>
+        <a href="<?= get_social_link('twitter') ?>" target="_blank">
+            <?= file_get_contents(get_template_directory() . '/images/icons/twitter.svg') ?></a>
+        <a href="<?= get_social_link('ok') ?>" target="_blank">
+            <?= file_get_contents(get_template_directory() . '/images/icons/odnoklassniki.svg') ?></a>
+        <a href="<?= get_social_link('linkedin') ?>" target="_blank">
+            <?= file_get_contents(get_template_directory() . '/images/icons/linkedin.svg') ?></a>
+    </div>
+<?php
+endif; ?>
 <footer class="footer">
     <div class="container container_fixed footer__container">
         <div class="footer-col">

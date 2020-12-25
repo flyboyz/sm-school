@@ -44,7 +44,7 @@ function scrollListener() {
                     news.innerHTML = data;
 
                     while (news.children.length > 0) {
-                        document.querySelector('.content-columns').append(news.children[0]);
+                        document.querySelector('.posts-box').append(news.children[0]);
                     }
 
                     loadMoreElement.classList.remove('loading');

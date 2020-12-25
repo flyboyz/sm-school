@@ -22,12 +22,14 @@ $category = !empty($fields['categories']) ? $fields['categories'][0]->name : '';
         <div class="card">
             <img class="card__image card__image_bordered" src="<?= $fields['avatar']['sizes']['large'] ?>" alt="photo">
             <div class="card__title"><?= $teacher->name ?></div>
-            <div class="card__subtitle"><?= $fields['position'] ?></div>
-            <div class="card__actions">
-                <a href="/<?= $teacher->taxonomy . '/' . $teacher->slug ?>/?post_type=course"
-                   class="card__link icon icon-arrow">Курсы</a>
-                <a href="/<?= $teacher->taxonomy . '/' . $teacher->slug ?>/?post_type=post"
-                   class="card__link icon icon-arrow">Публикации</a>
+            <div class="card__mobile-row">
+                <div class="card__subtitle"><?= $fields['position'] ?></div>
+                <div class="card__actions">
+                    <a href="/<?= $teacher->taxonomy . '/' . $teacher->slug ?>/?post_type=course"
+                       class="card__link icon icon-arrow">Курсы</a>
+                    <a href="/<?= $teacher->taxonomy . '/' . $teacher->slug ?>/?post_type=post"
+                       class="card__link icon icon-arrow">Публикации</a>
+                </div>
             </div>
         </div>
         <div class="details-content">

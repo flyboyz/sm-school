@@ -67,9 +67,17 @@ function true_load_posts()
 
     $i = 0;
     while ($posts->have_posts()) {
+        if ($i === 0 || $i % 6 === 0) {
+            echo '<div class="content-columns">';
+        }
+
         $i++;
         $posts->the_post();
-        get_template_part('template-parts/content', $post_type, ['page' => $_POST['page'], 'post_num' => $i]);
+        get_template_part('template-parts/content', $post_type, ['post_num' => $i]);
+
+        if ($i === 6 || $i % 6 === 0) {
+            echo '</div>';
+        }
     }
 
     die();
@@ -82,6 +90,23 @@ add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
 function get_the_first_category($emptyLabel = '')
 {
     return !empty(get_the_category()) ? get_the_category()[0]->cat_name : $emptyLabel;
+}
+
+
+function get_social_link($social_name)
+{
+    $post_link = urlencode(get_the_permalink());
+    $post_title = get_the_title();
+
+    $share_links = [
+        'vk' => "https://vk.com/share.php?url=$post_link",
+        'facebook' => "https://www.facebook.com/sharer/sharer.php?u=$post_link",
+        'twitter' => "https://twitter.com/intent/tweet?url=$post_link&text=$post_title",
+        'ok' => "https://connect.ok.ru/offer?url=$post_link&title=$post_title&imageUrl=" . get_the_post_thumbnail_url('large'),
+        'linkedin' => "https://www.linkedin.com/shareArticle?mini=true&url=$post_link&title=$post_title&source=LinkedIn",
+    ];
+
+    return $share_links[$social_name];
 }
 
 

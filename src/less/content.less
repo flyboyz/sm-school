@@ -125,9 +125,10 @@ main {
   }
 
   #load-more {
-    opacity: 0;
+    margin-top: 15px;
     width: 100%;
     text-align: center;
+    opacity: 0;
 
     &.loading {
       opacity: 1;
@@ -196,7 +197,7 @@ main {
   gap: 18px;
   grid-template-columns: repeat(3, 1fr);
 
-  @media @l--less {
+  @media @m--less {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -218,11 +219,51 @@ main {
       padding: 40px;
     }
 
-
     @media @s--less {
       padding: 18px 15px;
-      gap: 15px;
+      gap: 25px 15px;
       overflow: hidden;
+    }
+  }
+
+  .posts-box & {
+    a {
+      &:first-child {
+        grid-row: ~'1/3';
+        grid-column: ~'1/3';
+
+        @media @s--less {
+          grid-row: auto;
+          grid-column: auto;
+        }
+      }
+
+      &:nth-child(3) {
+        @media @m--less {
+          grid-row: ~'4/5';
+          grid-column: ~'1/3';
+        }
+
+        @media @s--less {
+          grid-row: auto;
+          grid-column: auto;
+        }
+      }
+
+      &:nth-child(6) {
+        grid-row: ~'3/5';
+        grid-column: ~'2/-1';
+
+        @media @m--less {
+          grid-row: auto;
+          grid-column: auto;
+        }
+
+        @media @s--less {
+          grid-row: auto;
+          grid-column: auto;
+        }
+      }
     }
   }
 }
@@ -327,7 +368,7 @@ main {
 
   @media @s--less {
     padding: 50px 24px 10px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   &:before {
