@@ -29,7 +29,7 @@ function register_vacancy_post_type()
         'menu_icon' => 'dashicons-portfolio',
         'hierarchical' => false,
         'supports' => ['title', 'thumbnail', 'editor'],
-//        'taxonomies' => ['category'],
+        'taxonomies' => ['category'],
         'has_archive' => 'vacancies',
         'rewrite' => true,
         'query_var' => true,
