@@ -10,6 +10,12 @@
             'theme_location' => 'header',
             'container' => '',
         ]);
+
+        $types = ['post', 'course'];
+
+        if (in_array(get_post_type(), $types) && !is_single()) {
+            echo '<div class="filter-btn">Фильтр</div>';
+        }
         ?>
         <div class="hamburger">
             <div class="bar bar_1"></div>

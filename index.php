@@ -7,8 +7,10 @@ if (have_posts()):
     $thumbnail_id = get_post_thumbnail_id();
     ?>
     <div class="container container_fixed container_full-width_m-less content-box">
-        <h1 class="page-title"><?php
-            the_title() ?> </h1>
+        <div class="page-headline">
+            <h1 class="page-title"><?php
+                the_title() ?> </h1>
+        </div>
         <?php
         if ($thumbnail_id): ?>
             <img src="<?php

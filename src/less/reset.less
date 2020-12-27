@@ -15,6 +15,20 @@ body {
   &.overflow {
     overflow: hidden;
   }
+
+  &.page-filters-active {
+    .page-title {
+      display: none;
+    }
+
+    .page-filters {
+      display: block;
+    }
+
+    .filter-btn {
+      background-color: @orange;
+    }
+  }
 }
 
 img, frame {

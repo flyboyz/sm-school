@@ -7,7 +7,12 @@ get_header();
 if (have_posts()):
     ?>
     <div class="container container_fixed container_full-width_m-less">
-        <h1 class="page-title"><?= the_title() ?></h1>
+        <div class="page-headline">
+            <h1 class="page-title"><?= the_title() ?></h1>
+            <div class="page-filters">
+                <?= do_shortcode('[searchandfilter post_types="' . $post_type . '" fields="teacher,category" submit_label="Применить"]'); ?>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="content-columns content-columns__wide">

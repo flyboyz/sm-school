@@ -110,6 +110,25 @@ function get_social_link($social_name)
 }
 
 
+function my_class_names($classes)
+{
+    global $wp_query;
+    $filters_name = ['category_name', 'teacher'];
+
+    foreach ($wp_query->query as $name => $value) {
+        if (in_array($name, $filters_name)) {
+            $classes[] = 'page-filters-active';
+
+            return $classes;
+        }
+    }
+
+    return $classes;
+}
+
+add_filter('body_class', 'my_class_names');
+
+
 /**
  * System reconfiguration
  */
