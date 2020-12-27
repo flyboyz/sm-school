@@ -14,7 +14,7 @@ if (have_posts()):
         </div>
     </div>
     <div class="container container_fixed">
-        <div class="posts-box">
+        <div class="content-list">
             <div class="content-columns">
                 <?php
                 while (have_posts()):

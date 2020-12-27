@@ -77,11 +77,15 @@ main {
     display: flex;
     padding: .5rem 0;
     margin: 10px 0;
-    height: 105px;
+    min-height: 105px;
     width: 100%;
     align-items: center;
     background-color: white;
     z-index: 2 !important;
+
+    @media @s--less {
+      min-height: auto;
+    }
 
     & > * {
       width: 100%;
@@ -139,14 +143,34 @@ main {
     display: none;
     padding: 0 30px;
 
+    @media @s--less {
+      padding: 0 15px;
+    }
+
     ul {
       display: flex;
       padding: 0;
       gap: 20px;
+
+      @media @s--less {
+        display: grid;
+        gap: 10px;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     li {
       padding: 0;
+
+      @media @s--less {
+        width: 100%;
+
+        input,
+        select {
+          width: 100%;
+        }
+      }
 
       &:last-child {
         margin-left: auto;
@@ -277,7 +301,7 @@ main {
     }
   }
 
-  .posts-box & {
+  .content-list_posts & {
     a {
       &:first-child {
         grid-row: ~'1/3';

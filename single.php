@@ -25,7 +25,8 @@ if (have_posts()):
                         endif;
                         if ('vacancy' === $post_type):
                             ?>
-                            <a data-fancybox data-src="#VacancyModal" href="javascript:;" class="button">Отправить
+                            <a data-fancybox data-src="#VacancyModal" data-options='{"touch" : false}'
+                               href="javascript:;" class="button">Отправить
                                 резюме</a>
                             <div id="VacancyModal" class="modal modal_black" style="display: none;">
                                 <div class="modal__title">Заполните форму чтобы отправить резюме</div>

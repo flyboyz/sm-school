@@ -11,7 +11,7 @@ get_header();
         </div>
     </div>
     <div class="container container_fixed">
-    <div class="posts-box">
+    <div class="content-list content-list_posts">
 <?php
 if (have_posts()):
     $i = 0;

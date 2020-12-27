@@ -5,7 +5,8 @@ $teacher = $args['teacher'];
 $fields = get_field('fields', 'teacher_' . $teacher->term_id);
 $category = !empty($fields['categories']) ? $fields['categories'][0]->name : '';
 ?>
-<a data-fancybox data-src="#teacher-<?= $teacher->term_id ?>" href="javascript:;" class="card card_no-padding">
+<a data-fancybox data-options='{"touch" : false}' data-src="#teacher-<?= $teacher->term_id ?>" href="javascript:;"
+   class="card card_no-padding">
     <div class="card__panel card__panel_teacher ratio ratio_4x3">
         <div class="ratio__content">
             <img src="<?= $fields['avatar']['sizes']['large'] ?>" alt="photo">

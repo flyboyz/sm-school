@@ -32,10 +32,6 @@
     margin-right: 20px;
     height: 65px;
 
-    @media @m--less {
-      margin: 0;
-    }
-
     @media @s--less {
       height: 42px;
     }
@@ -45,13 +41,15 @@
     font-size: 18px;
     text-transform: uppercase;
 
-    &_centered {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+    @media @s--less {
+      font-size: 15px;
+    }
 
+    &_centered {
       @media @s--less {
-        font-size: 15px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   }
@@ -135,8 +133,15 @@
     border: #b2b2b2 solid 1px;
     border-radius: 3px;
 
-    &:hover {
-      //background-color: lighten(@orange, 20%);
+    @media @s--less {
+      font-size: 11px;
+      padding: 7px 10px 5px;
     }
+  }
+
+  .right-block {
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
 }

@@ -2,12 +2,13 @@
 
 $product = $args['product']; ?>
 <div class="card">
-    <a class="card__panel ratio ratio_16x9" data-fancybox data-src="#product-<?= $product->ID ?>" href="javascript:;">
+    <a class="card__panel ratio ratio_16x9" data-fancybox data-options='{"touch" : false}'
+       data-src="#product-<?= $product->ID ?>" href="javascript:;">
         <div class="ratio__content">
             <?= get_the_post_thumbnail($product->ID, 'large') ?>
         </div>
     </a>
-    <a class="card__title" data-fancybox data-src="#product-<?= $product->ID ?>"
+    <a class="card__title" data-fancybox data-options='{"touch" : false}' data-src="#product-<?= $product->ID ?>"
        href="javascript:;"><?= $product->post_title ?></a>
     <div class="card__subtitle"><?= get_product_cost($product->ID) ?></div>
     <a href="<?= get_field('fields', $product->ID)['pay_link'] ?>" class="card__button" target="_blank">Купить</a>
