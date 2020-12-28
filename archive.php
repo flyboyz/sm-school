@@ -2,9 +2,8 @@
 
 $post_type = get_post_type();
 get_header();
-if (have_posts()):
-    $title = get_post_type_labels(get_post_type_object($post_type))->archives;
-    ?>
+$title = get_post_type_labels(get_post_type_object($post_type))->archives;
+?>
     <div class="container container_fixed container_full-width_m-less">
         <div class="page-headline">
             <h1 class="page-title"><?= $title ?></h1>
@@ -13,6 +12,9 @@ if (have_posts()):
             </div>
         </div>
     </div>
+<?php
+if (have_posts()):
+    ?>
     <div class="container container_fixed">
         <div class="content-list">
             <div class="content-columns">
@@ -28,7 +30,16 @@ if (have_posts()):
         </div>
     </div>
 <?php
-else:
-    echo 'Пока здесь ничего нет';
-endif;
+else: ?>
+    <div class="container container_fixed container_full-width_m-less">
+        <div class="error-box error-box_white">
+            <p>Извините! По вашему запросу ничего не найдено.</p>
+            <img src="/wp-content/themes/sm-school/images/icons/face.svg" class="error-img" alt="sorry">
+            <p>Но мы обязательно это исправим!
+                <br><a onclick="javascript:history.back(); return false;">Вернуться назад</a></p>
+        </div>
+    </div>
+<?php
+endif; ?>
+<?php
 get_footer();
