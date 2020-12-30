@@ -33,26 +33,13 @@ endif; ?>
         wp_nav_menu([
             'theme_location' => 'footer_second',
             'container' => '',
-            'menu_class' => 'footer-col s-less_hide',
+            'menu_class' => 'footer-col',
         ]);
         wp_nav_menu([
             'theme_location' => 'footer_third',
             'container' => '',
-            'menu_class' => 'footer-col s-less_hide',
+            'menu_class' => 'footer-col',
         ]); ?>
-        <div class="s-less_show">
-            <?php
-            wp_nav_menu([
-                'theme_location' => 'footer_second',
-                'container' => '',
-                'menu_class' => 'footer-col',
-            ]);
-            wp_nav_menu([
-                'theme_location' => 'footer_third',
-                'container' => '',
-                'menu_class' => 'footer-col',
-            ]); ?>
-        </div>
     </div>
 </footer>
 <?php

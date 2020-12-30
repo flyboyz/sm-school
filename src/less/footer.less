@@ -14,10 +14,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
 
     @media @s--less {
-      gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
@@ -51,6 +51,21 @@
   margin: 0;
   flex-direction: column;
   list-style: none;
+
+  &:first-child {
+    @media @s--less {
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+  }
+
+  &:not(:first-child) {
+    margin-left: 20px;
+
+    @media @s--less {
+      margin-left: 10px;
+    }
+  }
 
   @media @s--less {
     font-size: 9px;

@@ -19,7 +19,7 @@ $category = !empty($fields['categories']) ? $fields['categories'][0]->name : '';
 
 <div class="container container_fixed container_no-paddnig content-box" id="teacher-<?= $teacher->term_id ?>"
      style="display: none;">
-    <div class="details-card">
+    <div class="details-card details-card_teacher">
         <div class="card">
             <img class="card__image card__image_bordered" src="<?= $fields['avatar']['sizes']['large'] ?>" alt="photo">
             <div class="card__title"><?= $teacher->name ?></div>

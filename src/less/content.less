@@ -150,7 +150,6 @@ main {
     ul {
       display: flex;
       padding: 0;
-      gap: 20px;
 
       @media @s--less {
         display: grid;
@@ -169,6 +168,14 @@ main {
         input,
         select {
           width: 100%;
+        }
+      }
+
+      &:not(:first-child) {
+        margin-left: 20px;
+
+        @media @s--less {
+          margin: 0;
         }
       }
 

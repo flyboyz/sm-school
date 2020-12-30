@@ -16,16 +16,12 @@
         border-radius: 0;
       }
 
-      &.wpforms-field-name,
-      &.wpforms-field-email {
-        flex: 1 1 200px;
-      }
-
       &.wpforms-field-textarea {
-        flex: 1 0 100%;
+        grid-column-start: 1;
+        grid-column-end: 3;
 
         @media @s--less {
-          flex-basis: 250px;
+          grid-column-end: auto;
         }
       }
     }
@@ -51,12 +47,13 @@
   }
 
   &.contact-form .wpforms-field-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
 
     @media @s--less {
       gap: 10px;
+      grid-template-columns: 1fr;
     }
 
     .wpforms-field {

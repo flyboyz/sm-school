@@ -189,7 +189,6 @@
       a {
         display: flex;
         align-items: center;
-        gap: 32px;
         font-size: 26px;
         font-weight: bold;
         text-decoration: none;
@@ -197,7 +196,6 @@
         color: white;
 
         @media @s--less {
-          gap: 15px;
           font-size: 18px;
         }
 
@@ -207,6 +205,14 @@
 
         &:hover {
           color: black;
+        }
+
+        &:before {
+          margin-right: 32px;
+
+          @media @s--less {
+            margin-right: 15px;
+          }
         }
       }
     }
