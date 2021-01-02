@@ -12,8 +12,10 @@ body {
     flex-direction: column;
   }
 
-  &.overflow {
-    overflow: hidden;
+  &.mobile-overflow {
+    @media @s--less {
+      overflow: hidden;
+    }
   }
 
   &.page-filters-active {

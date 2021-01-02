@@ -8,12 +8,12 @@ export default () => {
     if (hamburger && sidebar) {
         hamburger.addEventListener('click', () => {
             sidebar.classList.toggle('sidebar_opened');
-            body.classList.toggle('overflow');
+            body.classList.toggle('mobile-overflow');
         })
 
         sidebar.querySelector('.sidebar__close-btn').addEventListener('click', () => {
             sidebar.classList.remove('sidebar_opened');
-            body.classList.remove('overflow');
+            body.classList.remove('mobile-overflow');
         })
     }
 }
