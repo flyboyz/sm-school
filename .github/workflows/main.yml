@@ -32,12 +32,12 @@ jobs:
           
       - name: 🔨 Build Project
         run: |
-          npm install
+          npm i --no-optional
           npm run build
           
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: ftp.sm-school.test
+          server: 141.8.196.54
           username: a0272855
           password: ${{ secrets.password }}
