@@ -39,5 +39,5 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
           server: 141.8.196.54
-          username: a0272855
+          username: sm@sm-school.test
           password: ${{ secrets.password }}
