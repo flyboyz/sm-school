@@ -137,9 +137,6 @@ add_filter('body_class', 'my_class_names');
 require get_parent_theme_file_path('/inc/system-bans.php');
 
 
-//require_once get_parent_theme_file_path('/inc/MSGame.php');
-
-
 require get_parent_theme_file_path('/inc/type-course.php');
 require get_parent_theme_file_path('/inc/type-webinar.php');
 require get_parent_theme_file_path('/inc/type-project.php');
