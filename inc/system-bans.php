@@ -60,6 +60,17 @@ function change_login_logo()
 
 add_action('login_enqueue_scripts', 'change_login_logo');
 
+function wide_editor()
+{
+    echo '<style>
+    .block-editor .wp-block {
+      max-width: 1040px;
+    }
+  </style>';
+}
+
+add_action('admin_head', 'wide_editor');
+
 
 // Переименовывваем Записи в Публикации
 function cp_change_post_object()
