@@ -12,6 +12,5 @@ $teacher = get_the_teacher();
         </div>
     </div>
     <span class="card__cost"><?= get_course_cost() ?></span>
-    <a href="<?= get_field('fields')['link'] ?>" class="card__title icon icon-arrow" target="_blank">Смотреть
-        курс</a>
+    <a href="<?= get_the_permalink() ?>" class="card__title icon icon-arrow">Смотреть курс</a>
 </div>

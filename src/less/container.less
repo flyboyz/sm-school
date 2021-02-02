@@ -1,4 +1,6 @@
 .container {
+  margin: 0;
+
   &_fixed {
     margin: 0 auto;
     width: 1040px;
@@ -15,6 +17,12 @@
 
   &_full-width_m-less {
     @media @m--less {
+      max-width: 100%;
+    }
+  }
+
+  &_full-width_s-less {
+    @media @s--less {
       max-width: 100%;
     }
   }
