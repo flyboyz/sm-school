@@ -1,5 +1,13 @@
-.updated-form.wpforms-container-full {
-  margin: 0;
+.updated-form {
+  &.wpforms-container {
+    margin: 0;
+  }
+
+  input, textarea {
+    padding: 10px 12px;
+    border: none;
+    outline: none;
+  }
 
   textarea {
     resize: none;
@@ -13,7 +21,6 @@
 
       input {
         max-width: 100%;
-        border-radius: 0;
       }
 
       &.wpforms-field-textarea {
@@ -22,17 +29,6 @@
 
         @media @s--less {
           grid-column-end: auto;
-        }
-      }
-    }
-
-    .wpforms-submit-container {
-      button[type=submit] {
-        .button;
-
-        @media @s--less {
-          padding: 12px 22px;
-          font-size: 14px;
         }
       }
     }
@@ -54,6 +50,10 @@
     @media @s--less {
       gap: 10px;
       grid-template-columns: 1fr;
+    }
+
+    input, textarea {
+      border: #d2d2d2 solid 1px;
     }
 
     .wpforms-field {
@@ -128,13 +128,13 @@
         }
       }
     }
+  }
 
-    .wpforms-error {
-      color: #ea9690;
+  .wpforms-error {
+    color: #ea9690 !important;
 
-      a {
-        color: white;
-      }
+    a {
+      color: white;
     }
   }
 }

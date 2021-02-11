@@ -15,7 +15,8 @@ $with_filter = in_array(get_post_type(), ['post', 'course']) && !is_single();
         ]); ?>
         <div class="right-block">
             <?= $with_filter ? '<div class="filter-btn">Фильтр</div>' : '' ?>
-            <div class="hamburger">
+            <div class="hamburger" data-fancybox data-src="#sidebar"
+                 data-options='{"touch" : false, "baseClass" : "fancybox-sidebar"}'>
                 <div class="bar bar_1"></div>
                 <div class="bar bar_2"></div>
                 <div class="bar bar_3"></div>

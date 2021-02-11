@@ -131,6 +131,23 @@ function my_class_names($classes)
 add_filter('body_class', 'my_class_names');
 
 
+function get_section($args)
+{
+    ob_start();
+    get_template_part('template-parts/section/' . $args['name'], '');
+
+    return ob_get_clean();
+}
+
+add_shortcode('section', 'get_section');
+
+
+function get_cost($value)
+{
+    return number_format($value ?? 0, 0, ',', ' ') . ' &#8381;';
+}
+
+
 /**
  * System reconfiguration
  */

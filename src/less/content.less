@@ -379,6 +379,28 @@ main {
       margin-top: 10px;
     }
   }
+
+  .fancybox-button {
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+
+    @media @s--less {
+      top: 8px;
+      right: 8px;
+    }
+
+    &::before,
+    &::after {
+      background-color: black;
+    }
+
+    &:hover::before,
+    &:hover::after {
+      background-color: red;
+    }
+  }
 }
 
 .content {

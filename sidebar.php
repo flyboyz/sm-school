@@ -1,5 +1,4 @@
-<div class="sidebar">
-    <div class="sidebar__close-btn"></div>
+<div class="sidebar" id="sidebar">
     <?php
     wp_nav_menu([
         'theme_location' => 'sidebar',

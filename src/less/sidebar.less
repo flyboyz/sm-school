@@ -1,6 +1,6 @@
 .sidebar {
   position: fixed;
-  padding: 70px 40px 30px 70px;
+  padding: 90px 40px 30px 70px;
   height: 100%;
   width: 470px;
   max-width: 80%;
@@ -49,13 +49,15 @@
 
   body.admin-bar & {
     top: 32px;
+    height: calc(100vh - 32px);
 
     @media (max-width: 782px) {
       top: 46px;
+      height: calc(100vh - 46px);
     }
   }
 
-  &_opened {
+  .fancybox-is-open & {
     transform: translateX(0);
   }
 
@@ -114,6 +116,16 @@
     &:hover::before,
     &:hover::after {
       background-color: black;
+    }
+  }
+
+  .fancybox-button {
+    top: 60px;
+    right: 50px;
+
+    @media @s--less {
+      top: 35px;
+      right: 20px;
     }
   }
 
@@ -187,7 +199,7 @@
       }
 
       a {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         font-size: 26px;
         font-weight: bold;
@@ -216,5 +228,23 @@
         }
       }
     }
+  }
+}
+
+.fancybox-sidebar {
+  .fancybox-bg {
+    background: url('/wp-content/themes/sm-school/images/background.png');
+  }
+
+  &.fancybox-is-open .fancybox-bg {
+    opacity: .75;
+  }
+
+  .fancybox-slide--next {
+    transform: translateX(100%);
+  }
+
+  .fancybox-slide--current {
+    transform: translateX(0);
   }
 }
