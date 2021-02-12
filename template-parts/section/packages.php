@@ -26,7 +26,9 @@ if (!empty($packages)):
                            href="javascript:;" class="button button_lighting">Купить</a>
                     <?php
                     else:
-                        get_template_part('template-parts/form', 'sign-up');
+                        get_template_part('template-parts/form', 'sign-up', [
+                            'formID' => $package['form']->ID ?? 0
+                        ]);
                         ?>
                         <a data-fancybox data-src="#SignUpModal" data-options='{"touch" : false}'
                            href="javascript:;" class="button button_lighting">Записаться</a>
