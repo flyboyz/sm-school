@@ -1,5 +1,5 @@
-<div id="SignUpModal" class="modal modal_fixed-width modal_lighting" style="display: none;">
-    <?= do_shortcode('[wpforms id="' . $args['formID'] . '"]') ?>
+<div id="signModal" class="modal modal_fixed-width modal_lighting" style="display: none;">
+    <?= do_shortcode('[wpforms id="' . $args['form']->ID . '"]') ?>
     <div class="modal__sub">
         Отправляя заявку, вы принимаете условия
         <a href="offer.html" target="_blank">договора-оферты</a>

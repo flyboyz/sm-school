@@ -148,11 +148,21 @@ function get_cost($value)
 }
 
 
+function wrap_surname($name)
+{
+    return substr_replace($name, ' <span>', strpos($name, ' '), 1) . '</span>';
+}
+
+add_filter('wrap_surname', 'wrap_surname', 10, 1);
+
+require get_parent_theme_file_path('/inc/helpers.php');
+
 /**
  * System reconfiguration
  */
 require get_parent_theme_file_path('/inc/system-bans.php');
 
+require get_parent_theme_file_path('/inc/blocks.php');
 
 require get_parent_theme_file_path('/inc/type-course.php');
 require get_parent_theme_file_path('/inc/type-webinar.php');

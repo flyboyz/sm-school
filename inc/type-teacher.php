@@ -44,9 +44,24 @@ function get_the_teacher($ID = null)
     }
 
     $teacher = $teachers[0];
+    $fields = get_field('fields', 'teacher_' . $teacher->term_id);
 
-    $teacher->avatar = get_field('fields',
-        'teacher_' . $teacher->term_id)['avatar']['sizes'];
+    $teacher->avatar = $fields['avatar']['sizes'];
+    $teacher->big_photo = $fields['big_photo']['sizes'];
 
     return $teacher;
 }
+
+function fill_author($author)
+{
+    $fields = get_field('fields', 'teacher_' . $author->term_id);
+
+    $author->position = $fields['position'];
+
+    $author->avatar = $fields['avatar']['sizes'];
+    $author->big_photo = $fields['big_photo']['sizes'];
+
+    return $author;
+}
+
+add_filter('fill_author', 'fill_author', 10, 1);

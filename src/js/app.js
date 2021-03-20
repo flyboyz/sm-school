@@ -3,14 +3,14 @@
 import '@fancyapps/fancybox'
 // import lottie from 'lottie-web/build/player/lottie_svg.min'
 
-// import sidebar from './sidebar'
 import loadMore from './load-more'
 import filters from './filters'
+import formsInit from './form'
 
 document.addEventListener('DOMContentLoaded', () => {
-    // sidebar();
     loadMore();
     filters();
+    // formsInit();
 
     // lottie.loadAnimation({
     //     container: document.querySelector('.anim'),
@@ -19,4 +19,4 @@ document.addEventListener('DOMContentLoaded', () => {
     //     autoplay: true,
     //     path: '/wp-content/themes/sm-school/logo_anim_1.json'
     // });
-})
+});
