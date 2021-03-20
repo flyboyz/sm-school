@@ -11,8 +11,8 @@ function add_theme_scripts()
     global $wp_query;
     $templateUri = get_template_directory_uri();
 
-    wp_enqueue_style('main', "$templateUri/style.css", array(),
-        date("Y-m-d_H:i", filemtime(get_template_directory() . "/style.css")));
+    wp_enqueue_style('main', "$templateUri/css/main.min.css", array(),
+        date("Y-m-d_H:i", filemtime(get_template_directory() . "/css/main.min.css")));
     wp_enqueue_script('main', "$templateUri/js/app.min.js", array('jquery'),
         date("Y-m-d_H:i", filemtime(get_template_directory() . "/js/app.min.js")), true);
 

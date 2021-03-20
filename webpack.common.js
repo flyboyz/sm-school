@@ -2,18 +2,17 @@ const path = require('path');
 const webpack = require('webpack');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
-const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = {
     entry: {
         app: './src/js/app.js',
-        style: './src/less/app.less'
+        main: './src/less/app.less'
     },
     output: {
-        path: path.resolve(__dirname, './'),
-        filename: 'js/[name].min.js'
+        path: path.resolve(__dirname),
+        filename: 'js/[name].min.js',
+        pathinfo: false
     },
     module: {
         rules: [
@@ -28,6 +27,10 @@ module.exports = {
                 }]
             },
             {
+                test: /\.css$/,
+                use: ['css-loader']
+            },
+            {
                 test: /\.less$/,
                 use: [{
                     loader: MiniCssExtractPlugin.loader,
@@ -37,16 +40,21 @@ module.exports = {
                 }, 'css-loader', 'less-loader']
             },
             {
-                test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-                use: 'base64-inline-loader?limit=1000&name=[name].[ext]'
-            }
+                test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][name].[ext]',
+                    },
+                },
+            },
+
         ]
     },
     plugins: [
         new FixStyleOnlyEntriesPlugin(),
-        // extract css into dedicated file
         new MiniCssExtractPlugin({
-            filename: '[name].css'
+            filename: 'css/[name].min.css'
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
@@ -54,16 +62,6 @@ module.exports = {
             'window.jQuery': 'jquery'
         })
     ],
-    optimization: {
-        minimizer: [
-            // enable the js minification plugin
-            new MinifyPlugin(),
-            // enable the css minification plugin
-            // new OptimizeCSSAssetsPlugin({
-            //     assetNameRegExp: /\.css$/,
-            // })
-        ]
-    },
     externals: {
         'jquery': 'jQuery'
     }
