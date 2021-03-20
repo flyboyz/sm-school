@@ -495,7 +495,7 @@
       background-color: #fafafa;
 
       h2 {
-        margin-bottom: 10px !important;
+        margin-bottom: 50px !important;
         text-align: center;
       }
 
@@ -507,9 +507,15 @@
 
         &__item {
           display: flex;
-          margin: 40px 30px 0;
+          margin: 0 30px;
+          flex-shrink: 1;
           flex-direction: column;
           align-items: center;
+
+          @media @s--less {
+            margin: 0;
+            flex-shrink: 0;
+          }
 
           img {
             border: @dark-text solid 2px;
