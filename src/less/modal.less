@@ -89,3 +89,60 @@
     }
   }
 }
+
+.co-author-modal {
+  background-color: #F0EDE8;
+  color: @dark-text;
+
+  .fancybox-button {
+    top: 24px;
+    right: 24px;
+    color: @dark-text !important;
+
+    @media @s--less {
+      right: 15px;
+    }
+  }
+
+  img {
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+    border: @dark-text solid 2px;
+    border-radius: 150px;
+
+    @media @s--less {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  .meta {
+    display: flex;
+    margin-bottom: 40px;
+    align-items: center;
+  }
+
+  .name {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+
+    span {
+      color: @orange;
+    }
+  }
+
+  .position {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 20px;
+
+    @media @s--less {
+      font-size: 16px;
+    }
+  }
+}

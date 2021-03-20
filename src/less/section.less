@@ -279,6 +279,10 @@
           max-width: 100%;
         }
 
+        @media @m--less {
+          font-size: 16px;
+        }
+
         li {
           &::marker {
             color: white;
@@ -508,7 +512,12 @@
           align-items: center;
 
           img {
+            border: @dark-text solid 2px;
             border-radius: 150px;
+
+            @media @m--less {
+              width: 100px;
+            }
           }
 
           .name {
@@ -517,6 +526,11 @@
             font-weight: 900;
             text-transform: uppercase;
 
+            @media @m--less {
+              margin-bottom: 10px;
+              font-size: 16px;
+            }
+
             span {
               color: @orange;
             }
@@ -524,7 +538,25 @@
 
           .position {
             font-size: 18px;
+
+            @media @m--less {
+              font-size: 16px;
+            }
           }
+        }
+      }
+
+      .more {
+        margin-top: 5px;
+        color: #969696;
+
+        @media @m--less {
+          margin-top: 10px;
+          font-size: 14px;
+        }
+
+        &:hover {
+          color: black;
         }
       }
     }

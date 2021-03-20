@@ -1,8 +1,7 @@
 .container {
-  margin: 0;
+  margin: 0 auto;
 
   &_fixed {
-    margin: 0 auto;
     width: 1040px;
     max-width: calc(100% - 80px);
 
@@ -12,6 +11,21 @@
 
     @media @xs--less {
       max-width: calc(100% - 30px);
+    }
+  }
+
+  &_small {
+    padding: 40px;
+    width: 440px;
+    max-width: calc(100% - 40px);
+    overflow: hidden;
+
+    @media @s--less {
+      padding: 40px 15px;
+    }
+
+    @media @xs--less {
+      max-width: calc(100% - 20px);
     }
   }
 
