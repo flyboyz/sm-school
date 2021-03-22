@@ -111,7 +111,7 @@
 
     &-contents {
       .contents-list {
-        & > .wp-block-group__inner-container {
+        .swiper-wrapper {
           display: grid;
           margin-top: 60px;
           grid-template-columns: repeat(2, 1fr);
@@ -125,49 +125,58 @@
           }
 
           @media @s--less {
-            margin-top: 40px;
-            gap: 20px;
+            display: flex;
+            margin: inherit;
+            width: 100%;
+            gap: inherit;
+          }
+        }
+
+        .contents-list__item {
+          padding: 35px 55px;
+          margin: 0;
+          height: auto;
+          background-color: white;
+          border-radius: 0 5px 5px 0;
+
+          @media @s--less {
+            padding: 25px 35px;
           }
 
-          & > ul {
-            padding: 35px 55px;
-            margin: 0;
-            background-color: white;
+          span {
+            position: relative;
+            display: block;
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+
+            &:before {
+              position: absolute;
+              display: block;
+              left: -24px;
+              top: 9px;
+              content: '';
+              width: 5px;
+              height: 5px;
+              background-color: @orange;
+              border-radius: 5px;
+
+              @media @s--less {
+                left: -16px;
+              }
+            }
+          }
+
+          p {
+            margin: 20px 0 0;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.2em;
+            list-style-type: none;
+            text-transform: none;
 
             @media @s--less {
-              padding: 25px 35px;
-            }
-
-            & > li {
-              font-size: 20px;
-              font-weight: 900;
-              text-transform: uppercase;
-
-              &::marker {
-                font-size: 18px;
-                color: @orange;
-              }
-
-              ul {
-                margin-top: 15px;
-                padding-left: 20px;
-
-                @media @s--less {
-                  padding-left: 14px;
-                }
-              }
-
-              li {
-                margin-top: 2px;
-                font-size: 18px;
-                font-weight: 400;
-                list-style-type: none;
-                text-transform: none;
-
-                &::marker {
-                  content: '- ';
-                }
-              }
+              margin: 15px 0 0;
             }
           }
         }
@@ -225,6 +234,41 @@
 
           @media @s--less {
             padding: 70px 40px;
+          }
+
+          &:before {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 140px;
+            top: 60px;
+            left: -10px;
+            background: url(/wp-content/themes/sm-school/images/icons/dot.png);
+            animation: translating 8s linear infinite;
+
+            @media @s--less {
+              top: 10px;
+              background-size: 15%;
+              width: 60px;
+              height: 70px;
+            }
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            width: 90px;
+            height: 140px;
+            bottom: 60px;
+            right: -10px;
+            background: url(/wp-content/themes/sm-school/images/icons/dot.png);
+            animation: translating 12s linear infinite;
+
+            @media @s--less {
+              background-size: 15%;
+              width: 60px;
+              height: 70px;
+            }
           }
 
           .wp-block-image {
@@ -702,5 +746,23 @@
         font-size: 16px;
       }
     }
+  }
+}
+
+@keyframes translating {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  20% {
+    transform: translateY(15px) rotate(6deg);
+  }
+  40% {
+    transform: translateY(40px) rotate(-3deg);
+  }
+  80% {
+    transform: translateY(15px) rotate(-8deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
   }
 }

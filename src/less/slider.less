@@ -1,7 +1,29 @@
 .co-authors.swiper-container-initialized {
   .swiper-slide {
     &:not(.swiper-slide-active) {
-      opacity: .5;
+      //opacity: .5;
     }
+  }
+}
+
+.swiper-pagination-bullets {
+  display: flex;
+  margin-top: 20px;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-pagination-bullet {
+  display: block;
+  margin: 0 3px;
+  width: 9px;
+  height: 9px;
+  background-color: white;
+  border: @dark-text solid 1px;
+  border-radius: 9px;
+
+  &-active {
+    background-color: @orange;
   }
 }
