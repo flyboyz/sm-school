@@ -1,20 +1,19 @@
 .modal {
-  padding: 50px 80px;
-  overflow: visible;
-
-  @media @s--less {
-    display: inline-block;
-    padding: 50px 15px 15px;
-  }
-
   &_fixed-width {
     width: 600px;
     max-width: 100%;
   }
 
   &_black {
+    padding: 50px 80px;
     background-color: #2c2c2c;
     color: white;
+    overflow: visible;
+
+    @media @s--less {
+      display: inline-block;
+      padding: 50px 15px 15px;
+    }
   }
 
   &_lighting {
@@ -35,6 +34,108 @@
     .button {
       margin-top: 25px;
       width: 100%;
+    }
+  }
+
+  &_light {
+    background-color: #F0EDE8;
+    color: @dark-text;
+
+    .fancybox-button {
+      top: 24px;
+      right: 24px;
+      width: 20px;
+      height: 20px;
+      color: @dark-text !important;
+
+      @media @s--less {
+        right: 15px;
+      }
+    }
+
+    .description {
+      p:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &_co-author {
+    img {
+      margin-right: 20px;
+      width: 100px;
+      height: 100px;
+      border: @dark-text solid 2px;
+      border-radius: 150px;
+
+      @media @s--less {
+        width: 70px;
+        height: 70px;
+      }
+    }
+
+    .meta {
+      display: flex;
+      margin-bottom: 30px;
+      align-items: center;
+    }
+
+    .name {
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 900;
+      text-transform: uppercase;
+
+      span {
+        color: @orange;
+      }
+    }
+
+    .position {
+      font-size: 18px;
+    }
+
+    .description {
+      font-size: 20px;
+
+      @media @s--less {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &_package {
+    padding: 50px 80px;
+
+    @media @l--less {
+      padding: 50px 40px;
+    }
+
+    @media @s--less {
+      padding: 30px 15px;
+    }
+
+    .name {
+      margin-bottom: 36px;
+      padding: 0 40px;
+      font-size: 30px;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+
+      @media @s--less {
+        margin-bottom: 24px;
+        padding: 0 30px;
+        font-size: 20px;
+      }
+    }
+
+    .description {
+      font-size: 20px;
+
+      @media @s--less {
+        font-size: 16px;
+      }
     }
   }
 
@@ -86,65 +187,6 @@
     &:hover::before,
     &:hover::after {
       background-color: red;
-    }
-  }
-}
-
-.co-author-modal {
-  background-color: #F0EDE8;
-  color: @dark-text;
-
-  .fancybox-button {
-    top: 24px;
-    right: 24px;
-    width: 20px;
-    height: 20px;
-    color: @dark-text !important;
-
-    @media @s--less {
-      right: 15px;
-    }
-  }
-
-  img {
-    margin-right: 20px;
-    width: 100px;
-    height: 100px;
-    border: @dark-text solid 2px;
-    border-radius: 150px;
-
-    @media @s--less {
-      width: 70px;
-      height: 70px;
-    }
-  }
-
-  .meta {
-    display: flex;
-    margin-bottom: 40px;
-    align-items: center;
-  }
-
-  .name {
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: 900;
-    text-transform: uppercase;
-
-    span {
-      color: @orange;
-    }
-  }
-
-  .position {
-    font-size: 18px;
-  }
-
-  .description {
-    font-size: 20px;
-
-    @media @s--less {
-      font-size: 16px;
     }
   }
 }

@@ -1,8 +1,22 @@
 .container {
   margin: 0 auto;
+  overflow: hidden;
 
   &_fixed {
     width: 1040px;
+    max-width: calc(100% - 80px);
+
+    @media @s--less {
+      max-width: calc(100% - 60px);
+    }
+
+    @media @xs--less {
+      max-width: calc(100% - 30px);
+    }
+  }
+
+  &_l {
+    width: 960px;
     max-width: calc(100% - 80px);
 
     @media @s--less {

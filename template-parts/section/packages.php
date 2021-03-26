@@ -13,11 +13,25 @@ if (!empty($packages)):
                 <div>
                     <img src="<?= $package['icon']['sizes']['thumbnail'] ?>" alt="icon">
                     <h3 class="name">Пакет <br>"<?= $package['name'] ?>"</h3>
-                    <div class="description"><?= $package['description'] ?></div>
+                    <div class="description">
+                        <?= $package['short_description'] ?>
+                        <div class="more">
+                            <a data-fancybox data-src="#package-<?= $package_type ?>" data-options='{"touch" : false}'
+                               href="javascript:;">узнать подробнее...</a>
+                        </div>
+                    </div>
                     <div class="cost"><?= $cost ?></div>
                     <a data-fancybox data-src="#<?= $package_type ?>Modal" data-options='{"touch" : false}'
                        href="javascript:;"
                        class="button button_lighting"><?= $package_type === 'sign' ? 'Записаться' : 'Купить' ?></a>
+                </div>
+                <div class="container container_l modal modal_light modal_package"
+                     id="package-<?= $package_type ?>"
+                     style="display: none;">
+                    <div class="name">Пакет "<?= $package['name'] ?>"</div>
+                    <div class="description">
+                        <?= $package['description'] ?>
+                    </div>
                 </div>
                 <?php
                 get_template_part('template-parts/form/' . $package_type, '', $package);

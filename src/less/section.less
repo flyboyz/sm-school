@@ -487,14 +487,14 @@
       }
 
       .description {
-        margin: 40px 0 70px;
+        margin: 40px 0 10px;
         width: 100%;
         flex: 1;
         font-size: 20px;
         line-height: 1.2;
 
         @media @l--less {
-          margin: 30px 0;
+          margin: 30px 0 10px;
         }
 
         @media @s--less {
@@ -517,9 +517,19 @@
             }
           }
         }
+
+        .more {
+          font-weight: 900;
+          text-align: center;
+
+          a {
+            color: @dark-text;
+          }
+        }
       }
 
       .cost {
+        margin-top: 50px;
         font-size: 30px;
         font-weight: 900;
         text-align: center;

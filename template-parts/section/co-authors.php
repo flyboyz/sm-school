@@ -21,7 +21,7 @@ if (!empty($coauthors)):
                             <div class="position"><?= $author->position ?></div>
                             <a data-fancybox data-options='{"touch" : false}' data-src="#author-<?= $author->term_id ?>"
                                href="javascript:;" class="more">подробнее...</a>
-                            <div class="container container_small co-author-modal"
+                            <div class="container container_small modal modal_light modal_co-author"
                                  id="author-<?= $author->term_id ?>"
                                  style="display: none;">
                                 <div class="meta">
