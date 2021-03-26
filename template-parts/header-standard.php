@@ -1,6 +1,7 @@
 <?php
 
-$with_filter = in_array(get_post_type(), ['post', 'course']) && !is_single();
+//$with_filter = in_array(get_post_type(), ['post', 'course']) && !is_single();
+$with_filter = false;
 ?>
 <header class="header">
     <div class="container container_fixed header__container">
