@@ -125,3 +125,14 @@ function unregister_taxonomy_post_tag()
 }
 
 add_action('init', 'unregister_taxonomy_post_tag');
+
+
+function youtube_disable_rel($content)
+{
+    $re = '/(src=".*?youtube\.com.*?\?feature=oembed)"/m';
+    $subst = '$1&rel=0"';
+
+    return preg_replace($re, $subst, $content);
+}
+
+add_filter('the_content', 'youtube_disable_rel');
