@@ -6,9 +6,9 @@ const attrs = new Map([[
     'co-authors',
     {
         autoplay: false,
-        // centeredSlides: true,
+        centeredSlides: true,
         spaceBetween: 30,
-        slidesPerView: 1.7,
+        slidesPerView: 1.85,
     }
 ], [
     'contents-list',

@@ -23,7 +23,7 @@ echo esc_attr($className); ?>">
                 if (!is_admin()): ?>
                     <div class="wp-block-image">
                         <figure>
-                            <img loading="lazy" width="540" height="540" src="<?= $teacher->big_photo['large'] ?>">
+                            <img loading="lazy" width="540" height="540" src="<?= $teacher->big_photo['square'] ?>">
                         </figure>
                     </div>
                     <span class="name"><?= apply_filters('wrap_surname', $teacher->name) ?></span>

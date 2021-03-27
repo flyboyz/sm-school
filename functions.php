@@ -35,7 +35,7 @@ add_action('after_setup_theme', function () {
     add_theme_support('post-thumbnails');
     add_theme_support('responsive-embeds');   // Gutenberg responsive embeds
 
-    add_image_size('related-game', 560, 220, true);
+    add_image_size('square', 540, 540, true);
 });
 
 

@@ -184,6 +184,7 @@
     }
 
     &-after-that {
+      padding-bottom: 20px;
       background-color: #fafafa;
 
       h2 {
@@ -191,7 +192,8 @@
       }
 
       figure {
-        margin: 0;
+        margin: 0 auto;
+        max-width: 720px;
       }
     }
 
@@ -461,7 +463,7 @@
         }
       }
 
-      img {
+      .package-icon {
         position: absolute;
         left: 40px;
         top: 40px;
@@ -541,6 +543,20 @@
 
       .button {
         margin-top: 25px;
+      }
+
+      .cards {
+        position: absolute;
+        bottom: 0;
+        transform: translate(-90%, 35%);
+
+        @media @l--less {
+          transform: translate(-90%, 45%);
+        }
+
+        @media @s--less {
+          transform: translate(-80%, 45%);
+        }
       }
     }
 

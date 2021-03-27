@@ -9,7 +9,7 @@ $category = !empty($fields['categories']) ? $fields['categories'][0]->name : '';
    class="card card_no-padding">
     <div class="card__panel card__panel_teacher ratio ratio_4x3">
         <div class="ratio__content">
-            <img src="<?= $fields['avatar']['sizes']['large'] ?>" alt="photo">
+            <img src="<?= $fields['big_photo']['sizes']['square'] ?>" alt="photo">
             <div class="card__category"><?= $category ?></div>
         </div>
     </div>
@@ -21,7 +21,8 @@ $category = !empty($fields['categories']) ? $fields['categories'][0]->name : '';
      style="display: none;">
     <div class="details-card details-card_teacher">
         <div class="card">
-            <img class="card__image card__image_bordered" src="<?= $fields['avatar']['sizes']['large'] ?>" alt="photo">
+            <img class="card__image card__image_bordered" src="<?= $fields['big_photo']['sizes']['square'] ?>"
+                 alt="photo">
             <div class="card__title"><?= $teacher->name ?></div>
             <div class="card__mobile-row">
                 <div class="card__subtitle"><?= $fields['position'] ?></div>
