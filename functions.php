@@ -128,7 +128,7 @@ function my_class_names($classes)
     return $classes;
 }
 
-add_filter('body_class', 'my_class_names');
+//add_filter('body_class', 'my_class_names');
 
 
 function get_section($args)

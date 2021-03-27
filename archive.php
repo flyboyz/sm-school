@@ -7,9 +7,11 @@ $title = get_post_type_labels(get_post_type_object($post_type))->archives;
     <div class="container container_fixed container_full-width_m-less">
         <div class="page-headline">
             <h1 class="page-title"><?= $title ?></h1>
+            <!--
             <div class="page-filters">
                 <?= do_shortcode('[searchandfilter post_types="' . $post_type . '" fields="teacher,category" submit_label="Применить"]'); ?>
             </div>
+            -->
         </div>
     </div>
 <?php
