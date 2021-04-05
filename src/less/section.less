@@ -419,6 +419,22 @@
           text-align: center;
           line-height: .7;
         }
+
+        .dialog__form {
+          margin-top: 90px;
+
+          @media @s--less {
+            margin-top: 60px;
+          }
+
+          input, textarea {
+            background-color: @cream-back;
+          }
+
+          button[type="submit"] {
+            background-color: @orange;
+          }
+        }
       }
     }
 
@@ -770,6 +786,89 @@
       @media @s--less {
         margin: 10px;
         font-size: 16px;
+      }
+    }
+
+    &__form {
+      margin: 60px auto 0;
+      width: 100%;
+      max-width: 780px;
+      font-size: 18px;
+
+      @media @s--less {
+        margin: 60px 20px 0;
+        width: auto;
+      }
+
+      .title {
+        font-weight: 900;
+      }
+
+      .wpforms-container {
+        margin: 0;
+      }
+
+      .wpforms-field-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        grid-gap: 20px;
+
+        @media @s--less {
+          grid-template-columns: 1fr;
+          grid-gap: 15px;
+        }
+
+        .wpforms-field {
+          padding: 0;
+        }
+
+        textarea {
+          height: 100%;
+          resize: none;
+
+          @media @s--less {
+            height: 180px;
+          }
+        }
+      }
+
+      .wpforms-submit-container {
+        padding-top: 15px;
+        text-align: right;
+
+        @media @s--less {
+          text-align: center;
+        }
+
+        button {
+          padding: 10px 30px;
+          font-weight: 900;
+          text-transform: uppercase;
+          background: white;
+          border-radius: 4px;
+          border: none;
+        }
+      }
+
+      .wpforms-field-textarea {
+        grid-column-start: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+
+        @media @s--less {
+          grid-area: auto;
+        }
+      }
+
+      input,
+      textarea {
+        padding: 9px 20px;
+        border: #D1D1D1 solid 1px;
+        border-radius: 4px;
+      }
+
+      label {
+        position: absolute;
       }
     }
   }

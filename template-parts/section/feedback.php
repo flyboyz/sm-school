@@ -19,6 +19,11 @@ if (!empty($feedback)):
                     </div>
                 <?php
                 endforeach ?>
+                <div class="dialog__form">
+                    <p class="title">ОСТАВИТЬ ОТЗЫВ:</p>
+                    <?php
+                    echo do_shortcode('[wpforms id="504"]') ?>
+                </div>
             </div>
         </div>
     </div>
