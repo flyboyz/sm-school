@@ -1,6 +1,5 @@
 <?php
 
-$teacher = get_the_teacher();
 $coauthors = get_field('co-authors');
 
 if (!empty($coauthors)):
@@ -12,27 +11,27 @@ if (!empty($coauthors)):
                 <div class="swiper-wrapper">
                     <?php
                     foreach ($coauthors as $author):
-                        apply_filters('fill_author', $author);
-                        $author_name = apply_filters('wrap_surname', $author->name)
+                        $author['fields'] = get_fields('user_' . $author['ID']);
+                        $author_name = $author['user_firstname'] . ' <span>' . $author['user_lastname'] . '</span>';
                         ?>
                         <div class="co-authors__item swiper-slide">
-                            <img src="<?= $author->avatar['thumbnail'] ?>" alt="author">
+                            <?= wp_get_attachment_image($author['fields']['avatar']) ?>
                             <div class="name"><?= $author_name ?></div>
-                            <div class="position"><?= $author->position ?></div>
-                            <a data-fancybox data-options='{"touch" : false}' data-src="#author-<?= $author->term_id ?>"
+                            <div class="position"><?= $author['fields']['position'] ?></div>
+                            <a data-fancybox data-options='{"touch" : false}' data-src="#author-<?= $author['ID'] ?>"
                                href="javascript:;" class="more">подробнее...</a>
                             <div class="container container_small modal modal_light modal_co-author"
-                                 id="author-<?= $author->term_id ?>"
+                                 id="author-<?= $author['ID'] ?>"
                                  style="display: none;">
                                 <div class="meta">
-                                    <img src="<?= $author->avatar['thumbnail'] ?>" alt="author">
+                                    <?= wp_get_attachment_image($author['fields']['avatar']) ?>
                                     <div>
                                         <div class="name"><?= $author_name ?></div>
-                                        <div class="position"><?= $author->position ?></div>
+                                        <div class="position"><?= $author['fields']['position'] ?></div>
                                     </div>
                                 </div>
                                 <div class="description">
-                                    <?= $author->description ?>
+                                    <?= \nl2br($author['user_description']) ?>
                                 </div>
                             </div>
                         </div>

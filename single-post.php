@@ -1,6 +1,6 @@
 <?php
 
-$teacher = get_the_teacher();
+$author_meta = get_user_meta(get_post()->post_author);
 
 get_header();
 if (have_posts()):
@@ -16,11 +16,10 @@ if (have_posts()):
                 <div class="line"></div>
                 <div class="date"><?= get_the_date() ?></div>
                 <?php
-                if ($teacher): ?>
-                    <img class="author-line__avatar"
-                         src="<?= $teacher->avatar['thumbnail'] ?>"
-                         alt="photo">
-                    <span><?= $teacher->name ?></span>
+                if ($author_meta): ?>
+                    <?= wp_get_attachment_image($author_meta['avatar'][0], 'thumbnail', false,
+                        ['class' => 'author-line__avatar']) ?>
+                    <span><?= $author_meta['first_name'][0] . ' ' . $author_meta['last_name'][0] ?></span>
                 <?php
                 endif; ?>
             </div>

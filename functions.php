@@ -75,7 +75,7 @@ function true_load_posts()
 
         $i++;
         $posts->the_post();
-        get_template_part('template-parts/content', $post_type, ['post_num' => $i]);
+        get_template_part("template-parts/content/$post_type", '', ['post_num' => $i]);
 
         if ($i === 6 || $i % 6 === 0) {
             echo '</div>';
@@ -168,5 +168,14 @@ require get_parent_theme_file_path('/inc/type-course.php');
 require get_parent_theme_file_path('/inc/type-webinar.php');
 require get_parent_theme_file_path('/inc/type-project.php');
 require get_parent_theme_file_path('/inc/type-vacancy.php');
-require get_parent_theme_file_path('/inc/type-teacher.php');
 require get_parent_theme_file_path('/inc/type-product.php');
+
+
+function add_reply_email($emails)
+{
+    $emails->__set('reply_to', 'flyslam@yandex.ru');
+
+    return $emails;
+}
+
+add_filter('wpforms_entry_email_before_send', 'add_reply_email');

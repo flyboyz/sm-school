@@ -23,7 +23,7 @@ if (have_posts()):
         <div class="content-columns">
             <?php
             foreach ($products as $product) {
-                get_template_part('template-parts/content', $post_type, ['product' => $product]);
+                get_template_part("template-parts/content/$post_type", '', ['product' => $product]);
             }
             ?>
         </div>

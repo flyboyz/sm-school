@@ -1,4 +1,4 @@
-<a href="<?= get_field('link') ?>" class="card" target="_blank">
+<a href="<?= get_the_permalink() ?>" class="card">
     <div class="card__panel ratio ratio_16x9">
         <div class="ratio__content">
             <?php

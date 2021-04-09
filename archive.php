@@ -23,7 +23,7 @@ if (have_posts()):
                 <?php
                 while (have_posts()):
                     the_post();
-                    get_template_part('template-parts/content', $post_type);
+                    get_template_part("template-parts/content/$post_type");
                 endwhile; ?>
             </div>
             <div id="load-more" data-type="<?= $post_type ?>">

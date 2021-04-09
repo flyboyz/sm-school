@@ -5,9 +5,11 @@ get_header();
     <div class="container container_fixed container_full-width_m-less">
         <div class="page-headline">
             <h1 class="page-title">Публикации</h1>
+            <!--
             <div class="page-filters">
                 <?= do_shortcode('[searchandfilter post_types="' . get_post_type() . '" fields="teacher,category" submit_label="Применить"]'); ?>
             </div>
+            -->
         </div>
     </div>
     <div class="container container_fixed">
@@ -22,7 +24,7 @@ if (have_posts()):
 
         $i++;
         the_post();
-        get_template_part('template-parts/content', 'post', ['post_num' => $i]);
+        get_template_part('template-parts/content/post', '', ['post_num' => $i]);
 
         if ($i === 6 || $i % 6 === 0) {
             echo '</div>';

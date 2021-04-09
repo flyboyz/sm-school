@@ -1,5 +1,10 @@
 <?php
 
-header("HTTP/1.1 301 Moved Permanently");
-header("Location: " . get_field('link'));
-exit();
+get_header();
+the_content();
+
+get_template_part('template-parts/section/co-authors');
+get_template_part('template-parts/section/feedback');
+get_template_part('template-parts/section/faq');
+
+get_footer();

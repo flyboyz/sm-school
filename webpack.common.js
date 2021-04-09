@@ -7,7 +7,8 @@ const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 module.exports = {
     entry: {
         app: './src/js/app.js',
-        main: './src/less/app.less'
+        main: './src/less/app.less',
+        '../template-parts/blocks/about-author/about-author': './src/less/blocks/about-author.less',
     },
     output: {
         path: path.resolve(__dirname),
