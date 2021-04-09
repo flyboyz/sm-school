@@ -1,6 +1,7 @@
 <?php
 
 $feedback = get_field('feedback');
+$wpformsID = $_SERVER['SERVER_NAME'] === 'sm.wp' ? 504 : 387;
 
 if (!empty($feedback)):
     ?>
@@ -22,7 +23,7 @@ if (!empty($feedback)):
                 <div class="dialog__form">
                     <p class="title">ОСТАВИТЬ ОТЗЫВ:</p>
                     <?php
-                    echo do_shortcode('[wpforms id="504"]') ?>
+                    echo do_shortcode("[wpforms id=$wpformsID]") ?>
                 </div>
             </div>
         </div>

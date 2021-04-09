@@ -1,6 +1,7 @@
 <?php
 
 $faq = get_field('faq');
+$wpformsID = $_SERVER['SERVER_NAME'] === 'sm.wp' ? 504 : 439;
 
 if (!empty($faq)):
     ?>
@@ -38,7 +39,7 @@ if (!empty($faq)):
                 <div class="dialog__form">
                     <p class="title">ЗАДАТЬ ВОПРОС:</p>
                     <?php
-                    echo do_shortcode('[wpforms id="504"]') ?>
+                    echo do_shortcode("[wpforms id=$wpformsID]") ?>
                 </div>
             </div>
         </div>
