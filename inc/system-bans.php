@@ -38,13 +38,13 @@ function assets_inspect()
     global $wp_scripts;
 
     foreach ($wp_styles->queue as $handle) {
-        if (is_front_page() && !in_array($handle, ALLOWED_FRONTPAGE_STYLES)) {
+        if (is_front_page() && !is_user_logged_in() && !in_array($handle, ALLOWED_FRONTPAGE_STYLES)) {
             wp_deregister_style($handle);
         }
     }
 
     foreach ($wp_scripts->queue as $handle) {
-        if (is_front_page() && !in_array($handle, ALLOWED_FRONTPAGE_SCRIPTS)) {
+        if (is_front_page() && !is_user_logged_in() && !in_array($handle, ALLOWED_FRONTPAGE_SCRIPTS)) {
             wp_deregister_script($handle);
         }
     }
