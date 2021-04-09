@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testimonial Block Template.
+ * About Author Block Template.
  *
  * @param array $block The block settings and attributes.
  */

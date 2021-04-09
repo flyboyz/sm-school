@@ -1,0 +1,79 @@
+@import "./../vars";
+
+.course-contents {
+  h2 {
+    margin: 0;
+  }
+
+  .contents-list {
+    .swiper-wrapper {
+      display: grid;
+      margin-top: 60px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 60px;
+
+      @media @m--less {
+        margin: auto;
+        width: 570px;
+        max-width: 100%;
+        grid-template-columns: 1fr;
+      }
+
+      @media @s--less {
+        display: flex;
+        margin: inherit;
+        width: 100%;
+        gap: inherit;
+      }
+    }
+
+    .contents-list__item {
+      padding: 35px 55px;
+      margin: 0;
+      height: auto;
+      background-color: white;
+      border-radius: 0 5px 5px 0;
+
+      @media @s--less {
+        padding: 25px 35px;
+      }
+
+      span {
+        position: relative;
+        display: block;
+        font-size: 20px;
+        font-weight: 900;
+        text-transform: uppercase;
+
+        &:before {
+          position: absolute;
+          display: block;
+          left: -24px;
+          top: 9px;
+          content: '';
+          width: 5px;
+          height: 5px;
+          background-color: @orange;
+          border-radius: 5px;
+
+          @media @s--less {
+            left: -16px;
+          }
+        }
+      }
+
+      p {
+        margin: 20px 0 0;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.2em;
+        list-style-type: none;
+        text-transform: none;
+
+        @media @s--less {
+          margin: 15px 0 0;
+        }
+      }
+    }
+  }
+}

@@ -4,12 +4,20 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 
+const entryBlocks = {};
+const blocks = [
+    'about-author', 'about-webinar', 'course-contents', 'webinar-contents'
+];
+
+blocks.forEach((block) => {
+    entryBlocks[`../template-parts/blocks/${block}/${block}`] = `./src/less/blocks/${block}.less`;
+})
+
 module.exports = {
-    entry: {
+    entry: Object.assign({
         app: './src/js/app.js',
         main: './src/less/app.less',
-        '../template-parts/blocks/about-author/about-author': './src/less/blocks/about-author.less',
-    },
+    }, entryBlocks),
     output: {
         path: path.resolve(__dirname),
         filename: 'js/[name].min.js',

@@ -1,0 +1,78 @@
+@import "./../vars";
+
+.webinar-contents {
+  h2 {
+    margin-bottom: 40px;
+
+    @media @s--less {
+      margin-bottom: 40px;
+    }
+  }
+
+  .contents-list {
+    position: relative;
+    z-index: 5;
+
+    &__item {
+      padding: 0 30px 40px;
+      margin: 0;
+
+      span {
+        position: relative;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 900;
+        text-transform: uppercase;
+
+        @media @s--less {
+          margin: auto;
+        }
+
+        &:before {
+          position: absolute;
+          display: block;
+          left: -24px;
+          top: 9px;
+          content: '';
+          width: 5px;
+          height: 5px;
+          background-color: @orange;
+          border-radius: 5px;
+
+          @media @s--less {
+            left: -16px;
+          }
+        }
+      }
+
+      p {
+        margin: 20px 0 0;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.2em;
+        list-style-type: none;
+        text-transform: none;
+
+        @media @s--less {
+          margin: 15px 0 0;
+        }
+      }
+    }
+  }
+
+  .back-image {
+    position: absolute;
+    display: block;
+    right: 30px;
+    bottom: 80px;
+    max-width: 450px;
+    max-height: 450px;
+
+    @media @xl--less {
+      position: initial;
+      margin: auto;
+      max-width: 50%;
+      max-height: 50%;
+    }
+  }
+}
