@@ -1,5 +1,8 @@
 <?php
 
+define('ALLOWED_FRONTPAGE_SCRIPTS', array('main'));
+define('ALLOWED_FRONTPAGE_STYLES', array('main', 'wp-block-library'));
+
 define('CHANGED_PLUGINS', array('custom-twitter-feeds'));
 
 /**
@@ -25,6 +28,29 @@ function disable_plugins_update($update)
 }
 
 add_filter('site_transient_update_plugins', 'disable_plugins_update');
+
+/**
+ * Disable styles/scripts on Front page
+ */
+function assets_inspect()
+{
+    global $wp_styles;
+    global $wp_scripts;
+
+    foreach ($wp_styles->queue as $handle) {
+        if (is_front_page() && !in_array($handle, ALLOWED_FRONTPAGE_STYLES)) {
+            wp_deregister_style($handle);
+        }
+    }
+
+    foreach ($wp_scripts->queue as $handle) {
+        if (is_front_page() && !in_array($handle, ALLOWED_FRONTPAGE_SCRIPTS)) {
+            wp_deregister_script($handle);
+        }
+    }
+}
+
+add_action('wp_enqueue_scripts', 'assets_inspect', 999);
 
 
 /**
