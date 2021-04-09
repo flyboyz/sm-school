@@ -27,7 +27,7 @@ function register_course_post_type()
         'menu_position' => 4,
         'menu_icon' => 'dashicons-media-interactive',
         'hierarchical' => false,
-        'supports' => ['title', 'editor'],
+        'supports' => ['title', 'editor', 'author'],
         'taxonomies' => ['category'],
         'has_archive' => 'courses',
         'rewrite' => true,

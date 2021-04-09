@@ -27,7 +27,7 @@ function register_product_post_type()
         'menu_position' => 4,
         'menu_icon' => 'dashicons-cart',
         'hierarchical' => false,
-        'supports' => ['title', 'thumbnail', 'editor'],
+        'supports' => ['title', 'thumbnail', 'editor', 'author'],
         'has_archive' => false,
         'rewrite' => true,
         'query_var' => true,

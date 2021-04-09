@@ -27,14 +27,12 @@ function register_webinar_post_type()
         'menu_position' => 4,
         'menu_icon' => 'dashicons-media-video',
         'hierarchical' => false,
-        'supports' => ['title', 'editor', 'thumbnail'],
+        'supports' => ['title', 'editor', 'thumbnail', 'author'],
         'taxonomies' => ['category'],
         'has_archive' => 'webinars',
         'rewrite' => true,
         'query_var' => true,
     ]);
-
-    add_post_type_support('webinar', 'author');
 }
 
 add_action('init', 'register_webinar_post_type');

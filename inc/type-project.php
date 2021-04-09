@@ -28,7 +28,7 @@ function register_project_post_type()
         'menu_position' => 4,
         'menu_icon' => 'dashicons-welcome-learn-more',
         'hierarchical' => false,
-        'supports' => ['title', 'thumbnail', 'editor'],
+        'supports' => ['title', 'thumbnail', 'editor', 'author'],
         'taxonomies' => ['category'],
         'has_archive' => 'projects',
         'rewrite' => true,
