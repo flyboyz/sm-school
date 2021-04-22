@@ -222,42 +222,27 @@
 
     &-packages {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-
-      @media @s--less {
-        padding-left: 15px;
-        padding-right: 15px;
-        align-items: center;
-        flex-direction: column;
-      }
 
       & > div {
         display: flex;
         position: relative;
         padding: 70px 20px 50px;
-        margin: 0 60px;
-        width: 440px;
+        margin: 25px 15px;
         max-width: 100%;
+        flex-basis: 440px;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        background-color: #F0EDE8;
+        background-color: @cream-back;
         border-radius: 5px;
 
         @media @l--less {
-          margin: 0 30px;
           padding: 50px 20px 40px;
         }
 
         @media @s--less {
-          margin: 0 20px;
           padding: 70px 20px 50px;
-        }
-
-        &:not(:first-child) {
-          @media @s--less {
-            margin: 30px 0 0;
-          }
         }
       }
 
@@ -346,14 +331,16 @@
       .cards {
         position: absolute;
         bottom: 0;
-        transform: translate(-90%, 35%);
+        z-index: 2;
+        transform: translate(-103%,42%) rotate(-25deg);
 
         @media @l--less {
-          transform: translate(-90%, 45%);
+          transform: translate(-100%,50%) rotate(-25deg);
         }
 
         @media @s--less {
-          transform: translate(-80%, 45%);
+          width: 70px;
+          transform: translate(-102%,29%) rotate(-25deg);
         }
       }
     }

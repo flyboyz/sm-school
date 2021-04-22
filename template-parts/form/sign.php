@@ -1,4 +1,4 @@
-<div id="signModal" class="modal modal_fixed-width modal_lighting" style="display: none;">
+<div id="Modal<?= $args['hash'] ?>" class="modal modal_fixed-width modal_lighting" style="display: none;">
     <?= do_shortcode('[wpforms id="' . $args['form']->ID . '"]') ?>
     <div class="modal__sub">
         Отправляя заявку, вы принимаете условия

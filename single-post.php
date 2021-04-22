@@ -30,15 +30,15 @@ if (have_posts()):
                     <span>Поделись</span>
                     <div class="line"></div>
                     <a href="<?= get_social_link('vk') ?>" target="_blank">
-                        <?= file_get_contents(get_template_directory() . '/images/icons/vk.svg') ?></a>
+                        <?= file_get_contents(get_template_directory() . '/images/icons/social-vk.svg') ?></a>
                     <a href="<?= get_social_link('facebook') ?>" target="_blank">
-                        <?= file_get_contents(get_template_directory() . '/images/icons/facebook.svg') ?></a>
+                        <?= file_get_contents(get_template_directory() . '/images/icons/social-facebook.svg') ?></a>
                     <a href="<?= get_social_link('twitter') ?>" target="_blank">
-                        <?= file_get_contents(get_template_directory() . '/images/icons/twitter.svg') ?></a>
+                        <?= file_get_contents(get_template_directory() . '/images/icons/social-twitter.svg') ?></a>
                     <a href="<?= get_social_link('ok') ?>" target="_blank">
-                        <?= file_get_contents(get_template_directory() . '/images/icons/odnoklassniki.svg') ?></a>
+                        <?= file_get_contents(get_template_directory() . '/images/icons/social-odnoklassniki.svg') ?></a>
                     <a href="<?= get_social_link('linkedin') ?>" target="_blank">
-                        <?= file_get_contents(get_template_directory() . '/images/icons/linkedin.svg') ?></a>
+                        <?= file_get_contents(get_template_directory() . '/images/icons/social-linkedin.svg') ?></a>
                 </div>
                 <div class="publication__content"><?php
                     the_content() ?></div>

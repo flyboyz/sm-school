@@ -9,6 +9,11 @@ if (!empty($packages)):
             if ($package['is_active']):
                 $package_type = $package['type'];
                 $cost = get_cost($package['cost']);
+
+                $hash = wp_generate_password(4, false);
+                $hash_for_details = "$hash-details";
+
+                $package['hash'] = $hash;
                 ?>
                 <div>
                     <img src="<?= $package['icon']['sizes']['thumbnail'] ?>" alt="icon" class="package-icon">
@@ -16,12 +21,12 @@ if (!empty($packages)):
                     <div class="description">
                         <?= $package['short_description'] ?>
                         <div class="more">
-                            <a data-fancybox data-src="#package-<?= $package_type ?>" data-options='{"touch" : false}'
+                            <a data-fancybox data-src="#package-<?= $hash_for_details ?>" data-options='{"touch" : false}'
                                href="javascript:;">узнать подробнее...</a>
                         </div>
                     </div>
                     <div class="cost"><?= $cost ?></div>
-                    <a data-fancybox data-src="#<?= $package_type ?>Modal" data-options='{"touch" : false}'
+                    <a data-fancybox data-src="#Modal<?= $hash ?>" data-options='{"touch" : false}'
                        href="javascript:;"
                        class="button button_lighting"><?= $package_type === 'sign' ? 'Записаться' : 'Купить' ?></a>
                     <?php
@@ -33,7 +38,7 @@ if (!empty($packages)):
                     ?>
                 </div>
                 <div class="container container_l modal modal_light modal_package"
-                     id="package-<?= $package_type ?>"
+                     id="package-<?= $hash_for_details ?>"
                      style="display: none;">
                     <div class="name">Пакет "<?= $package['name'] ?>"</div>
                     <div class="description">
