@@ -1,28 +1,43 @@
 'use strict';
 
-let selfModal = document.getElementById('package-selfModal');
+import Message from "./message";
 
-if (selfModal !== null) {
-    document.getElementById('package-selfModal').querySelector('form').onsubmit = async (e) => {
-        const data = new FormData()
-        data.append('action', 'create_sm_user');
+export default () => {
+    let sendpulseForms = document.querySelectorAll('.sendpulse-form');
 
-        console.log('1');
-
-        fetch(backend_data.ajaxurl, {
-            method: 'POST',
-            credentials: 'same-origin',
-            body: data,
-        })
-            .then(response => response.text())
-            .then(function (data) {
+    if (sendpulseForms !== null) {
+        sendpulseForms.forEach(form => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                console.log(data);
-                if (data) {
+                const formData = new FormData(form)
 
-                } else {
+                form.querySelector('[type="submit"]').setAttribute('disabled', 'disabled');
 
-                }
+                fetch(backend_data.ajaxurl, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    body: formData,
+                })
+                    .then((response) => response.json())
+                    .then(function (data) {
+                        e.preventDefault();
+
+                        if (data.is_error) {
+                            $.fancybox.open(Message('Ошибка отправки', 'Сообщите об этом администратору'));
+                        } else {
+                            $.fancybox.close();
+
+                            form.querySelector('[type="submit"]').removeAttribute('disabled');
+                            form.reset();
+
+                            if (form.classList.contains('sendpulse-form')) {
+                                $.fancybox.open(Message('Поздравляем', 'Вы успешно записались на мастер-класс!'));
+                            } else {
+                                $.fancybox.open(Message('Успешно', ''));
+                            }
+                        }
+                    });
             });
-    };
+        });
+    }
 }

@@ -13,5 +13,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // filters();
     // formsInit();
     slider();
-    animation();
+    // animation();
 });

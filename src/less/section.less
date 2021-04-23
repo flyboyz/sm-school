@@ -457,6 +457,22 @@
     }
   }
 
+  h4 {
+    margin: 0 0 30px;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+
+    @media @m--less {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    @media @s--less {
+      margin: 0 0 20px;
+    }
+  }
+
   ol.grid-list {
     display: grid;
     padding: 0;
@@ -640,6 +656,56 @@
         position: absolute;
       }
     }
+  }
+}
+
+.event-date-box {
+  display: flex;
+  margin-top: 40px;
+  justify-content: flex-end;
+
+  @media @s--less {
+    justify-content: center;
+  }
+
+  & + .section_course-top {
+    padding-top: 40px;
+  }
+}
+
+.event-date {
+  position: relative;
+  display: flex;
+  margin: 0 -20px;
+  align-items: center;
+  font-size: 28px;
+
+  @media @m--less {
+    font-size: 28px;
+  }
+
+  &:before,
+  &:after {
+    margin: 0 36px;
+    font-size: 80px;
+    color: @orange;
+
+    @media @m--less {
+      font-size: 60px;
+    }
+
+    @media @s--less {
+      margin: 0 18px;
+      font-size: 52px;
+    }
+  }
+
+  &:before {
+    content: "[";
+  }
+
+  &:after {
+    content: "]";
   }
 }
 

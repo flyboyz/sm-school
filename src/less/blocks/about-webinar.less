@@ -43,6 +43,7 @@
         img {
           display: block;
           height: 100%;
+          min-height: 360px;
           object-fit: cover;
         }
       }
@@ -73,18 +74,23 @@
       }
 
       & > div {
-        width: 530px;
+        width: 560px;
         max-width: 100%;
         line-height: 1.25;
+        z-index: 1;
 
         @media @m--less {
           margin: auto;
+        }
+
+        h4 {
+          margin-top: 40px;
         }
       }
     }
   }
 
-  .info {
+  &__info {
     position: absolute;
     padding: 15px 20px;
     right: 70px;

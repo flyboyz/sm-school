@@ -155,6 +155,29 @@ function wrap_surname($name)
 
 add_filter('wrap_surname', 'wrap_surname', 10, 1);
 
+
+function utm_inputs()
+{
+    $utm_tags = [
+        'utm_source',
+        'utm_medium',
+        'utm_campaign',
+        'utm_content',
+        'utm_term',
+    ];
+
+    $html = '';
+    foreach ($utm_tags as $utm_tag) {
+        if (isset($_GET[$utm_tag])) {
+            $html .= "<input type='hidden' name='$utm_tag' value='$_GET[$utm_tag]'>\n";
+        }
+    }
+
+    return $html;
+}
+
+add_shortcode('utm_inputs', 'utm_inputs');
+
 require get_parent_theme_file_path('/inc/helpers.php');
 
 /**
@@ -169,6 +192,7 @@ require get_parent_theme_file_path('/inc/type-webinar.php');
 require get_parent_theme_file_path('/inc/type-project.php');
 require get_parent_theme_file_path('/inc/type-vacancy.php');
 require get_parent_theme_file_path('/inc/type-product.php');
+require get_parent_theme_file_path('/inc/sendpulse.php');
 
 
 function add_reply_email($emails)

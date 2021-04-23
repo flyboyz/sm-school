@@ -1,0 +1,13 @@
+{
+  "name": "moderator/sm-school",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Alexey Popov",
+      "email": "flyslam@yandex.ru"
+    }
+  ],
+  "require": {
+    "sendpulse/rest-api": "^1.0"
+  }
+}
