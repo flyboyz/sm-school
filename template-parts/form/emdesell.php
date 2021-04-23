@@ -1,4 +1,4 @@
-<div id="Modal<?= $args['hash'] ?>" class="modal modal_fixed-width modal_lighting" style="display: none;">
+<div id="Modal<?= $args['key'] ?>" class="modal modal_fixed-width modal_lighting" style="display: none;">
     <div class="wpforms-container updated-form">
         <form class="wpforms-form" action="https://sm.emdesell.ru/buy/<?= $args['emdesell_link'] ?>" method="POST">
             <div class="wpforms-field">

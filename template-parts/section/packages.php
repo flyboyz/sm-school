@@ -5,28 +5,31 @@ if (!empty($packages)):
     ?>
     <div class="section section_course-packages">
         <?php
-        foreach ($packages as $package):
+        foreach ($packages as $package_key => $package):
             if ($package['is_active']):
                 $package_type = $package['type'];
-                $cost = get_cost($package['cost']);
+                $package_cost = get_cost($package['cost'] ?: 0);
 
-                $hash = wp_generate_password(4, false);
-                $hash_for_details = "$hash-details";
+                $details_key = "$package_key-details";
 
-                $package['hash'] = $hash;
+                $package['key'] = $package_key;
+
                 ?>
                 <div>
-                    <img src="<?= $package['icon']['sizes']['thumbnail'] ?>" alt="icon" class="package-icon">
+                    <?php if ($package['icon']): ?>
+                        <img src="<?= $package['icon']['sizes']['thumbnail'] ?>" alt="icon" class="package-icon">
+                    <?php
+                    endif; ?>
                     <h3 class="name">Пакет <br>"<?= $package['name'] ?>"</h3>
                     <div class="description">
                         <?= $package['short_description'] ?>
                         <div class="more">
-                            <a data-fancybox data-src="#package-<?= $hash_for_details ?>" data-options='{"touch" : false}'
+                            <a data-fancybox data-src="#package-<?= $details_key ?>" data-options='{"touch" : false}'
                                href="javascript:;">узнать подробнее...</a>
                         </div>
                     </div>
-                    <div class="cost"><?= $cost ?></div>
-                    <a data-fancybox data-src="#Modal<?= $hash ?>" data-options='{"touch" : false}'
+                    <div class="cost"><?= $package_cost ?></div>
+                    <a data-fancybox data-src="#Modal<?= $package_key ?>" data-options='{"touch" : false}'
                        href="javascript:;"
                        class="button button_lighting"><?= $package_type === 'sign' ? 'Записаться' : 'Купить' ?></a>
                     <?php
@@ -38,7 +41,7 @@ if (!empty($packages)):
                     ?>
                 </div>
                 <div class="container container_l modal modal_light modal_package"
-                     id="package-<?= $hash_for_details ?>"
+                     id="package-<?= $details_key ?>"
                      style="display: none;">
                     <div class="name">Пакет "<?= $package['name'] ?>"</div>
                     <div class="description">
