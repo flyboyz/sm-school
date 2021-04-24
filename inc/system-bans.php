@@ -3,7 +3,7 @@
 define('ALLOWED_FRONTPAGE_SCRIPTS', array('main'));
 define('ALLOWED_FRONTPAGE_STYLES', array('main', 'wp-block-library'));
 
-define('CHANGED_PLUGINS', array('shmapper'));
+define('CHANGED_PLUGINS', array('advanced-custom-fields-pro', 'shmapper'));
 
 /**
  * Disable update changed plugins
