@@ -32,6 +32,7 @@ function register_webinar_post_type()
         'has_archive' => 'webinars',
         'rewrite' => true,
         'query_var' => true,
+        'capability_type' => 'webinar',
     ]);
 }
 

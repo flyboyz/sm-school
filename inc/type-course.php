@@ -32,6 +32,7 @@ function register_course_post_type()
         'has_archive' => 'courses',
         'rewrite' => true,
         'query_var' => true,
+        'capability_type' => 'course',
     ]);
 }
 

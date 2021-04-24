@@ -33,6 +33,7 @@ function register_project_post_type()
         'has_archive' => 'projects',
         'rewrite' => true,
         'query_var' => true,
+        'capability_type' => 'project',
     ]);
 }
 

@@ -33,6 +33,7 @@ function register_vacancy_post_type()
         'has_archive' => 'vacancies',
         'rewrite' => true,
         'query_var' => true,
+        'capability_type' => array('vacancy', 'vacancies'),
     ]);
 }
 

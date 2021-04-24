@@ -31,6 +31,7 @@ function register_product_post_type()
         'has_archive' => false,
         'rewrite' => true,
         'query_var' => true,
+        'capability_type' => 'product',
     ]);
 }
 
