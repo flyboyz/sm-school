@@ -3,7 +3,7 @@
 define('ALLOWED_FRONTPAGE_SCRIPTS', array('main'));
 define('ALLOWED_FRONTPAGE_STYLES', array('main', 'wp-block-library'));
 
-define('CHANGED_PLUGINS', array('custom-twitter-feeds'));
+define('CHANGED_PLUGINS', array('shmapper'));
 
 /**
  * Disable update changed plugins
