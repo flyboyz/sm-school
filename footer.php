@@ -42,5 +42,6 @@ endif; ?>
         ]); ?>
     </div>
 </footer>
+<div class="phoenix_box"></div>
 <?php
 wp_footer();

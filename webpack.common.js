@@ -17,6 +17,7 @@ module.exports = {
     entry: Object.assign({
         app: './src/js/app.js',
         main: './src/less/app.less',
+        animation: './src/js/animation.js',
     }, entryBlocks),
     output: {
         path: path.resolve(__dirname),

@@ -1,0 +1,27 @@
+body {
+  header, main, footer {
+    transition: .15s;
+  }
+
+  &.animation-page {
+    header, main, footer {
+      opacity: 0;
+    }
+  }
+}
+
+.phoenix_box {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  width: 300px;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: .4s;
+}
+
+svg {
+  /*background-color: #0c0c0c;*/
+  height: 300%;
+  width: 300%;
+}

@@ -31,9 +31,14 @@
   &__logo {
     margin-right: 20px;
     height: 65px;
+    transition: .5s;
 
     @media @s--less {
       height: 42px;
+    }
+
+    &.hidden {
+      transform: scale(0);
     }
   }
 

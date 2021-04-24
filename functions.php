@@ -10,11 +10,14 @@ function add_theme_scripts()
 {
     global $wp_query;
     $templateUri = get_template_directory_uri();
+    $version = wp_get_theme()->get('Version');
 
-    wp_enqueue_style('main', "$templateUri/css/main.min.css", array(),
-        date("Y-m-d_H:i", filemtime(get_template_directory() . "/css/main.min.css")));
-    wp_enqueue_script('main', "$templateUri/js/app.min.js", array('jquery'),
-        date("Y-m-d_H:i", filemtime(get_template_directory() . "/js/app.min.js")), true);
+    wp_enqueue_style('main', "$templateUri/css/main.min.css", array(), $version);
+    wp_enqueue_script('main', "$templateUri/js/app.min.js", array('jquery'), $version, true);
+
+    if (is_front_page() && wp_is_mobile()) {
+        wp_enqueue_script('animation', "$templateUri/js/animation.min.js", array(), $version);
+    }
 
     wp_localize_script('main', 'backend_data', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
@@ -114,21 +117,25 @@ function get_social_link($social_name)
 
 function my_class_names($classes)
 {
-    global $wp_query;
-    $filters_name = ['category_name', 'teacher'];
+//    global $wp_query;
+//    $filters_name = ['category_name', 'teacher'];
+//
+//    foreach ($wp_query->query as $name => $value) {
+//        if (in_array($name, $filters_name)) {
+//            $classes[] = 'page-filters-active';
+//
+//            return $classes;
+//        }
+//    }
 
-    foreach ($wp_query->query as $name => $value) {
-        if (in_array($name, $filters_name)) {
-            $classes[] = 'page-filters-active';
-
-            return $classes;
-        }
+    if (is_front_page() && wp_is_mobile()) {
+        return array_merge($classes, array('animation-page'));
     }
 
     return $classes;
 }
 
-//add_filter('body_class', 'my_class_names');
+add_filter('body_class', 'my_class_names');
 
 
 function get_section($args)

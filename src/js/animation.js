@@ -2,20 +2,38 @@
 
 import lottie from 'lottie-web/build/player/lottie_svg.min'
 
-export default () => {
-  let is_reopening = sessionStorage.getItem('reopening') || 0;
+let is_reopening = sessionStorage.getItem('reopening') || 0;
+
+document.addEventListener('DOMContentLoaded', () => {
+  let body = document.querySelector('body');
+  let phoenix_box = document.querySelector('.phoenix_box');
 
   if (!is_reopening) {
-    console.log('animation!')
+    body.querySelector('.header__logo').classList.add('hidden');
 
-    lottie.loadAnimation({
-      container: document.querySelector('.anim'),
+    let phoenix = lottie.loadAnimation({
+      container: phoenix_box,
       renderer: 'svg',
       loop: 0,
       autoplay: true,
-      path: '/wp-content/themes/sm-school/logo_anim_1.json'
+      path: '/wp-content/themes/sm-school/src/animation/phoenix_show.json'
+    });
+
+    setTimeout(() => {
+      body.classList.remove('animation-page');
+    }, 1550);
+
+    phoenix.addEventListener('complete', () => {
+      phoenix_box.style.width = 0;
+      phoenix_box.style.top = '55%';
+
+      setTimeout(() => {
+        body.querySelector('.header__logo').classList.remove('hidden');
+      }, 450);
     });
 
     sessionStorage.setItem('reopening', 1);
+  } else {
+    body.classList.remove('animation-page');
   }
-}
+})

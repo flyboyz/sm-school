@@ -1,6 +1,6 @@
 <?php
 
-define('ALLOWED_FRONTPAGE_SCRIPTS', array('main'));
+define('ALLOWED_FRONTPAGE_SCRIPTS', array('main', 'animation'));
 define('ALLOWED_FRONTPAGE_STYLES', array('main', 'wp-block-library'));
 
 define('CHANGED_PLUGINS', array('advanced-custom-fields-pro', 'shmapper'));
