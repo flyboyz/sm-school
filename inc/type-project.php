@@ -34,6 +34,7 @@ function register_project_post_type()
         'rewrite' => true,
         'query_var' => true,
         'capability_type' => 'project',
+        'map_meta_cap' => true,
     ]);
 }
 

@@ -33,6 +33,7 @@ function register_course_post_type()
         'rewrite' => true,
         'query_var' => true,
         'capability_type' => 'course',
+        'map_meta_cap' => true,
     ]);
 }
 

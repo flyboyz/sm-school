@@ -34,6 +34,7 @@ function register_vacancy_post_type()
         'rewrite' => true,
         'query_var' => true,
         'capability_type' => array('vacancy', 'vacancies'),
+        'map_meta_cap' => true,
     ]);
 }
 

@@ -33,6 +33,7 @@ function register_webinar_post_type()
         'rewrite' => true,
         'query_var' => true,
         'capability_type' => 'webinar',
+        'map_meta_cap' => true,
     ]);
 }
 
