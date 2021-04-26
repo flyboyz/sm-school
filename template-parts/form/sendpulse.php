@@ -11,7 +11,10 @@
                        'post_' . $post->ID)); ?>">
             <?= do_shortcode('[utm_inputs]') ?>
             <div class="wpforms-field">
-                <input type="email" name="email" class="wpforms-field-medium" placeholder="Email" required>
+                <input type="text" name="имя" class="wpforms-field-large" placeholder="Имя" required>
+            </div>
+            <div class="wpforms-field">
+                <input type="email" name="email" class="wpforms-field-large" placeholder="Email" required>
             </div>
             <button type="submit" class="button button_lighting">Записаться</button>
         </form>

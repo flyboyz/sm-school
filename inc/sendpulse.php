@@ -35,6 +35,7 @@ function add_to_address_book()
     $email = (string)$_POST['email'];
 
     $acceptedVariablesKeys = [
+        'имя',      // Имя
         'web',      // Время мероприятия | 20:00 -> 20
         'pay',      // Оплата, по умолчанию - 0
         'date_mk'   // Дата мероприятия | 15 ноября в 15:00
