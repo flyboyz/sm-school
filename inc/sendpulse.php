@@ -1,7 +1,5 @@
 <?php
 
-require get_parent_theme_file_path('vendor/autoload.php');
-
 use Sendpulse\RestApi\ApiClient;
 use Sendpulse\RestApi\Storage\SessionStorage;
 

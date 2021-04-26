@@ -39,8 +39,8 @@ echo esc_attr($className); ?>">
                     <div class="social-line">
                         <?php
                         if ($socials['list_address_books']):
-                            $form_hash = wp_generate_password(6, false); ?>
-                            <div class="mini-btn mail" data-fancybox data-src="#sendpulse-<?= $form_hash ?>"
+                            $form_key = wp_generate_password(6, false); ?>
+                            <div class="mini-btn mail" data-fancybox data-src="#Modal_<?= $form_key ?>"
                                  data-options='{"touch" : false}'>
                                 <div class="button-svg">
                                     <?= file_get_contents(get_template_directory() . '/images/icons/mail.svg') ?>
@@ -49,7 +49,7 @@ echo esc_attr($className); ?>">
                             </div>
                             <?php
                             get_template_part('template-parts/form/sendpulse', '',
-                                ['id' => $form_hash, 'book_id' => $socials['list_address_books']]);
+                                ['key' => $form_key, 'book_id' => $socials['list_address_books']]);
                         endif;
                         if ($socials['vk']): ?>
                             <a class="mini-btn vk" href="<?= $socials['vk'] ?>" target="_blank">

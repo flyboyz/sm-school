@@ -1,4 +1,4 @@
-<div id="sendpulse-<?= $args['id'] ?>" class="modal modal_fixed-width modal_lighting" style="display: none;">
+<div id="Modal_<?= $args['key'] ?>" class="modal modal_fixed-width modal_lighting" style="display: none;">
     <div class="wpforms-container updated-form">
         <form action="" method="post" class="wpforms-form sendpulse-form" data-double-opt-in="0">
             <input type="hidden" name="action" value="add_to_address_book">

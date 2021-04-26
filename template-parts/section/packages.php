@@ -5,15 +5,15 @@ if (!empty($packages)):
     ?>
     <div class="section section_course-packages">
         <?php
-        foreach ($packages as $package_key => $package):
+        foreach ($packages as $package):
             if ($package['is_active']):
-                $package_type = $package['type'];
+                $package_type = $package['type_group']['type'];
                 $package_cost = get_cost($package['cost'] ?: 0);
 
+                $package_key = wp_generate_password(4, false);
+
                 $details_key = "$package_key-details";
-
                 $package['key'] = $package_key;
-
                 ?>
                 <div>
                     <?php if ($package['icon']): ?>
@@ -22,18 +22,18 @@ if (!empty($packages)):
                     endif; ?>
                     <h3 class="name">Пакет <br>"<?= $package['name'] ?>"</h3>
                     <div class="description">
-                        <?= $package['short_description'] ?>
+                        <?= $package['description']['short'] ?>
                         <div class="more">
                             <a data-fancybox data-src="#package-<?= $details_key ?>" data-options='{"touch" : false}'
                                href="javascript:;">узнать подробнее...</a>
                         </div>
                     </div>
                     <div class="cost"><?= $package_cost ?></div>
-                    <a data-fancybox data-src="#Modal<?= $package_key ?>" data-options='{"touch" : false}'
+                    <a data-fancybox data-src="#Modal_<?= $package_key ?>" data-options='{"touch" : false}'
                        href="javascript:;"
-                       class="button button_lighting"><?= $package_type === 'sign' ? 'Записаться' : 'Купить' ?></a>
+                       class="button button_lighting"><?= $package_type === 'sendpulse' ? 'Записаться' : 'Купить' ?></a>
                     <?php
-                    if ($package_type !== 'sign'):
+                    if ($package_type !== 'sendpulse'):
                         ?>
                         <img src="<?= get_template_directory_uri() ?>/images/icons/cards.png" alt="card" class="cards">
                     <?php
@@ -45,7 +45,7 @@ if (!empty($packages)):
                      style="display: none;">
                     <div class="name">Пакет "<?= $package['name'] ?>"</div>
                     <div class="description">
-                        <?= $package['description'] ?>
+                        <?= $package['description']['full'] ?>
                     </div>
                 </div>
                 <?php
