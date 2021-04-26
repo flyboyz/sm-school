@@ -3,6 +3,13 @@
  * Theme functions and definitions
  */
 
+if (file_exists(get_parent_theme_file_path('vendor/autoload.php'))) {
+    include_once get_parent_theme_file_path('vendor/autoload.php');
+} else {
+    wp_die('Please install <b>composer</b> dependency.');
+}
+
+
 /**
  * Initialize styles/scripts
  */
