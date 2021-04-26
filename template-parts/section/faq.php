@@ -1,7 +1,7 @@
 <?php
 
 $faq = get_field('faq');
-$wpformsID = $_SERVER['SERVER_NAME'] === 'sm.wp' ? 504 : 439;
+$wpformsID = 439;
 
 if (!empty($faq)):
     ?>

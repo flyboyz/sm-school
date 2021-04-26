@@ -1,7 +1,7 @@
 <?php
 
 $feedback = get_field('feedback');
-$wpformsID = $_SERVER['SERVER_NAME'] === 'sm.wp' ? 504 : 387;
+$wpformsID = 387;
 
 if (!empty($feedback)):
     ?>
