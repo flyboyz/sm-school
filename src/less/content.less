@@ -16,7 +16,8 @@ main {
     content: '';
     display: block;
     position: fixed;
-    background: url(/wp-content/themes/sm-school/images/icons/dot.png);
+    background: radial-gradient(circle, @orange 3px, transparent 4px) 0 0 e('/') 18px 18px repeat;
+    opacity: .75;
 
     @media @m--less {
       content: none;
@@ -123,9 +124,10 @@ main {
       content: '';
       display: block;
       position: absolute;
-      width: 80px;
+      width: 75px;
       height: 65px;
-      background: url('/wp-content/themes/sm-school/images/icons/romb.png');
+      background: radial-gradient(circle, #fdbd41 2px, transparent 3px) 0 0 e('/') 15px 15px repeat;
+      opacity: .75;
 
       @media @m--less {
         content: none;

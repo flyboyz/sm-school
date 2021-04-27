@@ -5,6 +5,8 @@
   color: @dark-text;
 
   .wp-block-columns {
+    overflow: hidden;
+
     @media @m--less {
       flex-direction: column;
     }
@@ -52,7 +54,7 @@
         height: 140px;
         top: 60px;
         left: -10px;
-        background: url(/wp-content/themes/sm-school/images/icons/dot.png);
+        background: radial-gradient(circle, @orange 2px, transparent 3px) 0 0 e('/') 15px 15px repeat;
         animation: translating 8s linear infinite;
 
         @media @s--less {
@@ -70,7 +72,7 @@
         height: 140px;
         bottom: 60px;
         right: -10px;
-        background: url(/wp-content/themes/sm-school/images/icons/dot.png);
+        background: radial-gradient(circle, @orange 2px, transparent 3px) 0 0 e('/') 15px 15px repeat;
         animation: translating 12s linear infinite;
 
         @media @s--less {
