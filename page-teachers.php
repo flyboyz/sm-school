@@ -2,7 +2,9 @@
 
 $post_type = 'teacher';
 
-$teachers = get_users();
+$teachers = get_users([
+    'role' => 'author',
+]);
 get_header();
 if (have_posts()):
     ?>
