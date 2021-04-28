@@ -20,7 +20,7 @@ if (!empty($packages)):
                         <img src="<?= $package['icon']['sizes']['thumbnail'] ?>" alt="icon" class="package-icon">
                     <?php
                     endif; ?>
-                    <h3 class="name">Пакет <br>"<?= $package['name'] ?>"</h3>
+                    <h3 class="name">Тариф <br>"<?= $package['name'] ?>"</h3>
                     <div class="description">
                         <?= $package['description']['short'] ?>
                         <div class="more">
@@ -43,7 +43,7 @@ if (!empty($packages)):
                 <div class="container container_l modal modal_light modal_package"
                      id="package-<?= $details_key ?>"
                      style="display: none;">
-                    <div class="name">Пакет "<?= $package['name'] ?>"</div>
+                    <div class="name">Тариф "<?= $package['name'] ?>"</div>
                     <div class="description">
                         <?= $package['description']['full'] ?>
                     </div>
