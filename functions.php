@@ -194,6 +194,50 @@ add_shortcode('utm_inputs', 'utm_inputs');
 
 require get_parent_theme_file_path('/inc/helpers.php');
 
+
+function remove_some_courses($query): WP_Query
+{
+    /* @var $query WP_Query */
+    if (!is_admin() && $query->is_main_query() && !is_single() && isset($query->query_vars['post_type']) && $query->query_vars['post_type'] === 'course') {
+        $query->set('meta_key', 'access_type');
+        $query->set('meta_value', 1);
+    }
+
+    return $query;
+}
+
+add_action('pre_get_posts', 'remove_some_courses');
+
+
+function set_archive_title($title)
+{
+    global $wp_query;
+
+    if (isset($wp_query->query_vars['post_type'])) {
+        $title = get_post_type_labels(get_post_type_object($wp_query->query_vars['post_type']))->archives;
+    }
+
+    return $title;
+}
+
+add_action('get_the_archive_title', 'set_archive_title');
+
+
+function wpseo_postdata_update($post_id)
+{
+    global $post;
+
+    if ($post->post_type === 'course') {
+        add_action('wpseo_saved_postdata', function () use ($post_id) {
+            $value = get_field('visibility', $post_id) === false ? '1' : '0';
+            update_post_meta($post_id, '_yoast_wpseo_meta-robots-noindex', $value);
+        });
+    }
+}
+
+add_filter('save_post', 'wpseo_postdata_update');
+
+
 /**
  * System reconfiguration
  */
