@@ -199,7 +199,7 @@ function remove_some_courses($query): WP_Query
 {
     /* @var $query WP_Query */
     if (!is_admin() && $query->is_main_query() && !is_single() && isset($query->query_vars['post_type']) && $query->query_vars['post_type'] === 'course') {
-        $query->set('meta_key', 'access_type');
+        $query->set('meta_key', 'visibility');
         $query->set('meta_value', 1);
     }
 
