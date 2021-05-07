@@ -195,18 +195,34 @@ add_shortcode('utm_inputs', 'utm_inputs');
 require get_parent_theme_file_path('/inc/helpers.php');
 
 
-function remove_some_courses($query): WP_Query
+/**
+ * Filter main WP Query
+ *
+ * @param $query
+ *
+ * @return WP_Query
+ */
+function wp_query_update($query): WP_Query
 {
     /* @var $query WP_Query */
+
+    // Remove hidden courses
     if (!is_admin() && $query->is_main_query() && !is_single() && isset($query->query_vars['post_type']) && $query->query_vars['post_type'] === 'course') {
         $query->set('meta_key', 'visibility');
         $query->set('meta_value', 1);
     }
 
+    // Apply filters
+    if (!is_admin() && $query->is_main_query() && !empty($_GET)) {
+        if (isset($_GET['author'])) {
+            $query->set('author_name', $_GET['author']);
+        }
+    }
+
     return $query;
 }
 
-add_action('pre_get_posts', 'remove_some_courses');
+add_action('pre_get_posts', 'wp_query_update');
 
 
 function set_archive_title($title)

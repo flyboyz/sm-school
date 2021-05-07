@@ -37,5 +37,7 @@ if (have_posts()):
     </div>
     </div>
 <?php
+else:
+    get_template_part("template-parts/content/none");
 endif;
 get_footer();

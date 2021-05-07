@@ -4,6 +4,12 @@ $teacher = $args['teacher'];
 
 $teacher->fields = get_fields('user_' . $teacher->ID);
 $category = !empty($teacher->fields['categories']) ? $teacher->fields['categories'][0]->name : '';
+
+$have_courses = count(get_posts([
+    'post_type'      => 'course',
+    'author'         => $teacher->ID,
+    'posts_per_page' => 1,
+]));
 ?>
 <a data-fancybox data-options='{"touch" : false}' data-src="#teacher-<?= $teacher->ID ?>" href="javascript:;"
    class="card card_no-padding">
@@ -26,14 +32,13 @@ $category = !empty($teacher->fields['categories']) ? $teacher->fields['categorie
             <div class="card__title"><?= $teacher->data->display_name ?></div>
             <div class="card__mobile-row">
                 <div class="card__subtitle"><?= $teacher->fields['position'] ?></div>
-                <!--
                 <div class="card__actions">
-                    <a href="/<?= $teacher->taxonomy . '/' . $teacher->slug ?>/?post_type=course"
-                       class="card__link icon icon-arrow">Курсы</a>
-                    <a href="/<?= $teacher->taxonomy . '/' . $teacher->slug ?>/?post_type=post"
-                       class="card__link icon icon-arrow">Публикации</a>
+                    <?php if ($have_courses): ?>
+                        <a href="/courses?author=<?= $teacher->user_nicename ?>"
+                           class="card__link icon icon-arrow">Курсы</a>
+                    <?php endif; ?>
+                    <a href="/publications?author=<?= $teacher->user_nicename ?>" class="card__link icon icon-arrow">Публикации</a>
                 </div>
-                -->
             </div>
         </div>
         <div class="details-content">

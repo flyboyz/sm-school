@@ -30,16 +30,8 @@ if (have_posts()):
         </div>
     </div>
 <?php
-else: ?>
-    <div class="container container_fixed container_full-width_m-less">
-        <div class="error-box error-box_white">
-            <p>Извините! По вашему запросу ничего не найдено.</p>
-            <img src="/wp-content/themes/sm-school/images/icons/face.svg" class="error-img" alt="sorry">
-            <p>Но мы обязательно это исправим!
-                <br><a onclick="javascript:history.back(); return false;">Вернуться назад</a></p>
-        </div>
-    </div>
-<?php
+else:
+    get_template_part("template-parts/content/none");
 endif; ?>
 <?php
 get_footer();
