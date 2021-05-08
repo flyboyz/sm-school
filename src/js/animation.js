@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       phoenix.style.opacity = 0;
       body.querySelector('.header__logo').classList.remove('hidden');
+
+      document.querySelector('.phoenix_box').remove();
     }, 4000);
 
     sessionStorage.setItem('reopening', 1);
