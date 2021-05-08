@@ -1,9 +1,7 @@
 <?php
 
 $teacher = $args['teacher'];
-
 $teacher->fields = get_fields('user_' . $teacher->ID);
-$category = !empty($teacher->fields['categories']) ? $teacher->fields['categories'][0]->name : '';
 
 $have_courses = count(get_posts([
     'post_type'      => 'course',
@@ -16,7 +14,6 @@ $have_courses = count(get_posts([
     <div class="card__panel card__panel_teacher ratio ratio_4x3">
         <div class="ratio__content">
             <?= wp_get_attachment_image($teacher->fields['photo'], 'square') ?>
-            <div class="card__category"><?= $category ?></div>
         </div>
     </div>
     <div class="card__title icon icon-arrow"><?= $teacher->data->display_name ?></div>
