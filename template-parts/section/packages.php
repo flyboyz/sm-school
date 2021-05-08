@@ -5,18 +5,17 @@ if (!empty($packages)):
     ?>
     <div class="section section_course-packages">
         <?php
-        foreach ($packages as $package):
+        foreach ($packages as $package_key => $package):
             if ($package['is_active']):
                 $package_type = $package['type_group']['type'];
                 $package_cost = get_cost($package['cost'] ?: 0);
 
-                $package_key = wp_generate_password(4, false);
-
                 $details_key = "$package_key-details";
                 $package['key'] = $package_key;
                 ?>
-                <div>
-                    <?php if ($package['icon']): ?>
+                <div class="course-package">
+                    <?php
+                    if ($package['icon']): ?>
                         <img src="<?= $package['icon']['sizes']['thumbnail'] ?>" alt="icon" class="package-icon">
                     <?php
                     endif; ?>
