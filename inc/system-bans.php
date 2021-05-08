@@ -58,14 +58,14 @@ add_action('wp_enqueue_scripts', 'assets_inspect', 999);
  */
 function change_login_logo()
 {
+    $is_prod = $_SERVER['HTTP_HOST'] === 'sm-school.pro';
     ?>
     <style type="text/css">
         body.login div#login h1 a {
             padding: 20px 40px;
             background: black url('<?= get_template_directory_uri() ?>/images/logo.png') no-repeat center;
             background-size: 100px;
-            background-blend-mode: luminosity;
-            border-radius: 6px;
+        <?= $is_prod ?: 'background-blend-mode: luminosity;' ?> border-radius: 6px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
         }
 
