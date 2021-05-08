@@ -12,26 +12,26 @@ get_header();
             -->
         </div>
     </div>
-<?php
-if (have_posts()):
-    ?>
     <div class="container container_fixed">
-        <div class="content-list">
-            <div class="content-columns">
-                <?php
-                while (have_posts()):
-                    the_post();
-                    get_template_part("template-parts/content/$post_type");
-                endwhile; ?>
+        <?php
+        if (have_posts()):
+            ?>
+            <div class="content-list">
+                <div class="content-columns">
+                    <?php
+                    while (have_posts()):
+                        the_post();
+                        get_template_part("template-parts/content/$post_type");
+                    endwhile; ?>
+                </div>
+                <div id="load-more" data-type="<?= $post_type ?>">
+                    <img src="/wp-content/themes/sm-school/images/icons/loader.svg" alt="loading">
+                </div>
             </div>
-            <div id="load-more" data-type="<?= $post_type ?>">
-                <img src="/wp-content/themes/sm-school/images/icons/loader.svg" alt="loading">
-            </div>
-        </div>
+        <?php
+        else:
+            get_template_part("template-parts/content/none");
+        endif; ?>
     </div>
-<?php
-else:
-    get_template_part("template-parts/content/none");
-endif; ?>
 <?php
 get_footer();

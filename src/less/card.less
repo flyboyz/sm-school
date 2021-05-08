@@ -30,6 +30,18 @@
     color: black;
   }
 
+  &_teacher {
+    &:hover {
+      .card__panel_teacher:after {
+        transform: rotate(-5deg);
+      }
+
+      img {
+        width: 94%;
+      }
+    }
+  }
+
   &__panel {
     position: relative;
     display: flex;
@@ -71,10 +83,12 @@
         right: -6.5%;
         background: radial-gradient(circle, @orange 2.5px, transparent 3.5px) 0 0 e('/') 15px 15px repeat;
         opacity: .6;
+        transition: .15s;
       }
 
       img {
         width: 90%;
+        transition: .15s;
       }
 
       &-promo {

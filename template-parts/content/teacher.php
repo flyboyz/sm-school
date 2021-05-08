@@ -10,7 +10,7 @@ $have_courses = count(get_posts([
 ]));
 ?>
 <a data-fancybox data-options='{"touch" : false}' data-src="#teacher-<?= $teacher->ID ?>" href="javascript:;"
-   class="card card_no-padding">
+   class="card card_teacher card_no-padding">
     <div class="card__panel card__panel_teacher ratio ratio_4x3">
         <div class="ratio__content">
             <?= wp_get_attachment_image($teacher->fields['photo'], 'square') ?>
