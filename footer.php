@@ -42,8 +42,11 @@ endif; ?>
         ]); ?>
     </div>
 </footer>
-<div class="phoenix_box container container_fixed">
-    <div class="phoenix"></div>
-</div>
 <?php
+if (is_front_page()): ?>
+    <div class="phoenix_box container container_fixed">
+        <div class="phoenix"></div>
+    </div>
+<?php
+endif;
 wp_footer();
