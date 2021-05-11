@@ -6,13 +6,15 @@ let is_reopening = sessionStorage.getItem('reopening') || 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   let body = document.querySelector('body');
-  let phoenix = document.querySelector('.phoenix');
+  let logo = body.querySelector('.header__logo');
+  let phoenix_box = document.querySelector('.phoenix_box');
+  let phoenix = phoenix_box.querySelector('.phoenix');
   let light = document.querySelector('.light');
 
   let is_mobile = animation_data.is_mobile === '1';
 
   if (!is_reopening) {
-    body.querySelector('.header__logo').classList.add('hidden');
+    logo.classList.add('hidden');
 
     let phoenix_animation = lottieAnimation(phoenix, 'phoenix_full');
 
@@ -30,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => {
         phoenix.style.opacity = 0;
-        body.querySelector('.header__logo').classList.remove('hidden');
+        logo.classList.remove('hidden');
 
-        document.querySelector('.phoenix_box').remove();
+        phoenix_box.remove();
       }, 4000);
     });
 
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lottieAnimation(light, 'frame_loop', true);
 
     body.classList.remove('animation-page');
-    document.querySelector('.phoenix_box').remove();
+    phoenix_box.remove();
   }
 })
 
