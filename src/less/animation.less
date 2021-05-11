@@ -1,13 +1,15 @@
 body {
-  header, main, footer {
-    transition: .25s;
-  }
-
   &.animation-page {
     position: relative;
 
     header, main, footer {
       opacity: 0;
+    }
+
+    &.showing {
+      header, main, footer {
+        animation: showing 2s forwards;
+      }
     }
   }
 }
@@ -40,7 +42,7 @@ body {
     //background-color: rgba(0, 255, 0, .3);
 
     body.mobile & {
-      width: 140%;
+      width: 150%;
       left: 10px;
       transition: .75s;
       transform: translateX(-50%);
@@ -56,5 +58,14 @@ body {
   svg {
     width: 300%;
     height: 300%;
+  }
+}
+
+@keyframes showing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

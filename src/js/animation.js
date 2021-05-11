@@ -22,23 +22,25 @@ document.addEventListener('DOMContentLoaded', () => {
       path: `/wp-content/themes/sm-school/src/animation/${json_name}.json`
     });
 
-    setTimeout(() => {
-      body.classList.remove('animation-page');
-    }, 1550);
-
-    if (is_mobile) {
+    animation.addEventListener('DOMLoaded', () => {
       setTimeout(() => {
-        phoenix.style.width = '60%';
-        phoenix.style.transform = 'translateX(0)';
-      }, 3300);
-    }
+        body.classList.add('showing');
+      }, 3000);
 
-    setTimeout(() => {
-      phoenix.style.opacity = 0;
-      body.querySelector('.header__logo').classList.remove('hidden');
+      if (is_mobile) {
+        setTimeout(() => {
+          phoenix.style.width = '60%';
+          phoenix.style.transform = 'translateX(0)';
+        }, 3300);
+      }
 
-      document.querySelector('.phoenix_box').remove();
-    }, 4000);
+      setTimeout(() => {
+        phoenix.style.opacity = 0;
+        body.querySelector('.header__logo').classList.remove('hidden');
+
+        document.querySelector('.phoenix_box').remove();
+      }, 4000);
+    });
 
     sessionStorage.setItem('reopening', 1);
   } else {
