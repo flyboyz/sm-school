@@ -30,11 +30,14 @@ $have_courses = count(get_posts([
             <div class="card__mobile-row">
                 <div class="card__subtitle"><?= $teacher->fields['position'] ?></div>
                 <div class="card__actions">
-                    <?php if ($have_courses): ?>
-                        <a href="/courses?author=<?= $teacher->user_nicename ?>"
+                    <?php
+                    if ($have_courses): ?>
+                        <a href="/courses?author=<?= $teacher->user_nicename ?>" target="_blank"
                            class="card__link icon icon-arrow">Курсы</a>
-                    <?php endif; ?>
-                    <a href="/publications?author=<?= $teacher->user_nicename ?>" class="card__link icon icon-arrow">Публикации</a>
+                    <?php
+                    endif; ?>
+                    <a href="/publications?author=<?= $teacher->user_nicename ?>" target="_blank"
+                       class="card__link icon icon-arrow">Публикации</a>
                 </div>
             </div>
         </div>
