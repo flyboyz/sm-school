@@ -47,6 +47,9 @@ if (is_front_page()): ?>
     <div class="phoenix_box container container_fixed">
         <div class="phoenix"></div>
     </div>
+    <div class="frame_box container container_fixed">
+        <div class="light"></div>
+    </div>
 <?php
 endif;
 wp_footer();

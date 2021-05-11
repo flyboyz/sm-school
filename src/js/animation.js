@@ -7,22 +7,16 @@ let is_reopening = sessionStorage.getItem('reopening') || 0;
 document.addEventListener('DOMContentLoaded', () => {
   let body = document.querySelector('body');
   let phoenix = document.querySelector('.phoenix');
+  let light = document.querySelector('.light');
 
   let is_mobile = animation_data.is_mobile === '1';
-  let json_name = 'phoenix_full';
 
   if (!is_reopening) {
     body.querySelector('.header__logo').classList.add('hidden');
 
-    let animation = lottie.loadAnimation({
-      container: phoenix,
-      renderer: 'svg',
-      loop: 0,
-      autoplay: true,
-      path: `/wp-content/themes/sm-school/src/animation/${json_name}.json`
-    });
+    let phoenix_animation = lottieAnimation(phoenix, 'phoenix_full');
 
-    animation.addEventListener('DOMLoaded', () => {
+    phoenix_animation.addEventListener('DOMLoaded', () => {
       setTimeout(() => {
         body.classList.add('showing');
       }, 3000);
@@ -42,10 +36,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 4000);
     });
 
+    phoenix_animation.addEventListener('complete', () => {
+      let frame_animation = lottieAnimation(light, 'frame_begin');
+
+      frame_animation.addEventListener('complete', () => {
+        lottieAnimation(light, 'frame_loop', true);
+        frame_animation.destroy();
+      });
+    });
+
     sessionStorage.setItem('reopening', 1);
   } else {
-    body.classList.remove('animation-page');
+    lottieAnimation(light, 'frame_loop', true);
 
+    body.classList.remove('animation-page');
     document.querySelector('.phoenix_box').remove();
   }
 })
+
+function lottieAnimation(containerEl, jsonName, loop = 0) {
+  return lottie.loadAnimation({
+    container: containerEl,
+    renderer: 'svg',
+    loop: loop,
+    autoplay: true,
+    path: `/wp-content/themes/sm-school/src/animation/${jsonName}.json`,
+  });
+}
