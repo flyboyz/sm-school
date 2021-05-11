@@ -2,8 +2,8 @@
     <div class="wpforms-container updated-form">
         <form action="" method="post" class="wpforms-form sendpulse-form" data-double-opt-in="0">
             <input type="hidden" name="action" value="add_to_address_book">
-            <input type="hidden" name="book_id" value="<?= $args['book_id'] ?>">
-            <input type="hidden" name="event_type" value="Регистрация на тренинг">
+            <input type="hidden" name="book_id" value="<?= $args['type_group']['list_address_books'] ?>">
+            <input type="hidden" name="event_type" value="Регистрация">
             <input type="hidden" name="event_name" value="<?= $post->post_title ?>">
             <input type="hidden" name="pay" value="0">
             <input type="hidden" name="date_mk"
