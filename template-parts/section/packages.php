@@ -5,6 +5,7 @@ if (!empty($packages)):
     ?>
     <div class="section section_course-packages">
         <?php
+        $i = 0;
         foreach ($packages as $package_key => $package):
             if ($package['is_active']):
                 $package_type = $package['type_group']['type'];
@@ -12,6 +13,8 @@ if (!empty($packages)):
 
                 $details_key = "$package_key-details";
                 $package['key'] = $package_key;
+
+                echo $i % 2 ? '' : '<div>';
                 ?>
                 <div class="course-package">
                     <?php
@@ -49,6 +52,8 @@ if (!empty($packages)):
                 </div>
                 <?php
                 get_template_part('template-parts/form/' . $package_type, '', $package);
+                echo $i % 2 || $package_key === count($packages) - 1 ? '</div>' : '';
+                $i++;
             endif;
         endforeach;
         ?>

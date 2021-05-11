@@ -20,6 +20,8 @@
 
   &_course {
     &-top {
+      overflow: hidden;
+
       p {
         font-size: 30px;
 
@@ -112,6 +114,7 @@
     &-after-that {
       padding-bottom: 20px;
       background-color: #fafafa;
+      overflow: hidden;
 
       h2 {
         margin-bottom: 60px !important;
@@ -225,24 +228,32 @@
       flex-wrap: wrap;
       justify-content: center;
 
-      .course-package {
+      & > div {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .course-package {
         position: relative;
-        padding: 60px 20px 45px;
-        margin: 25px 15px;
-        max-width: 100%;
-        flex-basis: 400px;
+        display: flex;
+        padding: 50px 15px 45px;
+        margin: 25px 10px;
+        width: 320px;
+        max-width: 90%;
         flex-direction: column;
         align-items: center;
         background-color: @cream-back;
         border-radius: 5px;
 
-        @media @l--less {
-          padding: 50px 20px 40px;
+        @media @xl--less {
+          padding: 50px 10px 45px;
+          width: 285px;
         }
 
-        @media @s--less {
-          padding: 70px 20px 50px;
+        @media @l--less {
+          padding: 50px 15px 45px;
+          width: 320px;
         }
       }
 
@@ -261,20 +272,16 @@
 
       .name {
         margin: 0;
-        font-size: 26px;
+        font-size: 24px;
         text-align: center;
       }
 
       .description {
-        margin: 25px 0 10px;
+        margin: 15px 0 10px;
         width: 100%;
         flex: 1;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.2;
-
-        @media @l--less {
-          margin: 30px 0 10px;
-        }
 
         @media @s--less {
           font-size: 18px;
@@ -292,7 +299,7 @@
             }
 
             &:not(:first-child) {
-              margin-top: 20px;
+              margin-top: 12px;
             }
           }
         }
@@ -308,8 +315,8 @@
       }
 
       .cost {
-        margin-top: 50px;
-        font-size: 28px;
+        margin-top: 40px;
+        font-size: 26px;
         font-weight: 900;
         text-align: center;
 
@@ -319,22 +326,20 @@
       }
 
       .button {
-        margin-top: 25px;
+        padding: 20px 60px 22px;
+        margin-top: 20px;
       }
 
       .cards {
         position: absolute;
         bottom: 0;
+        width: 80px;
         z-index: 2;
-        transform: translate(-103%,42%) rotate(-25deg);
-
-        @media @l--less {
-          transform: translate(-100%,50%) rotate(-25deg);
-        }
+        transform: translate(-115%, 33%) rotate(-25deg);
 
         @media @s--less {
           width: 70px;
-          transform: translate(-102%,29%) rotate(-25deg);
+          transform: translate(-102%, 29%) rotate(-25deg);
         }
       }
     }
