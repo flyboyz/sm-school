@@ -3,7 +3,7 @@
 $post_type = 'teacher';
 
 $teachers = get_users([
-    'role' => 'author',
+    'role__in' => array('author', 'coauthor', 'course_author'),
 ]);
 get_header();
 if (have_posts()):
