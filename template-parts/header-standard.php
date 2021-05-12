@@ -3,7 +3,7 @@
 $with_filter = in_array(get_post_type(), ['post', 'course']) && !is_single() || is_home();
 
 global $wp;
-if (isset($wp->query_vars['post_type']) && $wp->query_vars['post_type'] === 'course') {
+if (isset($wp->query_vars['post_type']) && $wp->query_vars['post_type'] === 'course' && !is_single()) {
     $with_filter = true;
 }
 ?>
