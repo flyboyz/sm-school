@@ -6,7 +6,7 @@ get_header();
         <div class="page-headline">
             <h1 class="page-title">Публикации</h1>
             <div class="page-filters">
-                <?= do_shortcode('[filter post_type="' . get_post_type() . '" fields="author,category"]'); ?>
+                <?= do_shortcode('[filter post_type=' . get_post_type() . ']'); ?>
             </div>
         </div>
     </div>

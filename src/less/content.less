@@ -197,17 +197,19 @@ main {
       border: #e9e9e9 solid 1px;
     }
 
-    [type="submit"] {
+    a {
       cursor: pointer;
-      padding: 14px 28px 12px;
-      font-size: 13px;
-      font-weight: 300;
+      padding: 0 28px;
       text-decoration: none;
       text-transform: uppercase;
-      color: black;
-      background-color: @orange;
-      border: #b2b2b2 solid 1px;
       border-radius: 3px;
+      background-color: transparent;
+      color: #2e2e2e;
+      border: #e9e9e9 solid 1px;
+      display: flex;
+      font-weight: 400;
+      align-items: center;
+      font-size: 16px;
     }
   }
 
@@ -221,6 +223,12 @@ main {
       opacity: 1;
     }
   }
+}
+
+#filterForm {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
 }
 
 .front-page-label {
@@ -285,8 +293,17 @@ main {
 
   &__wide {
     padding: 50px 70px;
-    gap: 8vw;
+    gap: 80px;
     background-color: white;
+    grid-template-columns: repeat(5, 1fr);
+
+    @media @full-hd--less {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media @xl--less {
+      grid-template-columns: repeat(3, 1fr);
+    }
 
     @media @l--less {
       gap: 6vw;
@@ -294,10 +311,12 @@ main {
 
     @media @m--less {
       padding: 40px;
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @media @s--less {
       padding: 18px 15px;
+      grid-template-columns: 1fr;
       gap: 25px 15px;
       overflow: hidden;
     }

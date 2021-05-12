@@ -3,11 +3,6 @@
 $teacher = $args['teacher'];
 $teacher->fields = get_fields('user_' . $teacher->ID);
 
-$have_courses = count(get_posts([
-    'post_type'      => 'course',
-    'author'         => $teacher->ID,
-    'posts_per_page' => 1,
-]));
 ?>
 <a data-fancybox data-options='{"touch" : false}' data-src="#teacher-<?= $teacher->ID ?>" href="javascript:;"
    class="card card_teacher card_no-padding">
@@ -31,13 +26,16 @@ $have_courses = count(get_posts([
                 <div class="card__subtitle"><?= $teacher->fields['position'] ?></div>
                 <div class="card__actions">
                     <?php
-                    if ($have_courses): ?>
+                    if (count_user_posts($teacher->ID, 'course')): ?>
                         <a href="/courses?author=<?= $teacher->user_nicename ?>" target="_blank"
-                           class="card__link icon icon-arrow">Курсы</a>
+                           class="card__link">Курсы</a>
+                    <?php
+                    endif;
+                    if (count_user_posts($teacher->ID)): ?>
+                        <a href="/publications?author=<?= $teacher->user_nicename ?>" target="_blank"
+                           class="card__link">Публикации</a>
                     <?php
                     endif; ?>
-                    <a href="/publications?author=<?= $teacher->user_nicename ?>" target="_blank"
-                       class="card__link icon icon-arrow">Публикации</a>
                 </div>
             </div>
         </div>

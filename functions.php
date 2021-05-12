@@ -220,7 +220,7 @@ function wp_query_update($query): WP_Query
 
     // Apply filters
     if (!is_admin() && $query->is_main_query() && !empty($_GET)) {
-        if (isset($_GET['author'])) {
+        if (isset($_GET['author']) && $_GET['author'] !== 'all') {
             $query->set('author_name', $_GET['author']);
         }
     }

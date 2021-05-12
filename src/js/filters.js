@@ -14,16 +14,5 @@ export default () => {
         document.getElementById('authorSelect').addEventListener('change', () => {
             form.submit();
         })
-
-        form.querySelector('[name=reset-filter]').addEventListener('click', (e) => {
-            e.preventDefault();
-
-            form.reset();
-
-            alert();
-            form.submit();
-        })
     }
-
-
 }

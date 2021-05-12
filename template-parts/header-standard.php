@@ -1,5 +1,11 @@
 <?php
+
 $with_filter = in_array(get_post_type(), ['post', 'course']) && !is_single() || is_home();
+
+global $wp;
+if (isset($wp->query_vars['post_type']) && $wp->query_vars['post_type'] === 'course') {
+    $with_filter = true;
+}
 ?>
 <header class="header">
     <div class="container container_fixed header__container">

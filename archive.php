@@ -1,15 +1,14 @@
 <?php
+
 $post_type = get_post_type();
 get_header();
 ?>
     <div class="container container_fixed container_full-width_m-less">
         <div class="page-headline">
             <h1 class="page-title"><?= get_the_archive_title() ?></h1>
-            <!--
             <div class="page-filters">
-                <?= do_shortcode('[searchandfilter post_types="' . $post_type . '" fields="teacher,category" submit_label="Применить"]'); ?>
+                <?= do_shortcode('[filter post_type=' . $post_type . ']'); ?>
             </div>
-            -->
         </div>
     </div>
     <div class="container container_fixed">
