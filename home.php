@@ -5,11 +5,9 @@ get_header();
     <div class="container container_fixed container_full-width_m-less">
         <div class="page-headline">
             <h1 class="page-title">Публикации</h1>
-            <!--
             <div class="page-filters">
-                <?= do_shortcode('[searchandfilter post_types="' . get_post_type() . '" fields="teacher,category" submit_label="Применить"]'); ?>
+                <?= do_shortcode('[filter post_type="' . get_post_type() . '" fields="author,category"]'); ?>
             </div>
-            -->
         </div>
     </div>
     <div class="container container_fixed">
@@ -32,7 +30,7 @@ if (have_posts()):
     }
     ?>
     </div>
-    <div id="load-more" data-type="<?= 'post' ?>">
+    <div id="load-more" data-type="post">
         <img src="/wp-content/themes/sm-school/images/icons/loader.svg" alt="loading">
     </div>
     </div>

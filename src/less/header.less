@@ -60,10 +60,12 @@
     }
   }
 
-  ul {
+  .menu {
     display: flex;
-    margin: 0;
     padding: 0;
+    margin: 0 0 0 120px;
+    flex: 1;
+    justify-content: space-between;
     list-style: none;
 
     @media @m--less {
@@ -72,11 +74,6 @@
 
     li {
       position: relative;
-      margin: 0 30px;
-
-      @media @l--less {
-        margin: 0 20px;
-      }
 
       &.current-menu-item:after {
         content: '';
@@ -129,20 +126,28 @@
 
   .filter-btn {
     cursor: pointer;
-    padding: 14px 28px 12px;
-    margin-right: 20px;
+    padding: 14px 0 12px;
+    margin: 0 20px 0 40px;
+    width: 80px;
     font-size: 13px;
     font-weight: 300;
+    text-align: center;
     text-decoration: none;
     text-transform: uppercase;
     color: black;
     background-color: transparent;
     border: #b2b2b2 solid 1px;
     border-radius: 3px;
+    user-select: none;
 
     @media @s--less {
       font-size: 11px;
       padding: 7px 10px 5px;
+    }
+
+    &[disabled] {
+      cursor: auto;
+      opacity: 0;
     }
   }
 

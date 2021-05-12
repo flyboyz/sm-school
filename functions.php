@@ -128,16 +128,16 @@ function get_social_link($social_name)
 
 function my_class_names($classes)
 {
-//    global $wp_query;
-//    $filters_name = ['category_name', 'teacher'];
-//
-//    foreach ($wp_query->query as $name => $value) {
-//        if (in_array($name, $filters_name)) {
-//            $classes[] = 'page-filters-active';
-//
-//            return $classes;
-//        }
-//    }
+    global $wp_query;
+    $filters_name = ['author'];
+
+    foreach ($wp_query->query as $name => $value) {
+        if (in_array($name, $filters_name)) {
+            $classes[] = 'page-filters-active';
+
+            return $classes;
+        }
+    }
 
     if (is_front_page()) {
         $device = wp_is_mobile() ? 'mobile' : 'desktop';
@@ -283,3 +283,14 @@ function add_reply_email($emails)
 }
 
 add_filter('wpforms_entry_email_before_send', 'add_reply_email');
+
+
+function filter($post_type): string
+{
+    ob_start();
+    get_template_part('template-parts/section/filter', '', array('post_type' => $post_type));
+
+    return ob_get_clean();
+}
+
+add_shortcode('filter', 'filter');

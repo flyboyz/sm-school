@@ -1,7 +1,5 @@
 <?php
-
-//$with_filter = in_array(get_post_type(), ['post', 'course']) && !is_single();
-$with_filter = false;
+$with_filter = in_array(get_post_type(), ['post', 'course']) && !is_single() || is_home();
 ?>
 <header class="header">
     <div class="container container_fixed header__container">
@@ -12,10 +10,10 @@ $with_filter = false;
         <?php
         wp_nav_menu([
             'theme_location' => 'header',
-            'container' => '',
+            'container'      => '',
         ]); ?>
         <div class="right-block">
-            <?= $with_filter ? '<div class="filter-btn">Фильтр</div>' : '' ?>
+            <div class="filter-btn" <?= $with_filter ? '' : 'disabled' ?>>Фильтр</div>
             <div class="hamburger" data-fancybox data-src="#sidebar"
                  data-options='{"touch" : false, "baseClass" : "fancybox-sidebar"}'>
                 <div class="bar bar_1"></div>

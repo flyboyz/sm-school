@@ -9,7 +9,7 @@ import slider from './slider'
 
 document.addEventListener('DOMContentLoaded', () => {
     loadMore();
-    // filters();
+    filters();
     formsInit();
     slider();
 });
