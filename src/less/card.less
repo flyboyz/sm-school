@@ -251,7 +251,7 @@
     }
 
     &_bordered {
-      border-right: orange solid 40px;
+      border-right: @orange solid 40px;
     }
   }
 
@@ -312,7 +312,7 @@
 
 .details-content {
   position: relative;
-  padding: 80px 26px 26px 26px;
+  padding: 80px 26px 26px 16px;
   flex: 1 0;
   font-size: 18px;
   line-height: 1.2;
@@ -331,7 +331,7 @@
     width: 26px;
     height: 22px;
     top: 26px;
-    left: 26px;
+    left: 16px;
     background: url(/wp-content/themes/sm-school/images/icons/quote.png) center/contain no-repeat;
     color: @orange;
 
@@ -353,8 +353,8 @@
     position: absolute;
     width: calc(100% - 115px);
     height: 1px;
-    top: 34px;
-    right: 40px;
+    top: 36px;
+    right: 52px;
     background-color: @orange;
 
     @media @m--less {
