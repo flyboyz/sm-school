@@ -10,6 +10,7 @@ if (!empty($packages)):
             if ($package['is_active']):
                 $package_type = $package['type_group']['type'];
                 $package_cost = get_cost($package['cost'] ?: 0);
+                $package_full_description = $package['description']['full'];
 
                 $details_key = "$package_key-details";
                 $package['key'] = $package_key;
@@ -25,10 +26,15 @@ if (!empty($packages)):
                     <h3 class="name">Тариф <br>"<?= $package['name'] ?>"</h3>
                     <div class="description">
                         <?= $package['description']['short'] ?>
-                        <div class="more">
-                            <a data-fancybox data-src="#package-<?= $details_key ?>" data-options='{"touch" : false}'
-                               href="javascript:;">узнать подробнее...</a>
-                        </div>
+                        <?php
+                        if ($package_full_description): ?>
+                            <div class="more">
+                                <a data-fancybox data-src="#package-<?= $details_key ?>"
+                                   data-options='{"touch" : false}'
+                                   href="javascript:;">узнать подробнее...</a>
+                            </div>
+                        <?php
+                        endif; ?>
                     </div>
                     <div class="cost"><?= $package_cost ?></div>
                     <a data-fancybox data-src="#Modal_<?= $package_key ?>" data-options='{"touch" : false}'
@@ -42,15 +48,18 @@ if (!empty($packages)):
                     endif;
                     ?>
                 </div>
-                <div class="container container_l modal modal_light modal_package"
-                     id="package-<?= $details_key ?>"
-                     style="display: none;">
-                    <div class="name">Тариф "<?= $package['name'] ?>"</div>
-                    <div class="description">
-                        <?= $package['description']['full'] ?>
-                    </div>
-                </div>
                 <?php
+                if ($package_full_description): ?>
+                    <div class="container container_l modal modal_light modal_package"
+                         id="package-<?= $details_key ?>"
+                         style="display: none;">
+                        <div class="name">Тариф "<?= $package['name'] ?>"</div>
+                        <div class="description">
+                            <?= $package['description']['full'] ?>
+                        </div>
+                    </div>
+                <?php
+                endif;
                 get_template_part('template-parts/form/' . $package_type, '', $package);
                 echo $i % 2 || $package_key === count($packages) - 1 ? '</div>' : '';
                 $i++;
