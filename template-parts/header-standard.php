@@ -20,8 +20,7 @@ if (isset($wp->query_vars['post_type']) && $wp->query_vars['post_type'] === 'cou
         ]); ?>
         <div class="right-block">
             <div class="filter-btn" <?= $with_filter ? '' : 'disabled' ?>>Фильтр</div>
-            <div class="hamburger" data-fancybox data-src="#sidebar"
-                 data-options='{"touch" : false, "baseClass" : "fancybox-sidebar"}'>
+            <div class="hamburger" id="sidebarButton">
                 <div class="bar bar_1"></div>
                 <div class="bar bar_2"></div>
                 <div class="bar bar_3"></div>

@@ -233,7 +233,7 @@
 
 .fancybox-sidebar {
   .fancybox-bg {
-    background: url('/wp-content/themes/sm-school/images/background.png');
+    background: none;
   }
 
   &.fancybox-is-open .fancybox-bg {
@@ -246,5 +246,17 @@
 
   .fancybox-slide--current {
     transform: translateX(0);
+  }
+}
+
+body {
+  header, main, footer {
+    transition: .15s;
+  }
+
+  &.sidebar-opened {
+    header, main, footer {
+      opacity: .3;
+    }
   }
 }
