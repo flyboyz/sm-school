@@ -9,7 +9,7 @@ module.exports = merge(common, {
         new BrowserSyncPlugin({
             open: 'external',
             proxy: 'sm.wp',
-            port: 8080,
+            port: 8081,
             notify: false,
         }, {
             injectCss: true,
