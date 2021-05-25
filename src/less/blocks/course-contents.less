@@ -26,10 +26,12 @@
       }
     }
 
-    .contents-list__item {
+    &__item {
+      display: flex;
       padding: 35px 55px;
       margin: 0;
       height: auto;
+      flex-direction: column;
       background-color: white;
       border-radius: 0 5px 5px 0;
 
@@ -62,7 +64,7 @@
       }
 
       p {
-        margin: 20px 0 0;
+        margin: 20px 0 30px;
         font-size: 18px;
         font-weight: 400;
         line-height: 1.2em;
@@ -71,6 +73,41 @@
 
         @media @s--less {
           margin: 15px 0 0;
+        }
+      }
+
+      .info {
+        display: flex;
+        margin-top: auto;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .time {
+          display: flex;
+          align-items: center;
+          color: #555555;
+
+          svg {
+            margin-right: 10px;
+            fill: #555555;
+          }
+        }
+
+        .authors {
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 20px;
+            //border: black solid 1px;
+
+            &:not(:first-child) {
+              margin-left: 5px;
+            }
+          }
         }
       }
     }
