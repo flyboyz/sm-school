@@ -4,7 +4,7 @@ function register_project_post_type()
 {
     register_post_type('project', [
         'label' => null,
-        'labels' => [
+        'labels'          => [
             'name' => 'Разработка',
             'singular_name' => 'Разработка',
             'add_new' => 'Добавить разработку',
@@ -20,21 +20,21 @@ function register_project_post_type()
             'archives' => 'Разработки',
             'back_link' => 'разрботок',
         ],
-        'description' => '',
-        'public' => true,
-        'show_in_menu' => null,
-        'show_in_rest' => null,
-        'rest_base' => null,
-        'menu_position' => 4,
-        'menu_icon' => 'dashicons-welcome-learn-more',
-        'hierarchical' => false,
-        'supports' => ['title', 'thumbnail', 'editor', 'author'],
-        'taxonomies' => ['category'],
-        'has_archive' => 'projects',
-        'rewrite' => true,
-        'query_var' => true,
+        'description'     => '',
+        'public'          => true,
+        'show_in_menu'    => null,
+        'show_in_rest'    => null,
+        'rest_base'       => null,
+        'menu_position'   => 4,
+        'menu_icon'       => 'dashicons-welcome-learn-more',
+        'hierarchical'    => false,
+        'supports'        => ['title', 'thumbnail', 'editor', 'author'],
+        'taxonomies'      => ['category'],
+        'has_archive'     => true,
+        'rewrite'         => true,
+        'query_var'       => true,
         'capability_type' => 'project',
-        'map_meta_cap' => true,
+        'map_meta_cap'    => true,
     ]);
 }
 

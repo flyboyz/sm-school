@@ -4,7 +4,7 @@ function register_webinar_post_type()
 {
     register_post_type('webinar', [
         'label' => null,
-        'labels' => [
+        'labels'          => [
             'name' => 'Тренинг',
             'singular_name' => 'Тренинг',
             'add_new' => 'Добавить тренинг',
@@ -19,21 +19,21 @@ function register_webinar_post_type()
             'menu_name' => 'Тренинги',
             'archives' => 'Тренинги'
         ],
-        'description' => '',
-        'public' => true,
-        'show_in_menu' => null,
-        'show_in_rest' => true,
-        'rest_base' => null,
-        'menu_position' => 4,
-        'menu_icon' => 'dashicons-media-video',
-        'hierarchical' => false,
-        'supports' => ['title', 'editor', 'thumbnail', 'author'],
-        'taxonomies' => ['category'],
-        'has_archive' => 'webinars',
-        'rewrite' => true,
-        'query_var' => true,
+        'description'     => '',
+        'public'          => true,
+        'show_in_menu'    => null,
+        'show_in_rest'    => true,
+        'rest_base'       => null,
+        'menu_position'   => 4,
+        'menu_icon'       => 'dashicons-media-video',
+        'hierarchical'    => false,
+        'supports'        => ['title', 'editor', 'thumbnail', 'author'],
+        'taxonomies'      => ['category'],
+        'has_archive'     => true,
+        'rewrite'         => true,
+        'query_var'       => true,
         'capability_type' => 'webinar',
-        'map_meta_cap' => true,
+        'map_meta_cap'    => true,
     ]);
 }
 

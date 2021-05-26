@@ -4,7 +4,7 @@ function register_vacancy_post_type()
 {
     register_post_type('vacancy', [
         'label' => null,
-        'labels' => [
+        'labels'          => [
             'name' => 'Вакансия',
             'singular_name' => 'Вакансия',
             'add_new' => 'Добавить вакансию',
@@ -20,21 +20,21 @@ function register_vacancy_post_type()
             'archives' => 'Вакансии',
             'back_link' => 'вакансий',
         ],
-        'description' => '',
-        'public' => true,
-        'show_in_menu' => null,
-        'show_in_rest' => true,
-        'rest_base' => null,
-        'menu_position' => 4,
-        'menu_icon' => 'dashicons-portfolio',
-        'hierarchical' => false,
-        'supports' => ['title', 'thumbnail', 'editor'],
-        'taxonomies' => ['category'],
-        'has_archive' => 'vacancies',
-        'rewrite' => true,
-        'query_var' => true,
+        'description'     => '',
+        'public'          => true,
+        'show_in_menu'    => null,
+        'show_in_rest'    => true,
+        'rest_base'       => null,
+        'menu_position'   => 4,
+        'menu_icon'       => 'dashicons-portfolio',
+        'hierarchical'    => false,
+        'supports'        => ['title', 'thumbnail', 'editor'],
+        'taxonomies'      => ['category'],
+        'has_archive'     => true,
+        'rewrite'         => true,
+        'query_var'       => true,
         'capability_type' => array('vacancy', 'vacancies'),
-        'map_meta_cap' => true,
+        'map_meta_cap'    => true,
     ]);
 }
 

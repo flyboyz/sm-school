@@ -4,7 +4,7 @@ function register_course_post_type()
 {
     register_post_type('course', [
         'label' => null,
-        'labels' => [
+        'labels'          => [
             'name' => 'Курс',
             'singular_name' => 'Курс',
             'add_new' => 'Добавить курс',
@@ -19,21 +19,21 @@ function register_course_post_type()
             'menu_name' => 'Курсы',
             'archives' => 'Курсы'
         ],
-        'description' => '',
-        'public' => true,
-        'show_in_menu' => null,
-        'show_in_rest' => true,
-        'rest_base' => null,
-        'menu_position' => 4,
-        'menu_icon' => 'dashicons-media-interactive',
-        'hierarchical' => false,
-        'supports' => ['title', 'editor', 'author'],
-        'taxonomies' => ['category'],
-        'has_archive' => 'courses',
-        'rewrite' => true,
-        'query_var' => true,
+        'description'     => '',
+        'public'          => true,
+        'show_in_menu'    => null,
+        'show_in_rest'    => true,
+        'rest_base'       => null,
+        'menu_position'   => 4,
+        'menu_icon'       => 'dashicons-media-interactive',
+        'hierarchical'    => false,
+        'supports'        => ['title', 'editor', 'author'],
+        'taxonomies'      => ['category'],
+        'has_archive'     => true,
+        'rewrite'         => true,
+        'query_var'       => true,
         'capability_type' => 'course',
-        'map_meta_cap' => true,
+        'map_meta_cap'    => true,
     ]);
 }
 
