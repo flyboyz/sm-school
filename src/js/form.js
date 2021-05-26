@@ -7,9 +7,10 @@ export default () => {
 
     if (sendpulseForms !== null) {
         sendpulseForms.forEach(form => {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
+            form.addEventListener('submit', function (e) {
                 const formData = new FormData(form)
+
+                e.preventDefault();
 
                 form.querySelector('[type="submit"]').setAttribute('disabled', 'disabled');
 
@@ -25,15 +26,19 @@ export default () => {
                         if (data.is_error) {
                             $.fancybox.open(Message('Ошибка отправки', 'Сообщите об этом администратору'));
                         } else {
-                            $.fancybox.close();
-
-                            form.querySelector('[type="submit"]').removeAttribute('disabled');
-                            form.reset();
-
-                            if (form.classList.contains('sendpulse-form')) {
-                                $.fancybox.open(Message('Поздравляем', 'Вы успешно записались на мастер-класс!'));
+                            if (form.hasAttribute('data-form-submit')) {
+                                form.submit();
                             } else {
-                                $.fancybox.open(Message('Успешно', ''));
+                                $.fancybox.close();
+
+                                form.querySelector('[type="submit"]').removeAttribute('disabled');
+                                form.reset();
+
+                                if (form.classList.contains('sendpulse-form')) {
+                                    $.fancybox.open(Message('Поздравляем', 'Вы успешно записались на мастер-класс!'));
+                                } else {
+                                    $.fancybox.open(Message('Успешно', ''));
+                                }
                             }
                         }
                     });

@@ -35,10 +35,12 @@ function add_to_address_book()
     $email = (string)$_POST['email'];
 
     $acceptedVariablesKeys = [
-        'имя',      // Имя
-        'web',      // Время мероприятия | 20:00 -> 20
-        'pay',      // Оплата, по умолчанию - 0
-        'date_mk'   // Дата мероприятия | 15 ноября в 15:00
+        'name',       // Имя пользователя
+        'web',        // Время мероприятия | 20:00 -> 20
+        'pay',        // Оплата, по умолчанию - 0
+        'date_mk',    // Дата мероприятия | 15 ноября в 15:00
+        'event_type', // Тип мероприятия
+        'event_name', // Название мероприятия
     ];
 
     if (is_null($email) || is_null($book_id)) {
@@ -58,6 +60,11 @@ function add_to_address_book()
     // Добавление разрешенных переменных
     foreach ($_POST as $key => $value) {
         if (in_array($key, $acceptedVariablesKeys)) {
+            // Заполнение стандартного поля SendPulse
+            if ($key === 'name') {
+                $key = 'имя';
+            }
+
             $variables[$key] = $value;
         }
     }
