@@ -31,11 +31,11 @@ function add_theme_scripts()
     }
 
     wp_localize_script('main', 'backend_data', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'posts' => json_encode($wp_query->query_vars),
+        'ajaxurl'      => admin_url('admin-ajax.php'),
+        'posts'        => json_encode($wp_query->query_vars),
         'current_page' => get_query_var('paged') ? get_query_var('paged') : 1,
-        'max_page' => $wp_query->max_num_pages,
-        'info' => $wp_query
+        'max_page'     => $wp_query->max_num_pages,
+        'info'         => $wp_query
     ));
 }
 
@@ -59,10 +59,10 @@ add_action('after_setup_theme', function () {
 function register_menus()
 {
     register_nav_menus([
-        'header' => 'Header Menu',
-        'sidebar' => 'Sidebar Menu',
+        'header'        => 'Header Menu',
+        'sidebar'       => 'Sidebar Menu',
         'footer_second' => 'Second footer Menu',
-        'footer_third' => 'Third footer Menu',
+        'footer_third'  => 'Third footer Menu',
     ]);
 }
 
@@ -115,10 +115,10 @@ function get_social_link($social_name)
     $post_title = get_the_title();
 
     $share_links = [
-        'vk' => "https://vk.com/share.php?url=$post_link",
+        'vk'       => "https://vk.com/share.php?url=$post_link",
         'facebook' => "https://www.facebook.com/sharer/sharer.php?u=$post_link",
-        'twitter' => "https://twitter.com/intent/tweet?url=$post_link&text=$post_title",
-        'ok' => "https://connect.ok.ru/offer?url=$post_link&title=$post_title&imageUrl=" . get_the_post_thumbnail_url('large'),
+        'twitter'  => "https://twitter.com/intent/tweet?url=$post_link&text=$post_title",
+        'ok'       => "https://connect.ok.ru/offer?url=$post_link&title=$post_title&imageUrl=" . get_the_post_thumbnail_url('large'),
         'linkedin' => "https://www.linkedin.com/shareArticle?mini=true&url=$post_link&title=$post_title&source=LinkedIn",
     ];
 
@@ -220,8 +220,36 @@ function wp_query_update($query): WP_Query
 
     // Apply filters
     if (!is_admin() && $query->is_main_query() && !empty($_GET)) {
-        if (isset($_GET['author']) && $_GET['author'] !== 'all') {
-            $query->set('author_name', $_GET['author']);
+        if (isset($_GET['author']) && $_GET['author'] !== '') {
+
+            $author = get_user_by('slug', $_GET['author']);
+
+            if (!$author) {
+                global $wp_query;
+
+                $wp_query->set_404();
+                status_header(404);
+            }
+
+            $posts_by_author = get_posts(array(
+                'posts_per_page' => -1,
+                'post_type'      => $query->get('post_type'),
+                'author'         => $author->ID,
+                'fields'         => 'ids'
+            ));
+
+            $posts_by_coauthor = get_posts(array(
+                'posts_per_page' => -1,
+                'post_type'      => $query->get('post_type'),
+                'meta_query'     => [[
+                    'key'     => 'co-authors',
+                    'value'   => $author->ID,
+                    'compare' => 'LIKE',
+                ]],
+                'fields'         => 'ids'
+            ));
+
+            $query->set('post__in', array_merge($posts_by_author, $posts_by_coauthor));
         }
     }
 

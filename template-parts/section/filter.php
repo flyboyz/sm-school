@@ -3,8 +3,15 @@
 global $wp;
 global $wp_query;
 
-$teachers = get_users([
-    'role' => 'author',
+$roles = array('author');
+$post_type = get_post_type();
+
+if ($post_type !== 'post') {
+    array_push($roles, "{$post_type}_author", 'coauthor');
+}
+
+$authors = get_users([
+    'role__in' => $roles,
 ]);
 
 $filtered_author = '';
@@ -20,13 +27,13 @@ foreach ($wp_query->query as $name => $value) {
     <select name="author" id="authorSelect">
         <option value="">Все авторы</option>
         <?php
-        foreach ($teachers as $teacher):
-            if (count_user_posts($teacher->ID, get_post_type())): ?>
+        foreach ($authors as $author):
+            if ($post_type !== 'post' || count_user_posts($author->ID, get_post_type(), true)): ?>
                 <option value="<?php
-                echo $teacher->user_nicename; ?>"
+                echo $author->user_nicename; ?>"
                     <?php
-                    echo $teacher->user_nicename === $filtered_author ? 'selected' : ''; ?>><?php
-                    echo $teacher->data->display_name; ?></option>
+                    echo $author->user_nicename === $filtered_author ? 'selected' : ''; ?>><?php
+                    echo $author->data->display_name; ?></option>
             <?php
             endif;
         endforeach; ?>
