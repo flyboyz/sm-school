@@ -42,6 +42,45 @@
     }
   }
 
+  &_post {
+    padding: 18px 18px 14px;
+    box-shadow: 0 0 0 @orange inset;
+    transition: .75s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 -480px 0 @orange inset;
+
+      .card__panel img {
+        transform: scale(1.03);
+      }
+    }
+
+    .card__panel {
+      padding: 0;
+
+      img {
+        transition: .2s ease-in-out;
+      }
+    }
+
+    .card__category {
+      left: 12px !important;
+      top: auto !important;
+      bottom: 12px;
+      font-size: 14px;
+      border-radius: 4px;
+
+      @media @m--less {
+        font-size: 16px;
+      }
+    }
+
+    .card__title {
+      margin-top: 14px;
+      font-size: 16px;
+    }
+  }
+
   &__panel {
     position: relative;
     display: flex;
@@ -111,10 +150,11 @@
   }
 
   &__category {
-    padding: 5px 11px;
-    font-size: 17px;
-    border-radius: 7px;
+    padding: 4px 7px;
+    font-size: 16px;
+    border-radius: 4px;
     background-color: white;
+    opacity: .95;
 
     .ratio & {
       position: absolute;

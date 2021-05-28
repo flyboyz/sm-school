@@ -1,5 +1,5 @@
-<a href="<?= get_post_permalink() ?>" class="card card_border">
-    <div class="card__panel ratio ratio_4x3">
+<a href="<?= get_post_permalink() ?>" class="card card_post card_border">
+    <div class="card__panel ratio ratio_16x9">
         <div class="ratio__content">
             <?php
             the_post_thumbnail('large') ?>
