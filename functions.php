@@ -128,10 +128,9 @@ function get_social_link($social_name)
 
 function my_class_names($classes)
 {
-    global $wp_query;
-    $filters_name = ['author'];
+    $filters_name = ['author', 'category'];
 
-    foreach ($wp_query->query as $name => $value) {
+    foreach ($_GET as $name => $value) {
         if (in_array($name, $filters_name)) {
             $classes[] = 'page-filters-active';
 
@@ -250,6 +249,10 @@ function wp_query_update($query): WP_Query
             ));
 
             $query->set('post__in', array_merge($posts_by_author, $posts_by_coauthor));
+        }
+
+        if (isset($_GET['category']) && $_GET['category'] !== '') {
+            $query->set('category_name', $_GET['category']);
         }
     }
 
