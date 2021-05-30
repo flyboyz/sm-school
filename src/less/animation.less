@@ -72,6 +72,20 @@ body {
     width: 700px;
     left: -158px;
     z-index: 1;
+
+    @media @l--less {
+      left: calc(50% - 609px);
+    }
+
+    @media @m--less {
+      width: 600px;
+      left: -72px;
+    }
+
+    @media @s--less {
+      width: 360px;
+      left: -48px
+    }
   }
 }
 

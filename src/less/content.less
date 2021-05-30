@@ -232,21 +232,38 @@ main {
 }
 
 .front-page-label {
-  position: absolute;
-  display: inline-grid;
-  padding: 0 52px;
-  left: calc(50% - 550px);
-  top: 100px;
+  position: relative;
+  display: inline-flex;
+  height: 224px;
+  width: 372px;
+  top: 85px;
+  left: -70px;
+  align-items: center;
+  justify-content: center;
   border-radius: 7px;
 
   @media @l--less {
-    left: 80px;
+    left: 0;
+  }
+
+  @media @m--less {
+    position: absolute;
+    left: 78px;
+    top: 72px;
+    height: 192px;
+    width: 322px;
   }
 
   @media @s--less {
-    padding: 0 36px;
-    left: 45px;
-    top: 50px;
+    height: 111px;
+    width: 189px;
+    top: 40px;
+    left: 49px;
+    border-radius: 5px;
+  }
+
+  @media @xs--less {
+    left: 34px;
   }
 
   p {
@@ -258,6 +275,7 @@ main {
     }
 
     @media @s--less {
+      margin: 10px 0;
       font-size: 16px;
     }
 

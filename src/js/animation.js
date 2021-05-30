@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!is_reopening) {
     logo.classList.add('hidden');
 
-    let phoenix_animation = lottieAnimation(phoenix, 'phoenix_full');
+    let phoenix_animation = lottieAnimation(phoenix, 'phoenix');
 
     phoenix_animation.addEventListener('DOMLoaded', () => {
       setTimeout(() => {
