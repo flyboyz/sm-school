@@ -39,17 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     phoenix_animation.addEventListener('complete', () => {
-      let frame_animation = lottieAnimation(light, 'frame_begin');
-
-      frame_animation.addEventListener('complete', () => {
-        lottieAnimation(light, 'frame_loop', true);
-        frame_animation.destroy();
-      });
+      let frame_animation = lottieAnimation(light, 'frame', true);
+      frame_animation.playSegments([657, 935]);
     });
 
     sessionStorage.setItem('reopening', 1);
   } else {
-    lottieAnimation(light, 'frame_loop', true);
+    let frame_animation = lottieAnimation(light, 'frame', true);
+    frame_animation.playSegments([657, 935]);
+    frame_animation.goToAndPlay(657, true);
 
     body.classList.remove('animation-page');
     phoenix_box.remove();
@@ -62,6 +60,6 @@ function lottieAnimation(containerEl, jsonName, loop = 0) {
     renderer: 'svg',
     loop: loop,
     autoplay: true,
-    path: `/wp-content/themes/sm-school/src/animation/${jsonName}.json`,
+    path: `/wp-content/themes/sm-school/src/animation/${jsonName}.json?last`,
   });
 }
