@@ -67,6 +67,14 @@ body {
   left: 0;
   right: 0;
 
+  body.admin-bar & {
+    top: 32px;
+
+    @media screen and (max-width: 782px) {
+      top: 46px;
+    }
+  }
+
   .light {
     position: relative;
     width: 700px;
