@@ -8,19 +8,23 @@ use Sendpulse\RestApi\Storage\SessionStorage;
  */
 function acf_load_list_address_books($field)
 {
-    $SPApiClient = new ApiClient(API_USER_ID, API_SECRET, new SessionStorage());
-    $list = $SPApiClient->listAddressBooks();
+    $post_types = array('course', 'webinar');
 
-    $field['choices'] = [];
-    if (is_array($list)) {
-        foreach ($list as $book) {
-            if ($book->status === 0) {
-                $field['choices'][$book->id] = $book->name;
+    if (is_admin() && in_array(get_current_screen()->post_type, $post_types)) {
+        $SPApiClient = new ApiClient(API_USER_ID, API_SECRET, new SessionStorage());
+        $list = $SPApiClient->listAddressBooks();
+
+        $field['choices'] = [];
+        if (is_array($list)) {
+            foreach ($list as $book) {
+                if ($book->status === 0) {
+                    $field['choices'][$book->id] = $book->name;
+                }
             }
         }
     }
 
-    return $field ?? [];
+    return $field ?? array();
 }
 
 add_filter('acf/load_field/name=list_address_books', 'acf_load_list_address_books');

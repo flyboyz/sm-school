@@ -2,7 +2,8 @@
     <div class="wpforms-container updated-form">
         <form action="https://sm.emdesell.ru/buy/<?= $args['type_group']['emdesell_link'] ?>"
               class="wpforms-form sendpulse-form"
-              method="post" data-double-opt-in="0" data-form-submit>
+              method="post" data-double-opt-in="0" data-form-submit
+              data-reach-goal="<?= $args['type_group']['reach_goal'] ?>">
             <input type="hidden" name="action" value="add_to_address_book">
             <input type="hidden" name="book_id" value="<?= $args['type_group']['list_address_books'] ?>">
             <input type="hidden" name="event_type" value="Покупка">
