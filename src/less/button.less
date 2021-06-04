@@ -10,6 +10,7 @@
   border: none;
   border-radius: 3px;
   outline: none;
+  transition: .15s;
 
   //@media @s--less {
   //  padding: 12px 22px;
@@ -43,9 +44,25 @@
   }
 
   &[disabled] {
+    cursor: progress;
     background-color: darkgray;
     border-color: lightgray;
     box-shadow: none;
+  }
+
+  &.progress-btn {
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 0;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, .35);
+      animation: progress-btn 7s ease 0s;
+    }
   }
 }
 
@@ -165,5 +182,29 @@
       height: 30px;
       fill: white;
     }
+  }
+}
+
+@keyframes progress-btn {
+  5% {
+    width: 0;
+  }
+  10% {
+    width: 15%;
+  }
+  30% {
+    width: 40%;
+  }
+  50% {
+    width: 55%;
+  }
+  80% {
+    width: 100%;
+  }
+  95% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
   }
 }
