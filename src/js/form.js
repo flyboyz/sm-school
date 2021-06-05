@@ -48,6 +48,17 @@ export default () => {
       })
     })
   }
+
+  document.getElementById('wpforms-form-387').addEventListener('submit', function () {
+    const feedback = document.querySelector('.feedback__item_moderate')
+
+    feedback.querySelector('.dialog__author span').innerHTML = this.querySelector('[type="text"]').value
+    feedback.querySelector('.dialog__text').innerHTML = this.querySelector('textarea').value
+
+    setTimeout(() => {
+      feedback.classList.add('active')
+    }, 1400)
+  })
 }
 
 function checkAndReachGoal (goalName) {

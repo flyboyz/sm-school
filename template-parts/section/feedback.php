@@ -10,7 +10,7 @@ if (!empty($feedback)):
             <h2>Отзывы</h2>
             <div class="feedback">
                 <?php
-                foreach ($feedback as $item): ?>
+                foreach ( $feedback as $item ): ?>
                     <div class="dialog feedback__item">
                         <div class="dialog__author">
                             <img src="<?= get_template_directory_uri() ?>/images/icons/fb-photo.png" alt="icon">
@@ -20,10 +20,17 @@ if (!empty($feedback)):
                     </div>
                 <?php
                 endforeach ?>
+                <div class="dialog feedback__item feedback__item_moderate">
+                    <div class="dialog__author">
+                        <img src="<?= get_template_directory_uri() ?>/images/icons/fb-photo.png" alt="icon">
+                        <span></span>
+                    </div>
+                    <div class="dialog__text"></div>
+                </div>
                 <div class="dialog__form">
                     <p class="title">ОСТАВИТЬ ОТЗЫВ:</p>
-                    <?php
-                    echo do_shortcode("[wpforms id=$wpformsID]") ?>
+		            <?php
+		            echo do_shortcode( "[wpforms id=$wpformsID]" ) ?>
                 </div>
             </div>
         </div>
