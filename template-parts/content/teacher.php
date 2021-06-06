@@ -27,7 +27,7 @@ $teacher->fields = get_fields('user_' . $teacher->ID);
                 <div class="card__actions">
                     <?php
                     if (count_user_posts($teacher->ID, 'course')): ?>
-                        <a href="/courses?author=<?= $teacher->user_nicename ?>" target="_blank"
+                        <a href="/course?author=<?= $teacher->user_nicename ?>" target="_blank"
                            class="card__link">Курсы</a>
                     <?php
                     endif;
