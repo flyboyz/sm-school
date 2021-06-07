@@ -254,32 +254,24 @@
       flex-wrap: wrap;
       justify-content: center;
 
-      & > div {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+      .course-packages {
+        position: relative;
       }
 
       .course-package {
         position: relative;
         display: flex;
-        padding: 50px 15px 45px;
-        margin: 25px 10px;
-        width: 320px;
-        max-width: 90%;
+        padding: 50px 25px 45px;
+        height: auto;
+        min-height: 520px;
         flex-direction: column;
         align-items: center;
         background-color: @cream-back;
         border-radius: 5px;
+        transition: .25s;
 
-        @media @xl--less {
-          padding: 50px 10px 45px;
-          width: 285px;
-        }
-
-        @media @l--less {
-          padding: 50px 15px 45px;
-          width: 320px;
+        &:not(.swiper-slide-active):not(.swiper-slide-next) {
+          opacity: .25;
         }
       }
 
@@ -300,10 +292,10 @@
         margin: 0;
         font-size: 24px;
         text-align: center;
+        font-weight: 500;
       }
 
       .description {
-        margin: 15px 0 10px;
         width: 100%;
         flex: 1;
         font-size: 16px;
@@ -366,6 +358,44 @@
         @media @s--less {
           width: 70px;
           transform: translate(-102%, 29%) rotate(-25deg);
+        }
+      }
+
+      .swiper-button {
+        &-prev,
+        &-next {
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: .15s;
+          z-index: 11;
+
+          &.swiper-button-disabled {
+            opacity: .35;
+          }
+        }
+
+        &-prev {
+          left: -70px;
+
+          &:hover {
+            left: -75px;
+            padding-right: 5px;
+          }
+
+          img {
+            transform: rotate(180deg);
+          }
+        }
+
+        &-next {
+          right: -70px;
+
+          &:hover {
+            right: -75px;
+            padding-left: 5px;
+          }
         }
       }
     }
