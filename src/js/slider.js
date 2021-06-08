@@ -28,7 +28,6 @@ const attrs = new Map([[
     autoplay: false,
     spaceBetween: 15,
     slidesPerView: 2,
-    initialSlide: 1,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
