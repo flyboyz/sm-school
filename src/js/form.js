@@ -30,7 +30,7 @@ export default () => {
               $.fancybox.open(Message('Ошибка отправки', 'Сообщите об этом администратору'))
             } else {
               if (form.hasAttribute('data-form-submit')) {
-                form.submit()
+                HTMLFormElement.prototype.submit.call(form)
               } else {
                 $.fancybox.close()
 

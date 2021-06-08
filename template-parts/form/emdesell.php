@@ -10,7 +10,8 @@
             <input type="hidden" name="event_name" value="<?= $post->post_title ?>">
             <input type="hidden" name="pay" value="0">
             <input type="hidden" name="payment_system_type" value="robokassa">
-	        <?php
+            <input type="hidden" name="submit">
+            <?php
             if (get_post_type() === 'webinar'): ?>
                 <input type="hidden" name="date_mk"
                        value="<?= wp_maybe_decline_date(get_field('event_date',
