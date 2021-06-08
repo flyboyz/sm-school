@@ -26,13 +26,43 @@ const attrs = new Map([[
   'course-packages',
   {
     autoplay: false,
-    spaceBetween: 120,
+    spaceBetween: 15,
     slidesPerView: 2,
     initialSlide: 1,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
+    breakpoints: {
+      0: {
+        centeredSlides: true,
+        slidesPerView: 1.2,
+        navigation: false,
+      },
+      768: {
+        centeredSlides: true,
+        spaceBetween: 40,
+        slidesPerView: 1.5,
+        navigation: false,
+      },
+      1024: {
+        centeredSlides: true,
+        spaceBetween: 60,
+        navigation: false,
+      },
+      1240: {
+        spaceBetween: 60,
+        allowTouchMove: false,
+      },
+      1440: {
+        spaceBetween: 80,
+        allowTouchMove: false,
+      },
+      1920: {
+        spaceBetween: 100,
+        allowTouchMove: false,
+      }
+    }
   }
 ]])
 
