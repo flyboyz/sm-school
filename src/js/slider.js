@@ -32,6 +32,11 @@ const attrs = new Map([[
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      type: 'bullets',
+    },
     breakpoints: {
       0: {
         centeredSlides: true,
@@ -52,14 +57,17 @@ const attrs = new Map([[
       1240: {
         spaceBetween: 60,
         allowTouchMove: false,
+        pagination: false,
       },
       1440: {
         spaceBetween: 80,
         allowTouchMove: false,
+        pagination: false,
       },
       1920: {
         spaceBetween: 100,
         allowTouchMove: false,
+        pagination: false,
       }
     }
   }

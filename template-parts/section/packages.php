@@ -75,6 +75,7 @@ if (!empty($packages)):
                     <img src="<?php echo get_template_directory_uri() ?>/images/icons/slider-arrow.svg"
                          alt="arrow-next">
                 </div>
+	            <div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
