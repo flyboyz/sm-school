@@ -155,8 +155,12 @@ function get_section( $args ) {
 add_shortcode( 'section', 'get_section' );
 
 
-function get_cost( $value ) {
-	return number_format( $value ?? 0, 0, ',', ' ' ) . ' &#8381;';
+function get_cost( $value ): string {
+	if ( ! $value ) {
+		return 'бесплатно';
+	}
+
+	return number_format( $value, 0, ',', ' ' ) . ' &#8381;';
 }
 
 
