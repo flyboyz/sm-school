@@ -16,13 +16,14 @@ if ( file_exists( get_parent_theme_file_path( 'vendor/autoload.php' ) ) ) {
 function add_theme_scripts() {
 	global $wp_query;
 	$templateUri = get_template_directory_uri();
-	$version     = wp_get_theme()->get( 'Version' );
 
-	wp_enqueue_style( 'main', "$templateUri/css/main.min.css", array(), $version );
-	wp_enqueue_script( 'main', "$templateUri/js/app.min.js", array( 'jquery' ), $version, true );
+	wp_enqueue_style( 'main', "$templateUri/css/main.min.css", array(),
+		filemtime( get_stylesheet_directory() . '/css/main.min.css' ) );
+	wp_enqueue_script( 'main', "$templateUri/js/app.min.js", array( 'jquery' ),
+		filemtime( get_stylesheet_directory() . '/js/app.min.js' ), true );
 
 	if ( is_front_page() ) {
-		wp_enqueue_script( 'animation', "$templateUri/js/animation.min.js", array(), $version );
+		wp_enqueue_script( 'animation', "$templateUri/js/animation.min.js" );
 
 		wp_localize_script( 'animation', 'animation_data', array(
 			'is_mobile' => wp_is_mobile()
