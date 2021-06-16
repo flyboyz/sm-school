@@ -134,10 +134,10 @@
             "layout": "row",
             "sub_fields": [
                 {
-                    "key": "field_607578b07d8ec",
+                    "key": "field_60c99717a7088",
                     "label": "Почта (SendPulse)",
-                    "name": "list_address_books",
-                    "type": "select",
+                    "name": "sendpulse",
+                    "type": "group",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -146,14 +146,50 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": [],
-                    "default_value": false,
-                    "allow_null": 1,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": ""
+                    "layout": "table",
+                    "sub_fields": [
+                        {
+                            "key": "field_607578b07d8ec",
+                            "label": "Адресная книга",
+                            "name": "list_address_books",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": [],
+                            "default_value": false,
+                            "allow_null": 1,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_60c99754a7089",
+                            "label": "Цель Яндекс.Метрики",
+                            "name": "reach_goal",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        }
+                    ]
                 },
                 {
                     "key": "field_607579207d8ed",
@@ -230,5 +266,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1623823662
+    "modified": 1623825014
 }

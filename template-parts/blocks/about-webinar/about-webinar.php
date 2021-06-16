@@ -37,7 +37,7 @@ echo esc_attr( $className ); ?>">
 					<h4><?= get_field( 'socials_title' ) ?></h4>
 					<div class="social-line">
 						<?php
-						if ( $socials['list_address_books'] ):
+						if ( $socials['sendpulse']['list_address_books'] ):
 							$form_key = wp_generate_password( 6, false ); ?>
 							<div class="mini-btn mail" data-fancybox data-src="#Modal_<?= $form_key ?>"
 							     data-options='{"touch" : false}'>
@@ -47,8 +47,11 @@ echo esc_attr( $className ); ?>">
 								<span>Почта</span>
 							</div>
 							<?php
-							get_template_part( 'template-parts/form/sendpulse', '',
-								[ 'key' => $form_key, 'book_id' => $socials['list_address_books'] ] );
+							get_template_part( 'template-parts/form/sendpulse', '', [
+								'key'                => $form_key,
+								'list_address_books' => $socials['sendpulse']['list_address_books'],
+								'reach_goal'         => $socials['sendpulse']['reach_goal'],
+							] );
 						endif;
 						if ( $socials['vk'] ): ?>
 							<a class="mini-btn vk" href="<?= $socials['vk'] ?>" target="_blank">
