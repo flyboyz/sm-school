@@ -259,7 +259,7 @@ function wp_query_update($query): WP_Query
     return $query;
 }
 
-add_action('pre_get_posts', 'wp_query_update');
+//add_action('pre_get_posts', 'wp_query_update');
 
 
 function set_archive_title($title)
