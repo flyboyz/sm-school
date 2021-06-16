@@ -18,6 +18,32 @@
             "display_format": "d\/m\/Y H:i",
             "return_format": "j F в H:i",
             "first_day": 1
+        },
+        {
+            "key": "field_60c9a09796e1b",
+            "label": "Текст",
+            "name": "event_date_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6075ab4740d9a",
+                        "operator": "==empty"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Доступ сразу после регистрации",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -37,5 +63,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1623823422
+    "modified": 1623826758
 }
