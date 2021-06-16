@@ -35,7 +35,6 @@ function scrollListener() {
         })
             .then(response => response.text())
             .then(function (data) {
-                console.log(data);
                 if (data) {
                     if (data[data.length - 1] === '0')
                         data = data.substring(0, data.length - 1);
