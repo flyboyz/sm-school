@@ -1,0 +1,43 @@
+{
+    "key": "group_608a35e1106fa",
+    "title": "Видимость",
+    "fields": [
+        {
+            "key": "field_608a35f32c65e",
+            "label": "Видимость страницы",
+            "name": "visibility",
+            "type": "true_false",
+            "instructions": "Не забудьте изменить настройки Yoast",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "видно всем",
+            "ui_off_text": "по ссылке"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "course"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1623823435
+}
