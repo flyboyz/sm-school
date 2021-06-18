@@ -6,24 +6,34 @@ global $wp_query;
 $roles = array('author');
 $post_type = get_post_type();
 
-$filtered = array();
-$filters_name = array('author', 'category');
+$filtered     = array();
+$filters_name = array( 'author', 'category' );
 
-if (!is_home()) {
-    array_push($roles, "{$post_type}_author", 'coauthor');
+if ( ! is_home() ) {
+	array_push( $roles, "{$post_type}_author", 'coauthor' );
 }
 
-$authors = get_users(array(
-    'role__in' => $roles,
-));
+$authors = get_users( array(
+	'role__in' => $roles,
+) );
 
-$categories = get_categories(array(
-    'type' => 'course',
-    'hide_empty' > true,
-));
+//SELECT terms.name
+//FROM wp_terms as terms
+//         LEFT JOIN wp_term_relationships as relationships ON terms.term_id = relationships.term_taxonomy_id
+//         LEFT JOIN wp_posts as posts ON relationships.object_id = posts.ID
+//         LEFT JOIN wp_postmeta as postmeta ON posts.ID = postmeta.post_id
+//WHERE terms.slug = 'finansy'
+//      AND posts.post_status = 'publish'
+//          AND postmeta.meta_key = 'visibility'
+//              AND postmeta.meta_value = 1;
 
-foreach ($filters_name as $name) {
-    $filtered[$name] = $_GET[$name];
+$categories = get_categories( array(
+	'type' => 'course',
+	'hide_empty' > true,
+) );
+
+foreach ( $filters_name as $name ) {
+	$filtered[ $name ] = $_GET[ $name ];
 }
 ?>
 <form action="" method="get" id="filterForm">
