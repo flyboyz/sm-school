@@ -4,13 +4,18 @@ language_attributes(); ?>>
 <head>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript"> (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () {
-                (m[i].a = m[i].a || []).push(arguments)
-            };
-            m[i].l = 1 * new Date();
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-        ym(80102551, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true}); </script>
+        m[i] = m[i] || function () {
+          (m[i].a = m[i].a || []).push(arguments)
+        }
+        m[i].l = 1 * new Date()
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+      ym(80102551, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true
+      }) </script>
     <!-- /Yandex.Metrika counter -->
     <meta charset="<?php
 	bloginfo( 'charset' ); ?>"/>
@@ -30,12 +35,13 @@ language_attributes(); ?>>
 body_class(); ?>>
 <!-- Yandex.Metrika counter -->
 <noscript>
-    <div><img src="https://mc.yandex.ru/watch/80102551" style="position:absolute; left:-9999px;" alt=""/></div>
+    <div><img src="https://mc.yandex.ru/watch/80102551"
+              style="position:absolute; left:-9999px;" alt=""/></div>
 </noscript>
 <!-- /Yandex.Metrika counter -->
 <?php
 wp_body_open();
-if ( get_page_template_slug() === 'template-parts/products-list.php' ) {
+if ( get_page_template_slug() === 'template-parts/products-list.php' || isset( $_GET['no_header'] ) ) {
 	get_template_part( 'template-parts/header', 'landing' );
 } else {
 	get_template_part( 'template-parts/header', 'standard' );
