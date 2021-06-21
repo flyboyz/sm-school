@@ -354,7 +354,7 @@ FROM {$wpdb->base_prefix}posts as posts
 WHERE posts.post_status = 'publish'
   AND posts.post_type = 'post'
   AND tax.taxonomy = 'category'
-  AND IF(postsmeta.meta_key = 'visibility', postsmeta.meta_value != 0, 1)";
+  AND IF(postsmeta.meta_key = 'visibility', postsmeta.meta_value = 1, 1)";
 
 	return $wpdb->get_results( $wpdb->prepare( $query ) );
 }
