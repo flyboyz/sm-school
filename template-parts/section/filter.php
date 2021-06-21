@@ -21,10 +21,7 @@ if ( $filtered['author'] ) {
 
 	$categories = get_categories_by_author( $author->ID );
 } else {
-	$categories = get_categories( [
-		'type' => 'course',
-		'hide_empty' > true,
-	] );
+	$categories = get_categories_with_posts( $post_type );
 }
 
 

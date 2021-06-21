@@ -347,6 +347,23 @@ WHERE posts.post_status = 'publish'
 	return $wpdb->get_results( $wpdb->prepare( $query ) );
 }
 
+function get_categories_with_posts( $post_type ) {
+	global $wpdb;
+
+	$query = "SELECT DISTINCT(terms.slug), terms.name
+FROM {$wpdb->base_prefix}posts as posts
+         LEFT JOIN {$wpdb->base_prefix}term_relationships as relationships ON posts.ID = relationships.object_ID
+         LEFT JOIN {$wpdb->base_prefix}term_taxonomy as tax ON relationships.term_taxonomy_id = tax.term_taxonomy_id
+         LEFT JOIN {$wpdb->base_prefix}terms as terms ON tax.term_id = terms.term_id
+         LEFT JOIN {$wpdb->base_prefix}postmeta as postsmeta ON posts.ID = postsmeta.post_id
+WHERE posts.post_status = 'publish'
+  AND postsmeta.meta_key = 'visibility'
+  AND postsmeta.meta_value = 1
+  AND tax.taxonomy = 'category'";
+
+	return $wpdb->get_results( $wpdb->prepare( $query ) );
+}
+
 
 function get_authors_by_category( $category_id ) {
 	global $wpdb;
