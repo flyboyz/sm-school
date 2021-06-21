@@ -337,12 +337,32 @@ WHERE posts.post_status = 'publish'
   AND tax.taxonomy = 'category'
 #         AND terms.term_id = 9
   AND (
-        users.ID = '$author_id'
+        users.ID = {$author_id}
         OR (
                 postsmeta.meta_key = 'co-authors' AND
-                postsmeta.meta_value LIKE CONCAT('%\"', $author_id ,'\"%')
+                postsmeta.meta_value LIKE CONCAT('%\"{$author_id}\"%')
            )
     )";
+
+	return $wpdb->get_results( $wpdb->prepare( $query ) );
+}
+
+
+function get_authors_by_category( $category_id ) {
+	global $wpdb;
+
+	$query = "SELECT DISTINCT(posts.post_author) as id, postmeta2.meta_value as coauthors
+FROM {$wpdb->base_prefix}terms as terms
+         LEFT JOIN {$wpdb->base_prefix}term_relationships as relationships ON terms.term_id = relationships.term_taxonomy_id
+         LEFT JOIN {$wpdb->base_prefix}posts as posts ON relationships.object_id = posts.ID
+         LEFT JOIN {$wpdb->base_prefix}postmeta as postmeta ON posts.ID = postmeta.post_id
+         LEFT JOIN {$wpdb->base_prefix}postmeta as postmeta2 ON posts.ID = postmeta2.post_id
+WHERE terms.term_id = {$category_id}
+  AND posts.post_status = 'publish'
+  AND postmeta.meta_key = 'visibility'
+  AND postmeta.meta_value != 0
+  AND postmeta2.meta_key = 'co-authors'
+  AND postmeta.meta_value != ''";
 
 	return $wpdb->get_results( $wpdb->prepare( $query ) );
 }
