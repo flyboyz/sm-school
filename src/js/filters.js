@@ -11,8 +11,10 @@ export default () => {
             body.classList.toggle('page-filters-active');
         })
 
-        document.getElementById('authorSelect').addEventListener('change', () => {
-            form.submit();
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', () => {
+                form.submit();
+            })
         })
     }
 }
