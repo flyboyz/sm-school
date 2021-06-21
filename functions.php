@@ -17,26 +17,26 @@ function add_theme_scripts() {
 	global $wp_query;
 	$templateUri = get_template_directory_uri();
 
-	wp_enqueue_style( 'main', "$templateUri/css/main.min.css", array(),
+	wp_enqueue_style( 'main', "$templateUri/css/main.min.css", [],
 		filemtime( get_stylesheet_directory() . '/css/main.min.css' ) );
-	wp_enqueue_script( 'main', "$templateUri/js/app.min.js", array( 'jquery' ),
+	wp_enqueue_script( 'main', "$templateUri/js/app.min.js", [ 'jquery' ],
 		filemtime( get_stylesheet_directory() . '/js/app.min.js' ), true );
 
 	if ( is_front_page() ) {
 		wp_enqueue_script( 'animation', "$templateUri/js/animation.min.js" );
 
-		wp_localize_script( 'animation', 'animation_data', array(
-			'is_mobile' => wp_is_mobile()
-		) );
+		wp_localize_script( 'animation', 'animation_data', [
+			'is_mobile' => wp_is_mobile(),
+		] );
 	}
 
-	wp_localize_script( 'main', 'backend_data', array(
+	wp_localize_script( 'main', 'backend_data', [
 		'ajaxurl'      => admin_url( 'admin-ajax.php' ),
 		'posts'        => json_encode( $wp_query->query_vars ),
 		'current_page' => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
 		'max_page'     => $wp_query->max_num_pages,
-		'info'         => $wp_query
-	) );
+		'info'         => $wp_query,
+	] );
 }
 
 add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
@@ -87,7 +87,8 @@ function true_load_posts() {
 
 		$i ++;
 		$posts->the_post();
-		get_template_part( "template-parts/content/$post_type", '', [ 'post_num' => $i ] );
+		get_template_part( "template-parts/content/$post_type", '',
+			[ 'post_num' => $i ] );
 
 		if ( $i === 6 || $i % 6 === 0 ) {
 			echo '</div>';
@@ -137,7 +138,7 @@ function my_class_names( $classes ) {
 	if ( is_front_page() ) {
 		$device = wp_is_mobile() ? 'mobile' : 'desktop';
 
-		return array_merge( $classes, array( 'animation-page', $device ) );
+		return array_merge( $classes, [ 'animation-page', $device ] );
 	}
 
 	return $classes;
@@ -166,7 +167,8 @@ function get_cost( $value ): string {
 
 
 function wrap_surname( $name ) {
-	return substr_replace( $name, ' <span>', strpos( $name, ' ' ), 1 ) . '</span>';
+	return substr_replace( $name, ' <span>', strpos( $name, ' ' ),
+			1 ) . '</span>';
 }
 
 add_filter( 'wrap_surname', 'wrap_surname', 10, 1 );
@@ -278,7 +280,8 @@ function wpseo_postdata_update( $post_id ) {
 	if ( $post->post_type === 'course' ) {
 		add_action( 'wpseo_saved_postdata', function () use ( $post_id ) {
 			$value = get_field( 'visibility', $post_id ) === false ? '1' : '0';
-			update_post_meta( $post_id, '_yoast_wpseo_meta-robots-noindex', $value );
+			update_post_meta( $post_id, '_yoast_wpseo_meta-robots-noindex',
+				$value );
 		} );
 	}
 }
@@ -288,7 +291,8 @@ add_filter( 'save_post', 'wpseo_postdata_update' );
 
 function filter( $post_type ): string {
 	ob_start();
-	get_template_part( 'template-parts/section/filter', '', array( 'post_type' => $post_type ) );
+	get_template_part( 'template-parts/section/filter', '',
+		[ 'post_type' => $post_type ] );
 
 	return ob_get_clean();
 }
@@ -309,26 +313,6 @@ require get_parent_theme_file_path( '/inc/type-project.php' );
 require get_parent_theme_file_path( '/inc/type-vacancy.php' );
 require get_parent_theme_file_path( '/inc/type-product.php' );
 require get_parent_theme_file_path( '/inc/sendpulse.php' );
-
-
-function add_reply_email( $emails ) {
-	$emails->__set( 'reply_to', 'flyslam@yandex.ru' );
-
-	return $emails;
-}
-
-add_filter( 'wpforms_entry_email_before_send', 'add_reply_email' );
-
-
-function filter( $post_type ): string {
-	ob_start();
-	get_template_part( 'template-parts/section/filter', '',
-		[ 'post_type' => $post_type ] );
-
-	return ob_get_clean();
-}
-
-add_shortcode( 'filter', 'filter' );
 
 
 function get_categories_by_author( $author_id ) {
