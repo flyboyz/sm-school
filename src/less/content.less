@@ -215,6 +215,29 @@ main {
       align-items: center;
       font-size: 16px;
     }
+
+    .filter-line {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > * {
+        order: 1;
+      }
+    }
+
+    .filtered {
+      display: inline-flex;
+      padding: 7px 16px;
+      height: 40px;
+      align-items: center;
+      background-color: @orange;
+      order: 0;
+
+      span {
+        margin-left: 5px;
+        font-weight: 600;
+      }
+    }
   }
 
   #load-more {
