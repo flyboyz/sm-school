@@ -13,11 +13,12 @@ export default () => {
       })
 
       $(policyLinks).fancybox({
+        smallBtn: true,
         iframe: {
           css: {
             width: '900px',
             height: '640px',
-            maxWidth: '80%',
+            maxWidth: '90%',
             maxHeight: '90%',
             margin: 0,
           }
