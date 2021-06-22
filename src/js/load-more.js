@@ -23,12 +23,12 @@ function scrollListener() {
 
         const data = new FormData()
 
-        data.append('action', 'loadmore');
-        data.append('query', backend_data.posts);
+        data.append('action', 'load_more')
+        data.append('query', backend_data.posts)
         data.append('page', backend_data.current_page);
         data.append('post_type', loadMoreElement.getAttribute('data-type'));
 
-        fetch(backend_data.ajaxurl, {
+        fetch(backend_data.ajax_url, {
             method: 'POST',
             credentials: 'same-origin',
             body: data,

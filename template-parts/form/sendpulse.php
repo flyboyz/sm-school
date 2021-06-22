@@ -14,19 +14,17 @@
 			<?php
 			endif; ?>
 			<?= do_shortcode( '[utm_inputs]' ) ?>
-            <div class="wpforms-field">
-                <input type="text" name="name" class="wpforms-field-large" placeholder="Имя" required>
-            </div>
-            <div class="wpforms-field">
-                <input type="email" name="email" class="wpforms-field-large" placeholder="Email" required>
-            </div>
-            <button type="submit" class="button button_lighting">Записаться</button>
-        </form>
-        <div class="modal__sub">
-            Отправляя заявку, вы принимаете условия
-            <a href="/offer/" target="_blank">договора-оферты</a>
-            и даете согласие на обработку своих персональных данных в соответствии с
-            <a href="https://sm.emdesell.ru/get-privacy-policy" target="_blank">политикой конфиденциальности</a>.
-        </div>
-    </div>
+			<div class="wpforms-field">
+				<input type="text" name="name" class="wpforms-field-large" placeholder="Имя" required>
+			</div>
+			<div class="wpforms-field">
+				<input type="email" name="email" class="wpforms-field-large" placeholder="Email" required>
+			</div>
+			<button type="submit" class="button button_lighting">Записаться</button>
+		</form>
+		<div class="modal__sub">
+			Отправляя заявку, вы даете согласие на обработку своих персональных данных в соответствии с
+			<a href="/policy/" target="_blank">политикой конфиденциальности</a>.
+		</div>
+	</div>
 </div>

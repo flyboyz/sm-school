@@ -15,7 +15,7 @@ export default () => {
         form.querySelector('[type="submit"]').setAttribute('disabled', 'disabled')
         form.querySelector('[type="submit"]').classList.add('progress-btn')
 
-        fetch(backend_data.ajaxurl, {
+        fetch(backend_data.ajax_url, {
           method: 'POST',
           credentials: 'same-origin',
           body: formData,

@@ -3,7 +3,7 @@
 define('ALLOWED_FRONTPAGE_SCRIPTS', array('main', 'animation'));
 define('ALLOWED_FRONTPAGE_STYLES', array('main', 'wp-block-library'));
 
-define('CHANGED_PLUGINS', array('advanced-custom-fields-pro', 'shmapper'));
+define( 'CHANGED_PLUGINS', array( 'advanced-custom-fields-pro' ) );
 
 /**
  * Disable update changed plugins
@@ -151,12 +151,102 @@ function unregister_taxonomy_post_tag()
 add_action('init', 'unregister_taxonomy_post_tag');
 
 
-function youtube_disable_rel($content)
-{
-    $re = '/(src=".*?youtube\.com.*?\?feature=oembed)"/m';
-    $subst = '$1&rel=0"';
+function youtube_disable_rel( $content ) {
+	$re    = '/(src=".*?youtube\.com.*?\?feature=oembed)"/m';
+	$subst = '$1&rel=0"';
 
-    return preg_replace($re, $subst, $content);
+	return preg_replace( $re, $subst, $content );
 }
 
-add_filter('the_content', 'youtube_disable_rel');
+add_filter( 'the_content', 'youtube_disable_rel' );
+
+
+function change_archive_title( $title ) {
+	global $wp_query;
+
+	if ( isset( $wp_query->query_vars['post_type'] ) ) {
+		$title = get_post_type_labels( get_post_type_object( $wp_query->query_vars['post_type'] ) )->archives;
+	}
+
+	return $title;
+}
+
+add_action( 'get_the_archive_title', 'change_archive_title' );
+
+
+/**
+ * Filter main WP Query
+ *
+ * @param $query
+ *
+ * @return WP_Query
+ */
+function wp_query_update( $query ): WP_Query {
+	/* @var $query WP_Query */
+
+	// Remove hidden courses
+	if ( ! is_admin() && $query->is_main_query() && ! is_single() && isset( $query->query_vars['post_type'] ) && $query->query_vars['post_type'] === 'course' ) {
+		$query->set( 'meta_key', 'visibility' );
+		$query->set( 'meta_value', 1 );
+	}
+
+	// Apply filters
+	if ( ! is_admin() && $query->is_main_query() && ! empty( $_GET ) ) {
+		if ( isset( $_GET['author'] ) && $_GET['author'] !== '' ) {
+			$author = get_user_by( 'slug', $_GET['author'] );
+
+			if ( ! $author ) {
+				global $wp_query;
+
+				$wp_query->set_404();
+				status_header( 404 );
+			}
+
+			$posts_by_author = get_posts( [
+				'posts_per_page' => - 1,
+				'post_type'      => $query->get( 'post_type' ),
+				'author'         => $author->ID,
+				'fields'         => 'ids',
+			] );
+
+			$posts_by_coauthor = get_posts( [
+				'posts_per_page' => - 1,
+				'post_type'      => $query->get( 'post_type' ),
+				'meta_query'     => [
+					[
+						'key'     => 'co-authors',
+						'value'   => $author->ID,
+						'compare' => 'LIKE',
+					],
+				],
+				'fields'         => 'ids',
+			] );
+
+			$query->set( 'post__in',
+				array_merge( $posts_by_author, $posts_by_coauthor ) );
+		}
+
+		if ( isset( $_GET['category'] ) && $_GET['category'] !== '' ) {
+			$query->set( 'category_name', $_GET['category'] );
+		}
+	}
+
+	return $query;
+}
+
+add_action( 'pre_get_posts', 'wp_query_update' );
+
+
+function wpseo_postdata_update( $post_id ) {
+	global $post;
+
+	if ( $post->post_type === 'course' ) {
+		add_action( 'wpseo_saved_postdata', function () use ( $post_id ) {
+			$value = get_field( 'visibility', $post_id ) === false ? '1' : '0';
+			update_post_meta( $post_id, '_yoast_wpseo_meta-robots-noindex',
+				$value );
+		} );
+	}
+}
+
+add_filter( 'save_post', 'wpseo_postdata_update' );

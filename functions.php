@@ -31,11 +31,12 @@ function add_theme_scripts() {
 	}
 
 	wp_localize_script( 'main', 'backend_data', [
-		'ajaxurl'      => admin_url( 'admin-ajax.php' ),
+		'ajax_url'     => admin_url( 'admin-ajax.php' ),
 		'posts'        => json_encode( $wp_query->query_vars ),
 		'current_page' => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
 		'max_page'     => $wp_query->max_num_pages,
 		'info'         => $wp_query,
+		'static_page'  => isset( $_GET['static_page'] )
 	] );
 }
 
@@ -68,7 +69,43 @@ function register_menus() {
 add_action( 'init', 'register_menus' );
 
 
-function true_load_posts() {
+/**
+ * Add theme body classes
+ *
+ * @param $classes
+ *
+ * @return array
+ */
+function theme_classes( $classes ): array {
+	global $wp_query;
+	$filters_name = [ 'author', 'category' ];
+
+	foreach ( $wp_query->query as $name => $value ) {
+		if ( in_array( $name, $filters_name ) ) {
+			$classes[] = 'page-filters-active';
+		}
+	}
+
+	if ( is_front_page() ) {
+		$device = wp_is_mobile() ? 'mobile' : 'desktop';
+
+		return array_merge( $classes, [ 'animation-page', $device ] );
+	}
+
+	if ( isset( $_GET['static_page'] ) ) {
+		$classes[] = 'static-page';
+	}
+
+	return $classes;
+}
+
+add_filter( 'body_class', 'theme_classes' );
+
+
+/**
+ * Loader for posts
+ */
+function posts_loader() {
 	$post_type = $_POST['post_type'];
 
 	$args                = json_decode( stripslashes( $_POST['query'] ), true );
@@ -98,283 +135,26 @@ function true_load_posts() {
 	die();
 }
 
-add_action( 'wp_ajax_loadmore', 'true_load_posts' );
-add_action( 'wp_ajax_nopriv_loadmore', 'true_load_posts' );
-
-
-function get_the_first_category( $emptyLabel = '' ) {
-	return ! empty( get_the_category() ) ? get_the_category()[0]->cat_name : $emptyLabel;
-}
-
-
-function get_social_link( $social_name ) {
-	$post_link  = urlencode( get_the_permalink() );
-	$post_title = get_the_title();
-
-	$share_links = [
-		'vk'       => "https://vk.com/share.php?url=$post_link",
-		'facebook' => "https://www.facebook.com/sharer/sharer.php?u=$post_link",
-		'twitter'  => "https://twitter.com/intent/tweet?url=$post_link&text=$post_title",
-		'ok'       => "https://connect.ok.ru/offer?url=$post_link&title=$post_title&imageUrl=" . get_the_post_thumbnail_url( 'large' ),
-		'linkedin' => "https://www.linkedin.com/shareArticle?mini=true&url=$post_link&title=$post_title&source=LinkedIn",
-	];
-
-	return $share_links[ $social_name ];
-}
-
-
-function my_class_names( $classes ) {
-	global $wp_query;
-	$filters_name = [ 'author' ];
-
-	foreach ( $wp_query->query as $name => $value ) {
-		if ( in_array( $name, $filters_name ) ) {
-			$classes[] = 'page-filters-active';
-
-			return $classes;
-		}
-	}
-
-	if ( is_front_page() ) {
-		$device = wp_is_mobile() ? 'mobile' : 'desktop';
-
-		return array_merge( $classes, [ 'animation-page', $device ] );
-	}
-
-	return $classes;
-}
-
-add_filter( 'body_class', 'my_class_names' );
-
-
-function get_section( $args ) {
-	ob_start();
-	get_template_part( 'template-parts/section/' . $args['name'], '' );
-
-	return ob_get_clean();
-}
-
-add_shortcode( 'section', 'get_section' );
-
-
-function get_cost( $value ): string {
-	if ( ! $value ) {
-		return 'бесплатно';
-	}
-
-	return number_format( $value, 0, ',', ' ' ) . ' &#8381;';
-}
-
-
-function wrap_surname( $name ) {
-	return substr_replace( $name, ' <span>', strpos( $name, ' ' ),
-			1 ) . '</span>';
-}
-
-add_filter( 'wrap_surname', 'wrap_surname', 10, 1 );
-
-
-function utm_inputs() {
-	$utm_tags = [
-		'utm_source',
-		'utm_medium',
-		'utm_campaign',
-		'utm_content',
-		'utm_term',
-	];
-
-	$html = '';
-	foreach ( $utm_tags as $utm_tag ) {
-		if ( isset( $_GET[ $utm_tag ] ) ) {
-			$html .= "<input type='hidden' name='$utm_tag' value='$_GET[$utm_tag]'>\n";
-		}
-	}
-
-	return $html;
-}
-
-add_shortcode( 'utm_inputs', 'utm_inputs' );
-
-require get_parent_theme_file_path( '/inc/helpers.php' );
+add_action( 'wp_ajax_load_more', 'posts_loader' );
+add_action( 'wp_ajax_nopriv_load_more', 'posts_loader' );
 
 
 /**
- * Filter main WP Query
- *
- * @param $query
- *
- * @return WP_Query
+ * Include other logics
  */
-function wp_query_update( $query ): WP_Query {
-	/* @var $query WP_Query */
+$files = [
+	'helpers',
+	'system-bans',
+	'blocks',
+	'type-course',
+	'type-webinar',
+	'type-project',
+	'type-vacancy',
+	'type-product',
+	'sendpulse',
+	'filter',
+];
 
-	// Remove hidden courses
-	if ( ! is_admin() && $query->is_main_query() && ! is_single() && isset( $query->query_vars['post_type'] ) && $query->query_vars['post_type'] === 'course' ) {
-		$query->set( 'meta_key', 'visibility' );
-		$query->set( 'meta_value', 1 );
-	}
-
-	// Apply filters
-	if ( ! is_admin() && $query->is_main_query() && ! empty( $_GET ) ) {
-		if ( isset( $_GET['author'] ) && $_GET['author'] !== '' ) {
-			$author = get_user_by( 'slug', $_GET['author'] );
-
-			if ( ! $author ) {
-				global $wp_query;
-
-				$wp_query->set_404();
-				status_header( 404 );
-			}
-
-			$posts_by_author = get_posts( [
-				'posts_per_page' => - 1,
-				'post_type'      => $query->get( 'post_type' ),
-				'author'         => $author->ID,
-				'fields'         => 'ids',
-			] );
-
-			$posts_by_coauthor = get_posts( [
-				'posts_per_page' => - 1,
-				'post_type'      => $query->get( 'post_type' ),
-				'meta_query'     => [
-					[
-						'key'     => 'co-authors',
-						'value'   => $author->ID,
-						'compare' => 'LIKE',
-					],
-				],
-				'fields'         => 'ids',
-			] );
-
-			$query->set( 'post__in',
-				array_merge( $posts_by_author, $posts_by_coauthor ) );
-		}
-
-		if ( isset( $_GET['category'] ) && $_GET['category'] !== '' ) {
-			$query->set( 'category_name', $_GET['category'] );
-		}
-	}
-
-	return $query;
-}
-
-add_action( 'pre_get_posts', 'wp_query_update' );
-
-
-function set_archive_title( $title ) {
-	global $wp_query;
-
-	if ( isset( $wp_query->query_vars['post_type'] ) ) {
-		$title = get_post_type_labels( get_post_type_object( $wp_query->query_vars['post_type'] ) )->archives;
-	}
-
-	return $title;
-}
-
-add_action( 'get_the_archive_title', 'set_archive_title' );
-
-
-function wpseo_postdata_update( $post_id ) {
-	global $post;
-
-	if ( $post->post_type === 'course' ) {
-		add_action( 'wpseo_saved_postdata', function () use ( $post_id ) {
-			$value = get_field( 'visibility', $post_id ) === false ? '1' : '0';
-			update_post_meta( $post_id, '_yoast_wpseo_meta-robots-noindex',
-				$value );
-		} );
-	}
-}
-
-add_filter( 'save_post', 'wpseo_postdata_update' );
-
-
-function filter( $post_type ): string {
-	ob_start();
-	get_template_part( 'template-parts/section/filter', '',
-		[ 'post_type' => $post_type ] );
-
-	return ob_get_clean();
-}
-
-add_shortcode( 'filter', 'filter' );
-
-
-/**
- * System reconfiguration
- */
-require get_parent_theme_file_path( '/inc/system-bans.php' );
-
-require get_parent_theme_file_path( '/inc/blocks.php' );
-
-require get_parent_theme_file_path( '/inc/type-course.php' );
-require get_parent_theme_file_path( '/inc/type-webinar.php' );
-require get_parent_theme_file_path( '/inc/type-project.php' );
-require get_parent_theme_file_path( '/inc/type-vacancy.php' );
-require get_parent_theme_file_path( '/inc/type-product.php' );
-require get_parent_theme_file_path( '/inc/sendpulse.php' );
-
-
-function get_categories_by_author( $author_id ) {
-	global $wpdb;
-
-	$query = "SELECT DISTINCT(terms.slug), terms.name
-FROM {$wpdb->base_prefix}posts as posts
-         LEFT JOIN {$wpdb->base_prefix}term_relationships as relationships ON posts.ID = relationships.object_ID
-         LEFT JOIN {$wpdb->base_prefix}term_taxonomy as tax ON relationships.term_taxonomy_id = tax.term_taxonomy_id
-         LEFT JOIN {$wpdb->base_prefix}terms as terms ON tax.term_id = terms.term_id
-         LEFT JOIN {$wpdb->base_prefix}postmeta as postsmeta ON posts.ID = postsmeta.post_id
-         LEFT JOIN {$wpdb->base_prefix}postmeta as postsmeta2 ON posts.ID = postsmeta2.post_id
-         LEFT JOIN {$wpdb->base_prefix}users as users ON posts.post_author = users.ID
-WHERE posts.post_status = 'publish'
-  AND postsmeta2.meta_key = 'visibility'
-  AND postsmeta2.meta_value = 1
-  AND tax.taxonomy = 'category'
-#         AND terms.term_id = 9
-  AND (
-        users.ID = {$author_id}
-        OR (
-                postsmeta.meta_key = 'co-authors' AND
-                postsmeta.meta_value LIKE CONCAT('%\"{$author_id}\"%')
-           )
-    )";
-
-	return $wpdb->get_results( $wpdb->prepare( $query ) );
-}
-
-function get_categories_with_posts( $post_type ) {
-	global $wpdb;
-
-	$query = "SELECT DISTINCT(terms.slug), terms.name
-FROM {$wpdb->base_prefix}posts as posts
-         LEFT JOIN {$wpdb->base_prefix}term_relationships as relationships ON posts.ID = relationships.object_ID
-         LEFT JOIN {$wpdb->base_prefix}term_taxonomy as tax ON relationships.term_taxonomy_id = tax.term_taxonomy_id
-         LEFT JOIN {$wpdb->base_prefix}terms as terms ON tax.term_id = terms.term_id
-         LEFT JOIN {$wpdb->base_prefix}postmeta as postsmeta ON posts.ID = postsmeta.post_id
-WHERE posts.post_status = 'publish'
-  AND posts.post_type = 'post'
-  AND tax.taxonomy = 'category'
-  AND IF(postsmeta.meta_key = 'visibility', postsmeta.meta_value = 1, 1)";
-
-	return $wpdb->get_results( $wpdb->prepare( $query ) );
-}
-
-
-function get_authors_by_category( $category_id ) {
-	global $wpdb;
-
-	$query = "SELECT DISTINCT(posts.post_author) as id, postmeta2.meta_value as coauthors
-FROM {$wpdb->base_prefix}terms as terms
-         LEFT JOIN {$wpdb->base_prefix}term_relationships as relationships ON terms.term_id = relationships.term_taxonomy_id
-         LEFT JOIN {$wpdb->base_prefix}posts as posts ON relationships.object_id = posts.ID
-         LEFT JOIN {$wpdb->base_prefix}postmeta as postmeta ON posts.ID = postmeta.post_id
-         LEFT JOIN {$wpdb->base_prefix}postmeta as postmeta2 ON posts.ID = postmeta2.post_id
-WHERE terms.term_id = {$category_id}
-  AND posts.post_status = 'publish'
-  AND postmeta.meta_key = 'visibility'
-  AND postmeta.meta_value != 0
-  AND postmeta2.meta_key = 'co-authors'
-  AND postmeta.meta_value != ''";
-
-	return $wpdb->get_results( $wpdb->prepare( $query ) );
+foreach ( $files as $file ) {
+	include get_template_directory() . "/inc/$file.php";
 }
