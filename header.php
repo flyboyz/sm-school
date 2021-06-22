@@ -42,7 +42,7 @@ body_class(); ?>>
 <?php
 wp_body_open();
 if ( get_page_template_slug() === 'template-parts/products-list.php' || isset( $_GET['static_page'] ) ) {
-	get_template_part( 'template-parts/header', 'landing' );
+	get_template_part( 'template-parts/header', 'static' );
 } else {
 	get_template_part( 'template-parts/header', 'standard' );
 } ?>
