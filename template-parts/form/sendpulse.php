@@ -1,6 +1,6 @@
 <div id="Modal_<?= $args['key'] ?>" class="modal modal_fixed-width modal_lighting" style="display: none;">
 	<div class="wpforms-container updated-form">
-		<form action="" method="post" class="wpforms-form sendpulse-form" data-double-opt-in="0" data-form-submit
+		<form action="" method="post" class="wpforms-form sendpulse-form" data-double-opt-in="0"
 		      data-reach-goal="<?= $args['reach_goal'] ?>">
 			<input type="hidden" name="action" value="add_to_address_book">
 			<input type="hidden" name="book_id" value="<?= $args['list_address_books'] ?>">

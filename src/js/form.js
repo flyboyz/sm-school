@@ -25,6 +25,7 @@ export default () => {
             let goalName = form.getAttribute('data-reach-goal')
 
             checkAndReachGoal(goalName)
+            form.querySelector('[type="submit"]').classList.remove('progress-btn')
 
             if (data.is_error) {
               $.fancybox.open(Message('Ошибка отправки', 'Сообщите об этом администратору'))
@@ -38,7 +39,7 @@ export default () => {
                 form.reset()
 
                 if (form.classList.contains('sendpulse-form')) {
-                  $.fancybox.open(Message('Поздравляем', 'Вы успешно записались на мастер-класс!'))
+                  $.fancybox.open(Message('Спасибо за регистрацию!', 'Проверьте пожалуйста Вашу почту! Вам должно прийти важное письмо! Если его там нет - проверьте СПАМ. Если его и там нет - возможно Вы не верно ввели адрес своей почты.'))
                 } else {
                   $.fancybox.open(Message('Успешно', ''))
                 }
