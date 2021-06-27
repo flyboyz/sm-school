@@ -15,12 +15,19 @@
 
   .wpforms-form {
     .wpforms-field {
+      position: relative;
+      padding: 10px 0;
+
       @media @s--less {
         padding: 5px 0;
       }
 
       input {
+        display: block;
+        width: 100%;
         max-width: 100%;
+        box-sizing: border-box;
+        float: none;
       }
 
       &.wpforms-field-textarea {
