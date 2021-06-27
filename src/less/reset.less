@@ -45,8 +45,11 @@ img, frame {
 }
 
 a {
-  cursor: pointer;
   outline: none;
+
+  &:not[href] {
+    cursor: pointer;
+  }
 }
 
 .ol-attribution {
