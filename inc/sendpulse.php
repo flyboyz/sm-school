@@ -10,7 +10,10 @@ function acf_load_list_address_books( $field ) {
 	$SPApiClient = new ApiClient( API_USER_ID, API_SECRET, new SessionStorage() );
 	$list        = $SPApiClient->listAddressBooks();
 
-	$field['choices'] = [];
+	$field['choices'] = [
+		'0' => '-- Не отображать кнопку --',
+	];
+
 	if ( is_array( $list ) ) {
 		foreach ( $list as $book ) {
 			if ( $book->status === 0 ) {

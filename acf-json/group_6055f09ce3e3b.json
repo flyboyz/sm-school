@@ -104,17 +104,75 @@
                             "wrapper": {
                                 "width": "",
                                 "class": "",
-                                "id": ""
+                              "id": ""
                             },
-                            "role": "",
-                            "allow_null": 0,
-                            "multiple": 1,
-                            "return_format": "id"
+                          "role": "",
+                          "allow_null": 0,
+                          "multiple": 1,
+                          "return_format": "id"
                         }
                     ]
                 }
             ]
-        }
+        },
+      {
+        "key": "field_60dd71f9f704d",
+        "label": "Записаться (SendPulse)",
+        "name": "sendpulse",
+        "type": "group",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "layout": "table",
+        "sub_fields": [
+          {
+            "key": "field_60dd7220f704e",
+            "label": "Адресная книга",
+            "name": "list_address_books",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "choices": [],
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+          },
+          {
+            "key": "field_60dd7230f704f",
+            "label": "Цель Я.Метрики",
+            "name": "reach_goal",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          }
+        ]
+      }
     ],
     "location": [
         [
@@ -140,5 +198,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1623823433
+  "modified": 1625125444
 }
