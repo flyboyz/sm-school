@@ -48,7 +48,7 @@ FROM {$wpdb->base_prefix}posts as posts
          LEFT JOIN {$wpdb->base_prefix}terms as terms ON tax.term_id = terms.term_id
          LEFT JOIN {$wpdb->base_prefix}postmeta as postsmeta ON posts.ID = postsmeta.post_id
 WHERE posts.post_status = 'publish'
-  AND posts.post_type = 'post'
+  AND posts.post_type = '{$post_type}'
   AND tax.taxonomy = 'category'
   AND IF(postsmeta.meta_key = 'visibility', postsmeta.meta_value = 1, 1)";
 
