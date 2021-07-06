@@ -15,4 +15,3 @@ get_template_part( 'template-parts/section/feedback' );
 get_template_part( 'template-parts/section/faq' );
 
 get_footer();
-get_template_part( 'template-parts/section/chatra' );
