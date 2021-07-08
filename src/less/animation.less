@@ -16,6 +16,7 @@ body {
 
 .phoenix_box {
   position: fixed;
+  width: 1040px;
   top: 0;
   left: 0;
   right: 0;
@@ -24,14 +25,6 @@ body {
   transition: .4s;
   overflow: hidden;
   //background-color: rgba(255, 0, 0, .3);
-
-  body.desktop & {
-    width: 1040px;
-  }
-
-  body.mobile & {
-    width: 800px;
-  }
 
   .phoenix {
     position: relative;
@@ -50,7 +43,8 @@ body {
       @media (orientation: landscape) {
         top: 20px;
         left: 5px;
-        width: 100vh;
+        width: 80%;
+        transform: translateX(-20%);
       }
     }
   }
