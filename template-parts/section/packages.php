@@ -11,7 +11,13 @@ if ( ! empty( $packages ) ):
 					foreach ( $packages as $package_key => $package ):
 						if ( $package['is_active'] ):
 							$package_type = $package['type_group']['type'];
-							$package_cost = get_cost( $package['cost'] ?: 0 );
+
+							if ( has_filter( 'promo_cost' ) ) {
+								$package_cost = apply_filters( 'promo_cost', $package );
+							} else {
+								$package_cost = apply_filters( 'get_cost', $package['cost'] );
+							}
+
 							$package_full_description = $package['description']['full'];
 
 							$details_key = "$package_key-details";

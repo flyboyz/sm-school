@@ -1,0 +1,48 @@
+.promo {
+  position: sticky;
+  padding: 15px 0;
+  top: 0;
+  z-index: 110;
+  background-color: @orange;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .15);
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media @s--less {
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  span {
+    display: flex;
+    margin: 5px 0;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    & > * {
+      margin: 0 5px;
+    }
+  }
+}
+
+.price-old {
+  position: relative;
+  font-size: larger;
+  color: gray;
+
+  &::before {
+    position: absolute;
+    content: "";
+    height: 55%;
+    width: 110%;
+    top: 0;
+    left: -5%;
+    border-bottom: #a20000 solid;
+    transform: rotate(-8deg);
+  }
+}

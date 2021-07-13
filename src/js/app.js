@@ -8,6 +8,7 @@ import formsInit from './form'
 import slider from './slider'
 import sidebar from './sidebar'
 import staticPageChanger from './static-page'
+import promo from './promo'
 
 document.addEventListener('DOMContentLoaded', () => {
   loadMore()
@@ -16,4 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
   slider()
   sidebar()
   staticPageChanger()
+  promo()
 })

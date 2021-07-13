@@ -42,13 +42,15 @@ function page_content_only( $template ) {
 add_filter( 'template_include', 'page_content_only', 99 );
 
 
-function get_cost( $value ): string {
-	if ( ! $value ) {
+function get_cost( $cost ): string {
+	if ( ! $cost ) {
 		return 'бесплатно';
 	}
 
-	return number_format( $value, 0, ',', ' ' ) . ' &#8381;';
+	return number_format( $cost, 0, ',', ' ' ) . ' &#8381;';
 }
+
+add_filter( 'get_cost', 'get_cost' );
 
 
 function wrap_surname( $name ) {

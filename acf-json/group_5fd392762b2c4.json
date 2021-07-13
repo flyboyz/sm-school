@@ -243,6 +243,27 @@
                     "step": ""
                 },
                 {
+                    "key": "field_60ed4627141eb",
+                    "label": "Стоимость со скидкой",
+                    "name": "cost_promo",
+                    "type": "number",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "min": "",
+                    "max": "",
+                    "step": ""
+                },
+                {
                     "key": "field_601ad920ff3a4",
                     "label": "Иконка",
                     "name": "icon",
@@ -286,5 +307,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1623823450
+    "modified": 1626163290
 }

@@ -35,8 +35,8 @@ language_attributes(); ?>>
 body_class(); ?>>
 <!-- Yandex.Metrika counter -->
 <noscript>
-    <div><img src="https://mc.yandex.ru/watch/80102551"
-              style="position:absolute; left:-9999px;" alt=""/></div>
+	<div><img src="https://mc.yandex.ru/watch/80102551"
+	          style="position:absolute; left:-9999px;" alt=""/></div>
 </noscript>
 <!-- /Yandex.Metrika counter -->
 <?php
@@ -45,5 +45,7 @@ if ( get_page_template_slug() === 'template-parts/products-list.php' || isset( $
 	get_template_part( 'template-parts/header', 'static' );
 } else {
 	get_template_part( 'template-parts/header', 'standard' );
-} ?>
+}
+do_action( 'header_banner' );
+?>
 <main>

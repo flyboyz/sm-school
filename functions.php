@@ -3,6 +3,55 @@
  * Theme functions and definitions
  */
 
+$inc_array = [
+	// System reconfiguration & theme settings
+	'/inc/system-bans.php',
+	'/inc/helpers.php',
+
+	// Custom ACF blocks
+	'/inc/blocks.php',
+
+	// Custom types
+	'/inc/type-course.php',
+	'/inc/type-webinar.php',
+	'/inc/type-project.php',
+	'/inc/type-vacancy.php',
+	'/inc/type-product.php',
+
+	// Sendpulse
+	'/inc/sendpulse.php',
+
+	// Filters
+	'/inc/filter.php',
+
+	// Class Promo
+	'/inc/Promo.php',
+];
+
+if ( ! class_exists( 'ACF' ) ) {
+	if ( ! is_admin() ) {
+		echo ( new WP_Error( 'ACF_plugin_no_found',
+			"<h1>ACF plugin error!</h1>" .
+			"<p>Please fix or activate the AdvancedCustomFields plugin.</p>",
+			404 ) )->get_error_message();
+		wp_die();
+	}
+} else {
+	foreach ( $inc_array as $inc ) {
+		$file = get_template_directory() . $inc;
+
+		if ( ! file_exists( $file ) ) {
+			echo ( new WP_Error( 'no_theme_file',
+				"<h1>File not found!</h1>" .
+				"<p>$file</p>",
+				404 ) )->get_error_message();
+			wp_die();
+		} else {
+			require $file;
+		}
+	}
+}
+
 if ( file_exists( get_parent_theme_file_path( 'vendor/autoload.php' ) ) ) {
 	include_once get_parent_theme_file_path( 'vendor/autoload.php' );
 } else {
@@ -137,24 +186,3 @@ function posts_loader() {
 
 add_action( 'wp_ajax_load_more', 'posts_loader' );
 add_action( 'wp_ajax_nopriv_load_more', 'posts_loader' );
-
-
-/**
- * Include other logics
- */
-$files = [
-	'helpers',
-	'system-bans',
-	'blocks',
-	'type-course',
-	'type-webinar',
-	'type-project',
-	'type-vacancy',
-	'type-product',
-	'sendpulse',
-	'filter',
-];
-
-foreach ( $files as $file ) {
-	include get_template_directory() . "/inc/$file.php";
-}
