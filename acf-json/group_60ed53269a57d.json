@@ -93,7 +93,7 @@
         ],
         [
             {
-                "param": "current_user_role",
+                "param": "user_role",
                 "operator": "==",
                 "value": "administrator"
             }
@@ -107,5 +107,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1626168058
+    "modified": 1626329779
 }
