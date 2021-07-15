@@ -6,9 +6,9 @@ use DateTime;
 use WP_REST_Response;
 
 class Promo {
+	var int $id;
 	var int $post_id;
 	var string $promocode;
-	var DateTime $start_date;
 	var DateTime $end_date;
 
 	public static function init() {
@@ -22,13 +22,12 @@ class Promo {
 	}
 
 	function self_init() {
-		$promo = $this->get_promo();
+		$promo = $this->get_active_promo( get_the_ID(), $_REQUEST['promo'] );
 
 		if ( $promo ) {
-			$this->post_id    = $promo->id;
-			$this->promocode  = $promo->promocode;
-			$this->start_date = new DateTime( $promo->start_date );
-			$this->end_date   = new DateTime( $promo->end_date );
+			$this->post_id   = (int) $promo['post_id'];
+			$this->promocode = $promo['promo_code'];
+			$this->end_date  = new DateTime( $promo['end_date'] );
 		}
 	}
 
@@ -39,7 +38,7 @@ class Promo {
 		add_action( 'header_banner', array( $this, 'self_init' ), 5 );
 		add_action( 'header_banner', array( $this, 'generate_promo_banner' ), 10 );
 
-		add_action( 'promo_start_date', array( $this, 'get_promo_start_date' ), 10 );
+		add_action( 'promo_end_date', array( $this, 'get_promo_end_date' ), 10 );
 		add_action( 'promo_time_left', array( $this, 'get_promo_time_left' ), 10 );
 
 		add_action( 'create_table', array( $this, 'create_table' ) );
@@ -51,27 +50,7 @@ class Promo {
 		} );
 
 		add_filter( 'promo_cost', array( $this, 'promo_cost' ) );
-	}
-
-	/**
-	 * Run this to create main table
-	 */
-	function create_table() {
-		global $wpdb;
-
-		$table_name      = "{$wpdb->prefix}sm_promo";
-		$charset_collate = $wpdb->get_charset_collate();
-		$sql             = "CREATE TABLE $table_name (
-          `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-          `post_id` INT NOT NULL,
-          `promocode` VARCHAR(100) NOT NULL,
-          `start_date` DATETIME NOT NULL,
-          `end_date` DATETIME NOT NULL,
-          PRIMARY KEY (`id`)
-        ) $charset_collate;";
-
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-		dbDelta( $sql );
+		add_shortcode( 'promo_inputs', array( $this, 'gen_inputs' ) );
 	}
 
 	/**
@@ -79,30 +58,30 @@ class Promo {
 	 */
 	private function add_option_page() {
 		if ( function_exists( 'acf_add_options_page' ) ) {
-			acf_add_options_sub_page( array(
-				'page_title'  => 'Leaderboards Settings',
-				'menu_title'  => 'Leaderboards',
-				'parent_slug' => 'theme-settings',
+			acf_add_options_page( array(
+				'page_title'  => __( 'Промокоды' ),
+				'menu_title'  => __( 'Управление промокодами' ),
+				'menu_slug'   => 'promo',
+				'parent_slug' => 'tools.php',
+				'icon_url'    => 'dashicons-tickets',
 			) );
 		}
 	}
 
 	public function api_add_promo() {
-		$post_id   = $_GET['post_id'];
-		$promocode = $_GET['promocode'];
-		$days      = $_GET['days'] ?? 3;
+		$post_id   = (int) $_REQUEST['post_id'];
+		$promocode = $_REQUEST['promo'];
+		$days      = $_REQUEST['days'] ?? 3;
 
-		$start_date = new DateTime();
-		$end_date   = new DateTime();
+		$end_date = new DateTime( current_time( 'Y-m-d H:i:s' ) );
 
-		$start_date = $start_date->format( 'Y-m-d H:i:s' );
 		$end_date->modify( "+$days day" );
 		$end_date = $end_date->format( 'Y-m-d H:i:s' );
 
-		if ( $id = $this->check_promo( $post_id, $promocode ) ) {
-			$promo = $this->update_promo( $id, $start_date, $end_date );
+		if ( $promo = $this->get_promo( $post_id, $promocode ) ) {
+			$promo = $this->update_promo( $promo['id'], $end_date );
 		} else {
-			$promo = $this->add_promo( $post_id, $promocode, $start_date, $end_date );
+			$promo = $this->add_promo( $post_id, $promocode, $end_date );
 		}
 
 		return new WP_REST_Response( array(
@@ -112,55 +91,18 @@ class Promo {
 	}
 
 	/**
-	 * Check Promo
-	 */
-	function check_promo( $post_id, $promocode ) {
-		global $wpdb;
-
-		return $wpdb->get_var( $wpdb->prepare(
-				"SELECT id FROM {$wpdb->prefix}sm_promo WHERE post_id = %d AND promocode = %s",
-				array( $post_id, $promocode )
-			) ) ?? 0;
-	}
-
-	/**
 	 * Update Promo
-	 *
-	 * @throws \Exception
 	 */
-	function update_promo( $id, $start_date, $end_date ) {
-		global $wpdb;
-
-		return $wpdb->update(
-			"{$wpdb->prefix}sm_promo",
-			array(
-				'start_date' => $start_date,
-				"end_date"   => $end_date,
-			),
-			array( 'id' => $id ),
-			array( '%s', '%s' ),
-			array( '%d' ),
-		);
+	function update_promo( $id, $end_date ): bool {
+		return update_row( 'active_promocodes', $id, array( 'end_date' => $end_date ), 'option' );
 	}
 
 	/**
 	 * Add Promo
-	 *
-	 * @throws \Exception
 	 */
-	function add_promo( $post_id, $promocode, $start_date, $end_date ) {
-		global $wpdb;
-
-		return $wpdb->insert(
-			"{$wpdb->prefix}sm_promo",
-			array(
-				'post_id'    => $post_id,
-				'promocode'  => $promocode,
-				'start_date' => $start_date,
-				"end_date"   => $end_date,
-			),
-			array( '%d', '%s', '%s', '%s' )
-		);
+	function add_promo( $post_id, $promocode, $end_date ) {
+		return add_row( 'active_promocodes',
+			array( 'post_id' => $post_id, 'promo_code' => $promocode, 'end_date' => $end_date ), 'option' );
 	}
 
 	/**
@@ -171,55 +113,75 @@ class Promo {
 	 * @return string
 	 */
 	public function generate_promo_banner( $args ) {
-		if ( $this->get_promo() ) {
+		if ( $this->get_active_promo( get_the_ID(), $_REQUEST['promo'] ) ) {
 			return get_template_part( 'template-parts/promo' );
 		}
 
 		return false;
 	}
 
-	public function get_promo() {
-		global $post;
+	public function get_promo( $post_id, $promocode ) {
+		$db_promocodes = get_field( 'active_promocodes', 'option' );
 
-		if ( isset( $_GET['promo'] ) ) {
-			return $this->get_actual_promo_from_db();
+		foreach ( $db_promocodes as $id => $db_promocode ) {
+			if ( $db_promocode['post_id'] === $post_id
+			     && $db_promocode['promo_code'] === $promocode ) {
+
+				return array_merge( $db_promocode, array( 'id' => $id + 1 ) );
+			}
 		}
 
 		return false;
 	}
 
-	function get_actual_promo_from_db() {
-		global $wpdb;
-		global $post;
+	public function get_active_promo( $post_id, $promocode ) {
+		$promo = $this->get_promo( $post_id, $promocode );
 
-		return $wpdb->get_row( $wpdb->prepare(
-			"SELECT * FROM {$wpdb->prefix}sm_promo WHERE post_id = %d AND promocode = %s AND end_date > NOW()",
-			array( $post->ID, $_GET['promo'] )
-		) );
+		$now      = new DateTime( current_time( 'Y-m-d H:i:s' ) );
+		$end_date = new DateTime( $promo['end_date'] );
+
+		if ( ! $now->diff( $end_date )->invert ) {
+			return $promo;
+		}
+
+		return false;
 	}
 
-	function get_promo_start_date() {
+	function get_promo_end_date() {
 		echo $this->end_date->format( 'd.m.Y H:i' );
 	}
 
 	function get_promo_time_left() {
 		$now = new DateTime( current_time( 'Y-m-d H:i:s' ) );
 
-		$left = $this->end_date->getTimestamp() - $now->getTimestamp();
+		// -2 - поправка на отрисовку и запуск таймера
+		$left = $this->end_date->getTimestamp() - $now->getTimestamp() - 2;
 
 		if ( $left > 0 ) {
-			echo '<div id="PromoTimer" data-timer="' . $left . '"></div>';
+			echo '<div id="PromoTimer" data-timer="' . $left . '">Оставшееся время</div>';
 		}
 	}
 
 	function promo_cost( $package ) {
 		$cost = apply_filters( 'get_cost', $package['cost'] );
 
-		if ( $this->get_promo() && $package['cost_promo'] ) {
+		if ( $this->get_active_promo( get_the_ID(), $_REQUEST['promo'] ) && $package['cost_promo'] ) {
 			return "<div class='price-old'>" . $cost . "</div>" . apply_filters( 'get_cost', $package['cost_promo'] );
 		}
 
 		return $cost;
+	}
+
+	function gen_inputs() {
+		if ( $this->is_active() && isset( $_REQUEST['promo'] ) ) {
+			return "<input type='hidden' name='promo' value='{$_REQUEST['promo']}'>\n";
+		}
+
+		return false;
+	}
+
+	function is_active(): bool {
+		return ! ! (array) $this;
 	}
 }
 

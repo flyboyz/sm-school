@@ -1,0 +1,111 @@
+{
+    "key": "group_60ed53269a57d",
+    "title": "Активные промокоды",
+    "fields": [
+        {
+            "key": "field_60ed532e5cfc9",
+            "label": "",
+            "name": "active_promocodes",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_60ed54095cfcd",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Новый промокод",
+            "sub_fields": [
+                {
+                    "key": "field_60ed535d5cfcb",
+                    "label": "Ресурс",
+                    "name": "post_id",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "course",
+                        "webinar"
+                    ],
+                    "taxonomy": "",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "return_format": "id",
+                    "ui": 1
+                },
+                {
+                    "key": "field_60ed54095cfcd",
+                    "label": "Промокод",
+                    "name": "promo_code",
+                    "type": "text",
+                    "instructions": "Слово или email",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_60ed53a65cfcc",
+                    "label": "Окончание доступа",
+                    "name": "end_date",
+                    "type": "date_time_picker",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "display_format": "d.m.Y H:i",
+                    "return_format": "Y-m-d H:i:s",
+                    "first_day": 1
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "promo"
+            }
+        ],
+        [
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "administrator"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1626168058
+}

@@ -14,6 +14,7 @@
 			<?php
 			endif; ?>
 			<?= do_shortcode( '[utm_inputs]' ) ?>
+			<?= $args['has_promo'] ? do_shortcode( '[promo_inputs]' ) : ''; ?>
 			<div class="wpforms-field">
 				<input type="text" name="name" class="wpforms-field-large" placeholder="Имя" required>
 			</div>

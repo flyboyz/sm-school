@@ -69,6 +69,7 @@ if ( ! empty( $packages ) ):
 							endif;
 							get_template_part( "template-parts/form/$package_type", '', [
 								'cost'               => $package_cost,
+								'has_promo'          => ! ! $package['cost_promo'],
 								'key'                => $package_key,
 								'list_address_books' => $package['type_group']['list_address_books'],
 								'reach_goal'         => $package['type_group']['reach_goal'],

@@ -42,6 +42,7 @@ function add_to_address_book() {
 		'date_mk',      // Дата мероприятия | 15 ноября в 15:00
 		'event_type',   // Тип мероприятия
 		'event_name',   // Название мероприятия
+		'promo',        // Промокод
 		'utm_source',
 		'utm_campaign',
 		'utm_medium',
