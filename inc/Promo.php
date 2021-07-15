@@ -114,7 +114,7 @@ class Promo {
 	 */
 	public function generate_promo_banner( $args ) {
 		if ( $this->get_active_promo( get_the_ID(), $_REQUEST['promo'] ) ) {
-			return get_template_part( 'template-parts/promo' );
+			return get_template_part( 'template-parts/section/promo' );
 		}
 
 		return false;
