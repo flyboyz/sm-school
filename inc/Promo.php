@@ -12,8 +12,9 @@ class Promo {
 	var DateTime $end_date;
 
 	public static function init() {
-		$promo = __CLASS__;
-		new $promo;
+		global $promo;
+
+		$promo = new Promo();
 	}
 
 	public function __construct() {

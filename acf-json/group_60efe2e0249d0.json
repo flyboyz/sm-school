@@ -1,0 +1,43 @@
+{
+    "key": "group_60efe2e0249d0",
+    "title": "Дополнительные настройки",
+    "fields": [
+        {
+            "key": "field_60efe2ef1ed78",
+            "label": "Сслыка на видео",
+            "name": "youtube_id",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "https:\/\/www.youtube.com\/embed\/",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "lesson"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1626334207
+}

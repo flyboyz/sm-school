@@ -85,7 +85,7 @@ function add_theme_scripts() {
 		'current_page' => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
 		'max_page'     => $wp_query->max_num_pages,
 		'info'         => $wp_query,
-		'static_page'  => isset( $_GET['static_page'] )
+		'static_page'  => isset( $_GET['static_page'] ) || get_post_type() === 'lesson'
 	] );
 }
 
@@ -141,7 +141,7 @@ function theme_classes( $classes ): array {
 		return array_merge( $classes, [ 'animation-page', $device ] );
 	}
 
-	if ( isset( $_GET['static_page'] ) ) {
+	if ( isset( $_GET['static_page'] ) || get_post_type() === 'lesson' ) {
 		$classes[] = 'static-page';
 	}
 
