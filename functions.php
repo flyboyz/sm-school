@@ -16,7 +16,7 @@ $inc_array = [
 	'/inc/type-webinar.php',
 	'/inc/type-project.php',
 	'/inc/type-vacancy.php',
-	'/inc/type-product.php',
+	'/inc/type-lesson.php',
 
 	// Sendpulse
 	'/inc/sendpulse.php',
