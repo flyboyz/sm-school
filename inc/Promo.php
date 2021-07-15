@@ -174,7 +174,7 @@ class Promo {
 
 	function gen_inputs() {
 		if ( $this->is_active() && isset( $_REQUEST['promo'] ) ) {
-			return "<input type='hidden' name='promo' value='{$_REQUEST['promo']}'>\n";
+			return "<input type='hidden' name='promo_code' value='{$_REQUEST['promo']}'>\n";
 		}
 
 		return false;
