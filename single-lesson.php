@@ -1,16 +1,13 @@
 <?php
 
 get_header();
-
-if ( ! $promo->is_active() ) {
+if ( isset( $promo ) && ! $promo->is_active() ) {
 	global $wp_query;
 	$wp_query->set_404();
 	status_header( 404 );
 	get_template_part( 404 );
-
 	exit();
 }
-
 ?>
 	<div class="container container_fixed">
 		<h1><?php
