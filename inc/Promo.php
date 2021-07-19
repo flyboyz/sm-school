@@ -70,9 +70,12 @@ class Promo {
 	}
 
 	public function api_add_promo() {
-		$post_id   = (int) $_REQUEST['post_id'];
-		$promocode = $_REQUEST['promo'];
-		$days      = $_REQUEST['days'] ?? 3;
+		$data  = json_decode( file_get_contents( 'php://input' ), true );
+		$title = explode( '_', $data['title'] );
+
+		$post_id   = (int) $title[0];
+		$promocode = $title[1];
+		$days      = $title[2] ?? 3;
 
 		$end_date = new DateTime( current_time( 'Y-m-d H:i:s' ) );
 
@@ -86,8 +89,7 @@ class Promo {
 		}
 
 		return new WP_REST_Response( array(
-			'data'    => $promo,
-			'success' => true,
+			'code' => SENDPULSE_RESPONSE_CODE,
 		), 200 );
 	}
 
