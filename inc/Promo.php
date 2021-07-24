@@ -6,9 +6,11 @@ use DateTime;
 use WP_REST_Response;
 
 class Promo {
+
 	var int $id;
 	var int $post_id;
 	var string $promocode;
+	var string $email;
 	var DateTime $end_date;
 
 	public static function init() {
@@ -23,11 +25,13 @@ class Promo {
 	}
 
 	function self_init() {
-		$promo = $this->get_active_promo( get_the_ID(), $_REQUEST['promo'] );
+		$promo = $this->get_active_promo( get_the_ID(), $_REQUEST['promo_code'],
+			$_REQUEST['promo_email'] );
 
 		if ( $promo ) {
 			$this->post_id   = (int) $promo['post_id'];
 			$this->promocode = $promo['promo_code'];
+			$this->email     = $promo['promo_email'];
 			$this->end_date  = new DateTime( $promo['end_date'] );
 		}
 	}
@@ -36,22 +40,22 @@ class Promo {
 	 * Initialize shortcodes, actions and filters
 	 */
 	private function init_hooks() {
-		add_action( 'header_banner', array( $this, 'self_init' ), 5 );
-		add_action( 'header_banner', array( $this, 'generate_promo_banner' ), 10 );
+		add_action( 'header_banner', [ $this, 'self_init' ], 5 );
+		add_action( 'header_banner', [ $this, 'generate_promo_banner' ], 10 );
 
-		add_action( 'promo_end_date', array( $this, 'get_promo_end_date' ), 10 );
-		add_action( 'promo_time_left', array( $this, 'get_promo_time_left' ), 10 );
+		add_action( 'promo_end_date', [ $this, 'get_promo_end_date' ], 10 );
+		add_action( 'promo_time_left', [ $this, 'get_promo_time_left' ], 10 );
 
-		add_action( 'create_table', array( $this, 'create_table' ) );
+		add_action( 'create_table', [ $this, 'create_table' ] );
 		add_action( 'rest_api_init', function () {
 			register_rest_route( 'sm/v1', '/promo', [
 				'methods'  => 'POST',
-				'callback' => array( $this, 'api_add_promo' ),
+				'callback' => [ $this, 'api_add_promo' ],
 			] );
 		} );
 
-		add_filter( 'promo_cost', array( $this, 'promo_cost' ) );
-		add_shortcode( 'promo_inputs', array( $this, 'gen_inputs' ) );
+		add_filter( 'promo_cost', [ $this, 'promo_cost' ] );
+		add_shortcode( 'promo_inputs', [ $this, 'gen_inputs' ] );
 	}
 
 	/**
@@ -59,53 +63,62 @@ class Promo {
 	 */
 	private function add_option_page() {
 		if ( function_exists( 'acf_add_options_page' ) ) {
-			acf_add_options_page( array(
+			acf_add_options_page( [
 				'page_title'  => __( 'Промокоды' ),
 				'menu_title'  => __( 'Управление промокодами' ),
 				'menu_slug'   => 'promo',
 				'parent_slug' => 'tools.php',
 				'icon_url'    => 'dashicons-tickets',
-			) );
+			] );
 		}
 	}
 
 	public function api_add_promo() {
-		$data  = json_decode( file_get_contents( 'php://input' ), true );
-		$title = explode( '_', $data['title'] );
+		$data        = json_decode( file_get_contents( 'php://input' ), true );
+		$title       = explode( '_', $data['title'] );
+		$promo_email = $data['email'];
 
-		$post_id   = (int) $title[0];
-		$promocode = $title[1];
-		$days      = $title[2] ?? 3;
+		$post_id    = (int) $title[0];
+		$promo_code = $title[1];
+		$days       = $title[2] ?? 3;
 
 		$end_date = new DateTime( current_time( 'Y-m-d H:i:s' ) );
 
 		$end_date->modify( "+$days day" );
 		$end_date = $end_date->format( 'Y-m-d H:i:s' );
 
-		if ( $promo = $this->get_promo( $post_id, $promocode ) ) {
+		if ( $promo = $this->get_promo( $post_id, $promo_code,
+			$promo_email ) ) {
 			$promo = $this->update_promo( $promo['id'], $end_date );
 		} else {
-			$promo = $this->add_promo( $post_id, $promocode, $end_date );
+			$promo = $this->add_promo( $post_id, $promo_code, $promo_email,
+				$end_date );
 		}
 
-		return new WP_REST_Response( array(
+		return new WP_REST_Response( [
 			'code' => SENDPULSE_RESPONSE_CODE,
-		), 200 );
+		], 200 );
 	}
 
 	/**
 	 * Update Promo
 	 */
 	function update_promo( $id, $end_date ): bool {
-		return update_row( 'active_promocodes', $id, array( 'end_date' => $end_date ), 'option' );
+		return update_row( 'active_promocodes', $id,
+			[ 'end_date' => $end_date ], 'option' );
 	}
 
 	/**
 	 * Add Promo
 	 */
-	function add_promo( $post_id, $promocode, $end_date ) {
+	function add_promo( $post_id, $promo_code, $promo_email, $end_date ) {
 		return add_row( 'active_promocodes',
-			array( 'post_id' => $post_id, 'promo_code' => $promocode, 'end_date' => $end_date ), 'option' );
+			[
+				'post_id'     => $post_id,
+				'promo_code'  => $promo_code,
+				'promo_email' => $promo_email,
+				'end_date'    => $end_date,
+			], 'option' );
 	}
 
 	/**
@@ -116,29 +129,31 @@ class Promo {
 	 * @return string
 	 */
 	public function generate_promo_banner( $args ) {
-		if ( $this->get_active_promo( get_the_ID(), $_REQUEST['promo'] ) ) {
+		if ( $this->get_active_promo( get_the_ID(), $_REQUEST['promo'],
+			$_REQUEST['promo_email'] ) ) {
 			return get_template_part( 'template-parts/section/promo' );
 		}
 
 		return false;
 	}
 
-	public function get_promo( $post_id, $promocode ) {
-		$db_promocodes = get_field( 'active_promocodes', 'option' );
+	public function get_promo( $post_id, $promo_code, $promo_email ) {
+		$db_promo_codes = get_field( 'active_promocodes', 'option' );
 
-		foreach ( $db_promocodes as $id => $db_promocode ) {
-			if ( $db_promocode['post_id'] === $post_id
-			     && $db_promocode['promo_code'] === $promocode ) {
-
-				return array_merge( $db_promocode, array( 'id' => $id + 1 ) );
+		foreach ( $db_promo_codes as $id => $db_promo_code ) {
+			if ( $db_promo_code['post_id'] === $post_id
+			     && $db_promo_code['promo_code'] === $promo_code ) {
+				if ( ! $promo_email || $promo_email && $promo_email === $db_promo_code['promo_email'] ) {
+					return array_merge( $db_promo_code, [ 'id' => $id + 1 ] );
+				}
 			}
 		}
 
 		return false;
 	}
 
-	public function get_active_promo( $post_id, $promocode ) {
-		$promo = $this->get_promo( $post_id, $promocode );
+	public function get_active_promo( $post_id, $promo_code, $promo_email ) {
+		$promo = $this->get_promo( $post_id, $promo_code, $promo_email );
 
 		$now      = new DateTime( current_time( 'Y-m-d H:i:s' ) );
 		$end_date = new DateTime( $promo['end_date'] );
@@ -168,8 +183,11 @@ class Promo {
 	function promo_cost( $package ) {
 		$cost = apply_filters( 'get_cost', $package['cost'] );
 
-		if ( $this->get_active_promo( get_the_ID(), $_REQUEST['promo'] ) && $package['cost_promo'] ) {
-			return "<div class='price-old'>" . $cost . "</div>" . apply_filters( 'get_cost', $package['cost_promo'] );
+		if ( $this->get_active_promo( get_the_ID(),
+				$_REQUEST['promo'],
+				$_REQUEST['promo_email'] ) && $package['cost_promo'] ) {
+			return "<div class='price-old'>" . $cost . "</div>" . apply_filters( 'get_cost',
+					$package['cost_promo'] );
 		}
 
 		return $cost;
@@ -186,6 +204,7 @@ class Promo {
 	function is_active(): bool {
 		return ! ! (array) $this;
 	}
+
 }
 
-add_action( 'init', array( 'sm\Promo', 'init' ) );
+add_action( 'init', [ 'sm\Promo', 'init' ] );
