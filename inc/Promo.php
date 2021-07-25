@@ -9,8 +9,8 @@ class Promo {
 
 	var int $id;
 	var int $post_id;
-	var string $promocode;
-	var string $email;
+	var string $promo_code;
+	var string $promo_email;
 	var DateTime $end_date;
 
 	public static function init() {
@@ -25,14 +25,14 @@ class Promo {
 	}
 
 	function self_init() {
-		$promo = $this->get_active_promo( get_the_ID(), $_REQUEST['promo_code'],
+		$promo = $this->get_active_promo( get_the_ID(), $_REQUEST['promo'],
 			$_REQUEST['promo_email'] );
 
 		if ( $promo ) {
-			$this->post_id   = (int) $promo['post_id'];
-			$this->promocode = $promo['promo_code'];
-			$this->email     = $promo['promo_email'];
-			$this->end_date  = new DateTime( $promo['end_date'] );
+			$this->post_id     = (int) $promo['post_id'];
+			$this->promo_code  = $promo['promo_code'];
+			$this->promo_email = $promo['promo_email'];
+			$this->end_date    = new DateTime( $promo['end_date'] );
 		}
 	}
 
@@ -73,7 +73,7 @@ class Promo {
 		}
 	}
 
-	public function api_add_promo() {
+	public function api_add_promo(): WP_REST_Response {
 		$data        = json_decode( file_get_contents( 'php://input' ), true );
 		$title       = explode( '_', $data['title'] );
 		$promo_email = $data['email'];
@@ -89,9 +89,9 @@ class Promo {
 
 		if ( $promo = $this->get_promo( $post_id, $promo_code,
 			$promo_email ) ) {
-			$promo = $this->update_promo( $promo['id'], $end_date );
+			$this->update_promo( $promo['id'], $end_date );
 		} else {
-			$promo = $this->add_promo( $post_id, $promo_code, $promo_email,
+			$this->add_promo( $post_id, $promo_code, $promo_email,
 				$end_date );
 		}
 
@@ -116,19 +116,15 @@ class Promo {
 			[
 				'post_id'     => $post_id,
 				'promo_code'  => $promo_code,
-				'promo_email' => $promo_email,
+				'promo_email' => mb_strtolower( $promo_email ),
 				'end_date'    => $end_date,
 			], 'option' );
 	}
 
 	/**
 	 * Shortcode for generate big leaderboard table
-	 *
-	 * @param $args
-	 *
-	 * @return string
 	 */
-	public function generate_promo_banner( $args ) {
+	public function generate_promo_banner() {
 		if ( $this->get_active_promo( get_the_ID(), $_REQUEST['promo'],
 			$_REQUEST['promo_email'] ) ) {
 			return get_template_part( 'template-parts/section/promo' );
@@ -138,12 +134,14 @@ class Promo {
 	}
 
 	public function get_promo( $post_id, $promo_code, $promo_email ) {
-		$db_promo_codes = get_field( 'active_promocodes', 'option' );
+		$db_promocodes = get_field( 'active_promocodes', 'option' );
 
-		foreach ( $db_promo_codes as $id => $db_promo_code ) {
+		foreach ( $db_promocodes as $id => $db_promo_code ) {
 			if ( $db_promo_code['post_id'] === $post_id
 			     && $db_promo_code['promo_code'] === $promo_code ) {
-				if ( ! $promo_email || $promo_email && $promo_email === $db_promo_code['promo_email'] ) {
+				if ( isset( $promo_email ) && mb_strtolower( $db_promo_code['promo_email'] ) === mb_strtolower( $promo_email ) ) {
+					return array_merge( $db_promo_code, [ 'id' => $id + 1 ] );
+				} elseif ( ! $db_promo_code['promo_email'] ) {
 					return array_merge( $db_promo_code, [ 'id' => $id + 1 ] );
 				}
 			}
@@ -176,7 +174,7 @@ class Promo {
 		$left = $this->end_date->getTimestamp() - $now->getTimestamp() - 2;
 
 		if ( $left > 0 ) {
-			echo '<div id="PromoTimer" data-timer="' . $left . '">Оставшееся время</div>';
+			echo '<div id="PromoTimer" data-timer="' . $left . '"></div>';
 		}
 	}
 

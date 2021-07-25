@@ -24,7 +24,7 @@ export default () => {
       timer.innerHTML = `${days} ${dLabel} ${hours} ${hLabel} ${minutes} ${mLabel} ${seconds} ${sLabel}`
     } else {
       clearInterval(x)
-      timer.innerHTML = 'Время истекло'
+      timer.innerHTML = '-'
     }
 
     --distance
