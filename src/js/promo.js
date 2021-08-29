@@ -24,7 +24,11 @@ export default () => {
       timer.innerHTML = `${days} ${dLabel} ${hours} ${hLabel} ${minutes} ${mLabel} ${seconds} ${sLabel}`
     } else {
       clearInterval(x)
-      timer.innerHTML = '-'
+      timer.innerHTML = `${days} ${dLabel} ${hours} ${hLabel} ${minutes} ${mLabel} ${seconds} ${sLabel}`
+
+      setTimeout(() => {
+        location.reload()
+      }, 3000)
     }
 
     --distance
