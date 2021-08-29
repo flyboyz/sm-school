@@ -43,10 +43,10 @@ echo esc_attr( $className ); ?>">
 							     data-options='{"touch" : false}'>
 								<div class="button-svg">
 									<?= file_get_contents( get_template_directory() . '/images/icons/mail.svg' ) ?>
-								</div>
-								<span>Почта</span>
-							</div>
-							<?php
+                                </div>
+                                <span>Записаться</span>
+                            </div>
+                            <?php
 							get_template_part( 'template-parts/form/sendpulse', '', [
 								'key'                => $form_key,
 								'list_address_books' => $socials['sendpulse']['list_address_books'],
@@ -57,28 +57,28 @@ echo esc_attr( $className ); ?>">
 							<a class="mini-btn vk" href="<?= $socials['vk'] ?>" target="_blank">
 								<div class="button-svg">
 									<?= file_get_contents( get_template_directory() . '/images/icons/social-vk.svg' ) ?>
-								</div>
-								<span>Вконтакте</span>
-							</a>
-						<?php
+                                </div>
+                                <span>Записаться</span>
+                            </a>
+                        <?php
 						endif;
 						if ( $socials['telegram'] ): ?>
 							<a class="mini-btn tg mobile-only" href="<?= $socials['telegram'] ?>" target="_blank">
 								<div class="button-svg">
 									<?= file_get_contents( get_template_directory() . '/images/icons/social-telegram.svg' ) ?>
-								</div>
-								<span>Telegram</span>
-							</a>
-						<?php
+                                </div>
+                                <span>Записаться</span>
+                            </a>
+                        <?php
 						endif;
 						if ( $socials['viber'] ): ?>
 							<a class="mini-btn viber mobile-only" href="<?= $socials['viber'] ?>" target="_blank">
 								<div class="button-svg">
 									<?= file_get_contents( get_template_directory() . '/images/icons/social-viber.svg' ) ?>
-								</div>
-								<span>Viber</span>
-							</a>
-						<?php
+                                </div>
+                                <span>Записаться</span>
+                            </a>
+                        <?php
 						endif; ?>
 					</div>
 				<?php
