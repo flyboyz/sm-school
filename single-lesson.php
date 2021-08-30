@@ -9,7 +9,7 @@ if (isset($promo) && ! $promo->is_active()) {
     exit();
 }
 ?>
-    <div class="container container_fixed">
+    <div class="container container_fixed video-full-width">
         <h1><?php
             the_title() ?> </h1>
         <?php
