@@ -43,27 +43,30 @@ echo esc_attr( $className ); ?>">
 									<?php
 									foreach ( $authors as $author_ID ) {
 										echo wp_get_attachment_image( get_fields( "user_$author_ID" )['avatar'] );
-									} ?>
-								</div>
-							</div>
-						</div>
-					<?php
-					endforeach; ?>
-				</div>
-				<div class="swiper-pagination"></div>
-			</div>
-			<?php
-			if ( $sendpulse = get_field( 'sendpulse' ) ):
-				$form_key = wp_generate_password( 6, false );
-				?>
-				<div class="text-center" style="margin-top: 30px">
-					<a data-fancybox data-src="#Modal_<?= $form_key ?>" data-options='{"touch" : false}'
-					   href="javascript:;"
-					   class="button button_lighting">Записаться</a>
-				</div>
-				<?php
-				get_template_part( 'template-parts/form/sendpulse', '', [
-					'key'                => $form_key,
+                                    } ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endforeach; ?>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <?php
+            $sendpulse = get_field('sendpulse');
+
+            if ($sendpulse && $sendpulse['list_address_books'] != 0):
+                $form_key = wp_generate_password(6, false);
+                ?>
+                <div class="text-center" style="margin-top: 30px">
+                    <a data-fancybox data-src="#Modal_<?= $form_key ?>"
+                       data-options='{"touch" : false}'
+                       href="javascript:;"
+                       class="button button_lighting">Записаться</a>
+                </div>
+                <?php
+                get_template_part('template-parts/form/sendpulse', '', [
+                    'key'                => $form_key,
 					'list_address_books' => $sendpulse['list_address_books'],
 					'reach_goal'         => $sendpulse['reach_goal'],
 				] );
