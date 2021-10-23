@@ -85,7 +85,7 @@ function add_theme_scripts() {
 		'current_page' => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1,
 		'max_page'     => $wp_query->max_num_pages,
 		'info'         => $wp_query,
-		'static_page'  => isset( $_GET['static_page'] ) || get_post_type() === 'lesson'
+		'static_page'  => isset( $_GET['static_page'] ) || get_post_type() === 'lesson',
 	] );
 }
 
@@ -186,3 +186,31 @@ function posts_loader() {
 
 add_action( 'wp_ajax_load_more', 'posts_loader' );
 add_action( 'wp_ajax_nopriv_load_more', 'posts_loader' );
+
+function slug_get_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
+	//If is email, try and find user ID
+	if ( ! is_numeric( $id_or_email ) && is_email( $id_or_email ) ) {
+		$user = get_user_by( 'email', $id_or_email );
+		if ( $user ) {
+			$id_or_email = $user->ID;
+		}
+	}
+
+	//if not user ID, return
+	if ( ! is_numeric( $id_or_email ) ) {
+		return $avatar;
+	}
+
+	//Find URL of saved avatar in user meta
+	$saved = wp_get_attachment_image_url( get_user_meta( $id_or_email, 'avatar',
+		true ) );
+	//check if it is a URL
+	if ( filter_var( $saved, FILTER_VALIDATE_URL ) ) {
+		//return saved image
+		return '<img src="' . esc_url( $saved ) . '" alt="' . esc_url( $alt ) . '" />';
+	}
+
+	return $avatar;
+}
+
+add_filter( 'get_avatar', 'slug_get_avatar', 1000, 5 );
