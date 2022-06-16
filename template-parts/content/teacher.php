@@ -40,7 +40,9 @@ $teacher->fields = get_fields('user_' . $teacher->ID);
             </div>
         </div>
         <div class="details-content">
-            <?= \nl2br($teacher->description) ?>
+            <div>
+                <?= \nl2br($teacher->description) ?>
+            </div>
         </div>
     </div>
 </div>
