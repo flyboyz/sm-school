@@ -25,15 +25,17 @@ class Promo {
 	}
 
 	function self_init() {
-		$promo = $this->get_active_promo( get_the_ID(), $_REQUEST['promo'],
-			$_REQUEST['promo_email'] );
+        if (isset($_REQUEST['promo'])) {
+            $promo = $this->get_active_promo( get_the_ID(), $_REQUEST['promo'],
+                $_REQUEST['promo_email'] );
 
-		if ( $promo ) {
-			$this->post_id     = (int) $promo['post_id'];
-			$this->promo_code  = $promo['promo_code'];
-			$this->promo_email = $promo['promo_email'];
-			$this->end_date    = new DateTime( $promo['end_date'] );
-		}
+            if ( $promo ) {
+                $this->post_id     = (int) $promo['post_id'];
+                $this->promo_code  = $promo['promo_code'];
+                $this->promo_email = $promo['promo_email'];
+                $this->end_date    = new DateTime( $promo['end_date'] );
+            }
+        }
 	}
 
 	/**
@@ -125,7 +127,7 @@ class Promo {
 	 * Shortcode for generate big leaderboard table
 	 */
 	public function generate_promo_banner() {
-		if ( $this->get_active_promo( get_the_ID(), $_REQUEST['promo'],
+		if ( isset($_REQUEST['promo']) && $this->get_active_promo( get_the_ID(), $_REQUEST['promo'],
 			$_REQUEST['promo_email'] ) ) {
 			return get_template_part( 'template-parts/section/promo' );
 		}
@@ -181,7 +183,7 @@ class Promo {
 	function promo_cost( $package ) {
 		$cost = apply_filters( 'get_cost', $package['cost'] );
 
-		if ( $this->get_active_promo( get_the_ID(),
+		if ( isset($_REQUEST['promo']) && $this->get_active_promo( get_the_ID(),
 				$_REQUEST['promo'],
 				$_REQUEST['promo_email'] ) && $package['cost_promo'] ) {
 			return "<div class='price-old'>" . $cost . "</div>" . apply_filters( 'get_cost',
