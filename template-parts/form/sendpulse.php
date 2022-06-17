@@ -21,7 +21,7 @@
 			<div class="wpforms-field">
 				<input type="email" name="email" class="wpforms-field-large" placeholder="Email" required>
 			</div>
-			<button type="submit" class="button button_lighting">Записаться</button>
+			<button type="submit" class="button button_lighting"><?= $args['submit_text'] ?? 'Записаться' ?></button>
 		</form>
 		<div class="modal__sub">
 			Отправляя заявку, вы даете согласие на обработку своих персональных данных в соответствии с
