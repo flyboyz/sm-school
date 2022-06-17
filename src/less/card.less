@@ -432,4 +432,43 @@
   & > *:last-child {
     margin-bottom: 0;
   }
+
+  div {
+    padding-right: 10px;
+    max-height: 24rem;
+    overflow-y: scroll;
+
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background: black;
+      }
+    }
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+    /* button */
+    &::-webkit-scrollbar-button {
+      display: none;
+      background: transparent;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #838383;
+      border-radius: 5px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    /* Corner */
+    &::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+    /* Resizer */
+    &::-webkit-resizer {
+      background: transparent;
+    }
+  }
 }
