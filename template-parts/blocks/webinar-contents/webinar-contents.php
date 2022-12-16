@@ -27,7 +27,9 @@ echo esc_attr( $className ); ?>">
 					</div>
 				<?php
 				endforeach;
-				if ( $sendpulse = get_field( 'sendpulse' ) ):
+            	$sendpulse = get_field( 'sendpulse' );
+
+				if ( $sendpulse && $sendpulse['list_address_books'] != 0 ):
 					$form_key = wp_generate_password( 6, false );
 					?>
 					<div class="text-center" style="margin-top: 30px">
